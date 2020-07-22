@@ -8,7 +8,7 @@
 #' @return A matrix of the infile
 #' @export
 Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
-  Module_list = system.file("extdata", "Module_listGen3.csv", package = "BloodGen3Module")
+  Module_list = system.file("data", "Module_listGen3.csv", package = "BloodGen3Module")
   rownames(Module_list) = Module_list$Module_gene
 
   ### Prepare expression matrix with module list
