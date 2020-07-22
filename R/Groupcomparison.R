@@ -12,10 +12,13 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
   Module_table = Module_listGen3
   colnames(Module_table) = "Module_list"
 
-  Module_table  <- concat.split.multiple(Module_table, "Module_list", seps=",", drop = TRUE)
+  Module_table  <- cSplit(Module_table, "Module_list", sep = ",", direction = "wide", fixed = TRUE,
+                        drop = TRUE)
 
- colnames(Module_table) = c("Module","Gene","Probes","Module_gene","Function","Cluster","Cluster_location","position")
- rownames(Module_table) = Module_table$Module_gene
+  colnames(Module_table) = c("Module","Gene","Probes","Module_gene","Function","Cluster","Cluster_location","position")
+  Module_table = as.data.frame(Module_table)
+  rownames(Module_table) = Module_table$Module_gene
+
 
   ### Prepare expression matrix with module list
   df1=Module_table                   # This is module list annotation table
