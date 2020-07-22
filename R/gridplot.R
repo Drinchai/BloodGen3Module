@@ -15,7 +15,12 @@ gridplot = function(Group_df, cutoff = NULL){
                         drop = TRUE)
 
   colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position")
-  Module_ann = as.data.frame(Module_ann)
+  Module_ann = data.frame(Module_ann)
+  Module_ann$Module = as.character(Module_ann$Module)
+  Module_ann$Cluster = as.character(Module_ann$Cluster)
+  Module_ann$Function = as.character(Module_ann$Function)
+  Module_ann$position = as.character(Module_ann$position)
+
   rownames(Module_ann) = Module_ann$Module
   Module_ann$Module_color = Module.platte
 
