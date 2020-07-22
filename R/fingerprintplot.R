@@ -9,6 +9,7 @@
 #' @export
 fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, height = NULL, width = NULL){
   #Load module annotation
+  sample_info = sample.info
   Module_ann = Gen3_ann
   colnames(Module_ann) = "Module_col"
 
@@ -23,47 +24,47 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
   Module_ann$position = as.character(Module_ann$position)
 
   rownames(Module_ann) = Module_ann$Module
-  
-Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E", "#00FFFF", "#8B63FF", "#6BA3D7", "#FF00FF",
-                  "#8B63FF", "#FFFFFF", "#EA7C1E", "#FFFFFF", "#FFABA8", "#004181", "#99C68E", "#E5C493", "#FFABA8", "#0077BA",
-                  "#8B63FF", "#FFEE07", "#C5A44B", "#B00D29", "#EA7C1E", "#F94A8B", "#B51F83", "#FFFFFF", "#99C68E", "#B00D29",
-                  "#E5C493", "#FFFFFF", "#8B63FF", "#000000", "#E5C493", "#FFFFFF", "#FFFFFF", "#E5C493", "#8B63FF", "#FFFFFF",
-                  "#B00D29", "#E5C493", "#B497DB", "#E5C493", "#F4CA49", "#00FFFF", "#FFEE07", "#C5A44B", "#99C68E", "#F85B4D",
-                  "#FF92D5", "#FFFFFF", "#FFFFFF", "#C5A44B", "#F94A8B", "#FFEE07", "#8B63FF", "#FFABA8", "#EA7C1E", "#FFFFFF",
-                  "#99C68E", "#E5C493", "#8B63FF", "#FFABA8", "#E5C493", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#99C68E", "#B51F83", "#FFABA8", "#FFABA8", "#FFFFFF", "#E5C493", "#FFFFFF", "#B00D29",
-                  "#E5C493", "#FFFFFF", "#FFFFFF", "#E5C493", "#B00D29", "#FFFFFF", "#B00D29", "#8B63FF", "#FF92D5", "#FFFFFF",
-                  "#B51F83", "#99C68E", "#FFFFFF", "#B497DB", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E",
-                  "#CFE84D", "#FFFFFF", "#0077BA", "#FFFFFF", "#8B63FF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#B00D29", "#E5C493",
-                  "#B00D29", "#F94A8B", "#FFFFFF", "#EA7C1E", "#99C68E", "#E5C493", "#FFFFFF", "#FFABA8", "#8B63FF", "#FFFFFF",
-                  "#FFFFFF", "#FFABA8", "#FFFFFF", "#B51F83", "#99C68E", "#004181", "#B00D29", "#E5C493", "#8B63FF", "#E5C493",
-                  "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#66CCFF", "#E5C493", "#FFFFFF", "#8B63FF",
-                  "#8B63FF", "#6BA3D7", "#F4CA49", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#FFEE07", "#FFABA8", "#99C68E",
-                  "#004181", "#E5C493", "#0077BA", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#4FF300",
-                  "#FFFFFF", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#000000", "#FFFFFF", "#FFFFFF", "#FF92D5",
-                  "#99C68E", "#B51F83", "#000000", "#FFFFFF", "#FFABA8", "#FFFFFF", "#0077BA", "#0077BA", "#FF92D5", "#FFABA8",
-                  "#B00D29", "#0077BA", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFABA8", "#6BA3D7", "#FFFFFF",
-                  "#4FF300", "#FFFFFF", "#000000", "#FFFFFF", "#8B63FF", "#FFFFFF", "#EA7C1E", "#FFFFFF", "#C5A44B", "#4F8F00",
-                  "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#00FFFF", "#FFFFFF", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFABA8", "#FFFFFF", "#FFFFFF", "#99C68E", "#EA7C1E", "#FFFFFF", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#F7C599", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#F4CA49", "#FFFFFF", "#00FFFF",
-                  "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFABA8", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-                  "#000000", "#0077BA", "#FFABA8", "#EA7C1E", "#FFFFFF", "#C226D9", "#FFFFFF", "#FFFFFF", "#B00D29", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#B00D29", "#99C68E", "#FFFFFF", "#FFFFFF", "#B00D29", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-                  "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493",
-                  "#00FFFF", "#FFFFFF", "#8B63FF", "#0077BA", "#FFFFFF", "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#FFABA8",
-                  "#FFFFFF", "#8B63FF", "#FFEE07", "#FFABA8", "#FFFFFF", "#000000", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E", "#0077BA", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-                  "#4E564D", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-                  "#004181", "#FFFFFF", "#FFFFFF", "#E5C493", "#8B63FF", "#FFFFFF", "#FFFFFF", "#A7F9D1", "#FFFFFF", "#B00D29",
-                  "#FFABA8", "#8B63FF", "#929000", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#FFEE07", "#FFFFFF", "#FFFFFF",
-                  "#99C68E", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#C7CEF7", "#009051", "#FFFFFF", "#FFFFFF", "#8B63FF", "#942193",
-                  "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#FFFFFF", "#000000", "#FFFFFF", "#4FF300", "#FFEE07", "#8B63FF",
-                  "#F4CA49", "#FFFFFF", "#E5C493", "#4F8F00", "#C5A44B", "#FFFFFF", "#F94A8B", "#FFFFFF", "#EA7C1E", "#FFFFFF",
-                  "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#FFEE07", "#EA7C1E", "#000000", "#FFFFFF", "#FFABA8",
-                  "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#F94A8B", "#FFFFFF", "#6BA3D7",
-                  "#FFFFFF", "#FFFFFF")
-  
+
+  Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E", "#00FFFF", "#8B63FF", "#6BA3D7", "#FF00FF",
+                   "#8B63FF", "#FFFFFF", "#EA7C1E", "#FFFFFF", "#FFABA8", "#004181", "#99C68E", "#E5C493", "#FFABA8", "#0077BA",
+                   "#8B63FF", "#FFEE07", "#C5A44B", "#B00D29", "#EA7C1E", "#F94A8B", "#B51F83", "#FFFFFF", "#99C68E", "#B00D29",
+                   "#E5C493", "#FFFFFF", "#8B63FF", "#000000", "#E5C493", "#FFFFFF", "#FFFFFF", "#E5C493", "#8B63FF", "#FFFFFF",
+                   "#B00D29", "#E5C493", "#B497DB", "#E5C493", "#F4CA49", "#00FFFF", "#FFEE07", "#C5A44B", "#99C68E", "#F85B4D",
+                   "#FF92D5", "#FFFFFF", "#FFFFFF", "#C5A44B", "#F94A8B", "#FFEE07", "#8B63FF", "#FFABA8", "#EA7C1E", "#FFFFFF",
+                   "#99C68E", "#E5C493", "#8B63FF", "#FFABA8", "#E5C493", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#99C68E", "#B51F83", "#FFABA8", "#FFABA8", "#FFFFFF", "#E5C493", "#FFFFFF", "#B00D29",
+                   "#E5C493", "#FFFFFF", "#FFFFFF", "#E5C493", "#B00D29", "#FFFFFF", "#B00D29", "#8B63FF", "#FF92D5", "#FFFFFF",
+                   "#B51F83", "#99C68E", "#FFFFFF", "#B497DB", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E",
+                   "#CFE84D", "#FFFFFF", "#0077BA", "#FFFFFF", "#8B63FF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#B00D29", "#E5C493",
+                   "#B00D29", "#F94A8B", "#FFFFFF", "#EA7C1E", "#99C68E", "#E5C493", "#FFFFFF", "#FFABA8", "#8B63FF", "#FFFFFF",
+                   "#FFFFFF", "#FFABA8", "#FFFFFF", "#B51F83", "#99C68E", "#004181", "#B00D29", "#E5C493", "#8B63FF", "#E5C493",
+                   "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#66CCFF", "#E5C493", "#FFFFFF", "#8B63FF",
+                   "#8B63FF", "#6BA3D7", "#F4CA49", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#FFEE07", "#FFABA8", "#99C68E",
+                   "#004181", "#E5C493", "#0077BA", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#4FF300",
+                   "#FFFFFF", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#000000", "#FFFFFF", "#FFFFFF", "#FF92D5",
+                   "#99C68E", "#B51F83", "#000000", "#FFFFFF", "#FFABA8", "#FFFFFF", "#0077BA", "#0077BA", "#FF92D5", "#FFABA8",
+                   "#B00D29", "#0077BA", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFABA8", "#6BA3D7", "#FFFFFF",
+                   "#4FF300", "#FFFFFF", "#000000", "#FFFFFF", "#8B63FF", "#FFFFFF", "#EA7C1E", "#FFFFFF", "#C5A44B", "#4F8F00",
+                   "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#00FFFF", "#FFFFFF", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFABA8", "#FFFFFF", "#FFFFFF", "#99C68E", "#EA7C1E", "#FFFFFF", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#F7C599", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#F4CA49", "#FFFFFF", "#00FFFF",
+                   "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFABA8", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
+                   "#000000", "#0077BA", "#FFABA8", "#EA7C1E", "#FFFFFF", "#C226D9", "#FFFFFF", "#FFFFFF", "#B00D29", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#B00D29", "#99C68E", "#FFFFFF", "#FFFFFF", "#B00D29", "#FFFFFF", "#FFFFFF", "#FFFFFF",
+                   "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493",
+                   "#00FFFF", "#FFFFFF", "#8B63FF", "#0077BA", "#FFFFFF", "#FFFFFF", "#004181", "#FFFFFF", "#FFFFFF", "#FFABA8",
+                   "#FFFFFF", "#8B63FF", "#FFEE07", "#FFABA8", "#FFFFFF", "#000000", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E", "#0077BA", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
+                   "#4E564D", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#E5C493", "#FFFFFF", "#E5C493", "#FFFFFF", "#FFFFFF", "#FFFFFF",
+                   "#004181", "#FFFFFF", "#FFFFFF", "#E5C493", "#8B63FF", "#FFFFFF", "#FFFFFF", "#A7F9D1", "#FFFFFF", "#B00D29",
+                   "#FFABA8", "#8B63FF", "#929000", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#FFEE07", "#FFFFFF", "#FFFFFF",
+                   "#99C68E", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#C7CEF7", "#009051", "#FFFFFF", "#FFFFFF", "#8B63FF", "#942193",
+                   "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8B63FF", "#FFFFFF", "#000000", "#FFFFFF", "#4FF300", "#FFEE07", "#8B63FF",
+                   "#F4CA49", "#FFFFFF", "#E5C493", "#4F8F00", "#C5A44B", "#FFFFFF", "#F94A8B", "#FFFFFF", "#EA7C1E", "#FFFFFF",
+                   "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#FFEE07", "#EA7C1E", "#000000", "#FFFFFF", "#FFABA8",
+                   "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#F94A8B", "#FFFFFF", "#6BA3D7",
+                   "#FFFFFF", "#FFFFFF")
+
   Module_ann$Module_color = Module.platte
 
 
@@ -72,8 +73,6 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
   rownames(Sum.mod.sin) == rownames(Module_ann)
 
   rownames(Sum.mod.sin) <- paste(Module_ann$Module, Module_ann$Function, sep = ".")
-
-  Sum.mod.sin.comp <- Sum.mod.sin[apply(Sum.mod.sin[,], 1, function(x) !all(x==0)),]                 # Rows sum=0
 
   ############################################################
   ##################### MODULES GEN3 and MODULE WITH FUNCTION DEFINED #######################################
@@ -84,7 +83,7 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
   rownames(Module.list) <- Module.list$Modules
 
   mod.with.function <- Module.list$Modules[which(Module.list$Function!="TBD")]                         # select module that have only function
-  Sum.mod.sin.comp.withF <- Sum.mod.sin.comp[rownames(Sum.mod.sin.comp) %in% mod.with.function,]       # selected only modules that have function in this dataset
+  Sum.mod.sin.comp.withF <- Sum.mod.sin[rownames(Sum.mod.sin) %in% mod.with.function,]       # selected only modules that have function in this dataset
 
   ####################################################################################
   ####### DOT Heatmap by complexHeatmap ####
@@ -129,7 +128,9 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
   else {
     anno_table = Module_ann[grep(Module_ann$Cluster,pattern = Aggregate),]
   }
-  rownames(anno_table) == anno_table$Module_func
+
+  rownames(anno_table) == anno_table$Module
+  rownames(anno_table) = anno_table$Module_func
 
 
   df_plot = df_plot[rownames(anno_table),]
@@ -143,7 +144,7 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
                           col = list(Module = plate_color))
 
   ha_column = HeatmapAnnotation(df = data.frame(Group = sample_info$Group_test),
-                                show_annotation_name = TRUE,
+                                show_annotation_name = TRUE, simple_anno_size = unit(0.3, "cm"),
                                 col = list(Group = my.pattle))
 
   #DOT HEATMAP
@@ -184,5 +185,3 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
   dev.off()
 
 }
-
-
