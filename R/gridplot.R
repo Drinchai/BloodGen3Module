@@ -8,12 +8,21 @@
 #' @return A matrix of the infile
 #' @export
 gridplot = function(Group_df, cutoff = NULL){
+  Module_ann = Gen3_ann
+  colnames(Module_ann) = "Module_col"
+
+  Module_ann  <- cSplit(Module_ann, "Module_col", sep = ",", direction = "wide", fixed = TRUE,
+                        drop = TRUE)
+
+  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position","Module_color")
+  Module_ann = as.data.frame(Module_ann)
+  rownames(Module_ann) = Module_ann$Module
 
   ## prepared cluter position
   Group_plot = Group_df
-  Group_plot <-Group_plot[rownames(Gen3_ann),]
-  rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
-  rownames(Group_plot) <- Gen3_ann$position
+  Group_plot <-Group_plot[rownames(Module_ann),]
+  rownames(Group_plot)==rownames(Module_ann)                         # check if rownames is the same
+  rownames(Group_plot) <- Module_ann$position
   Group_plot <- as.data.frame(Group_plot)
 
   ########## An example of DISPLAY DATA > 15 %
