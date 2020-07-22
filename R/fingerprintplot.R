@@ -24,7 +24,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
   Sum.mod.sin = Sum.mod.sin[rownames(Module_ann),]
   rownames(Sum.mod.sin) == rownames(Module_ann)
 
-  rownames(Sum.mod.sin) <- paste(Module_ann$Module, Gen3_ann$Function, sep = ".")
+  rownames(Sum.mod.sin) <- paste(Module_ann$Module, Module_ann$Function, sep = ".")
 
   Sum.mod.sin.comp <- Sum.mod.sin[apply(Sum.mod.sin[,], 1, function(x) !all(x==0)),]                 # Rows sum=0
 
