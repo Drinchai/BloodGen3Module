@@ -90,7 +90,6 @@ Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
   else {
     FC_cutoff = as.numeric(FC)
   }
-  FC_cutoff = as.numeric(FC)
 
   if (is.null(DIFF)) {
     DIFF_cutoff = 10
