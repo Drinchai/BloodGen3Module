@@ -7,9 +7,8 @@
 #' @param infile Path to the input file
 #' @return A matrix of the infile
 #' @export
-fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, height = NULL, width = NULL){
+fingerprintplot = function(Individual_df, cutoff = NULL,rowSplit= TRUE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL){
   #Load module annotation
-  sample_info = sample.info
   Module_ann = Gen3_ann
   colnames(Module_ann) = "Module_col"
 
@@ -100,6 +99,15 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
 
   df_plot[abs(df_plot) < cutoff] <- 0
 
+  ###remove control sample from plot
+  if (showControl == FALSE) {
+    sample_info = sample.info[-which(sample.info$Group_test==c("Control")),]
+  }
+  else {
+    sample_info = sample.info
+  }
+
+
   df_plot = df_plot[,rownames(sample_info)]
 
   colnames(df_plot)==rownames(sample_info)
@@ -146,6 +154,12 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
   ha_column = HeatmapAnnotation(df = data.frame(Group = sample_info$Group_test),
                                 show_annotation_name = FALSE, simple_anno_size = unit(0.3, "cm"),
                                 col = list(Group = my.pattle))
+  if (rowSplit == TRUE) {
+    rowSplit = anno_table$Cluster
+  }
+  else {
+    rowSplit = NULL
+  }
 
   #DOT HEATMAP
   if (is.null(height)) {
@@ -169,11 +183,13 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
              height = unit(2.1, "mm")*nrow(df_plot),
              width  = unit(2.1, "mm")*ncol(df_plot),
              rect_gp = gpar(type = "none"),
+             row_split = rowSplit,
              top_annotation = ha_column,
              left_annotation = left_ha,
              name = "% Response",
              row_names_max_width = unit(10,"in"),
-             row_title_gp = gpar(fontsize = 0.1),
+             row_title_gp = gpar(fontsize = 10),
+             row_title_rot = 0,
              column_names_gp = gpar(fontsize = 4),
              row_names_gp = gpar(fontsize = 5),
              cell_fun = function(j, i, x, y, width, height, fill) {
