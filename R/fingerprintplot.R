@@ -8,13 +8,23 @@
 #' @return A matrix of the infile
 #' @export
 fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, height = NULL, width = NULL){
+  #Load module annotation
+  Module_ann = Gen3_ann
+  colnames(Module_ann) = "Module_col"
+
+  Module_ann  <- cSplit(Module_ann, "Module_col", sep = ",", direction = "wide", fixed = TRUE,
+                        drop = TRUE)
+
+  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position","Module_color")
+  Module_ann = as.data.frame(Module_ann)
+  rownames(Module_ann) = Module_ann$Module
 
 
   Sum.mod.sin = Individual_df
-  Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
-  rownames(Sum.mod.sin) == rownames(Gen3_ann)
+  Sum.mod.sin = Sum.mod.sin[rownames(Module_ann),]
+  rownames(Sum.mod.sin) == rownames(Module_ann)
 
-  rownames(Sum.mod.sin) <- paste(Gen3_ann$Module, Gen3_ann$Function, sep = ".")
+  rownames(Sum.mod.sin) <- paste(Module_ann$Module, Gen3_ann$Function, sep = ".")
 
   Sum.mod.sin.comp <- Sum.mod.sin[apply(Sum.mod.sin[,], 1, function(x) !all(x==0)),]                 # Rows sum=0
 
@@ -22,7 +32,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
   ##################### MODULES GEN3 and MODULE WITH FUNCTION DEFINED #######################################
   #modules with function deffined
 
-  Module.list <- unique(Gen3_ann[,c("Module","Function")])                                                             # creat new dataframe from Module
+  Module.list <- unique(Module_ann[,c("Module","Function")])                                                             # creat new dataframe from Module
   Module.list$Modules <- paste(Module.list$Module, Module.list$Function, sep = ".")
   rownames(Module.list) <- Module.list$Modules
 
@@ -63,14 +73,14 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
 
   ##prepare annotation table
   ####################
-  Gen3_ann$Module_func = paste(Gen3_ann$Module, Gen3_ann$Function,sep = ".")
+  Module_ann$Module_func = paste(Module_ann$Module, Module_ann$Function,sep = ".")
 
 
   if (is.null(Aggregate)) {
-    anno_table = Gen3_ann[Gen3_ann$Module_func%in%rownames(df_plot),]
+    anno_table = Module_ann[Module_ann$Module_func%in%rownames(df_plot),]
   }
   else {
-    anno_table = Gen3_ann[grep(Gen3_ann$Cluster,pattern = Aggregate),]
+    anno_table = Module_ann[grep(Module_ann$Cluster,pattern = Aggregate),]
   }
   rownames(anno_table) == anno_table$Module_func
 
