@@ -38,22 +38,26 @@ To performe the modular repertiore analysis, the R package simply requires sampl
 Examples data could be downloaded here; https://github.com/Drinchai/DC_Gen3_Module_analysis.
 
 ```{r raw data and annotaion preparation}
+
 #Load expression data
-data.matrix = read.csv(file = "./GSE13015_GPL6106_data_matrix.csv",stringsAsFactors = F)
-rownames(data.matrix) = data.matrix$Symbol
-data.matrix$Symbol = NULL
+data_table = read.csv(file = "./inst/extdata/GSE13015_GPL6106_data_matrix.csv",stringsAsFactors = F)
+rownames(data_table) = data_table$Symbol
+data_table$Symbol = NULL
 
 ##quantile normalization using function "normalize.quantiles"" from library(preprocessCore)
-data.matrix.nor <- normalize.quantiles(as.matrix(data.matrix))
-colnames(data.matrix.nor) = colnames(data.matrix)
-rownames(data.matrix.nor) = rownames(data.matrix)
+data.matrix.nor <- normalize.quantiles(as.matrix(data_table))
+colnames(data.matrix.nor) = colnames(data_table)
+rownames(data.matrix.nor) = rownames(data_table)
 
-#Load sample annotation file 
-sample.info = read.csv(file = "./GSE13015_GPL6106sample_info.csv",stringsAsFactors = F)
+data.matrix = data.matrix.nor
+
+#Load sample annotation file
+sample.info = read.csv(file = "./inst/extdata/GSE13015_GPL6106sample_info.csv",stringsAsFactors = F)
 rownames(sample.info) = sample.info$GEO_ID
 
-#Check if sample are in the same order 
+#Check if sample are in the same order
 rownames(sample.info) == colnames(data.matrix)
+
 
 ```
 
@@ -70,9 +74,10 @@ This is function for grid visulization, after runing this function you will have
 Cut off for visulization is set at % of response > 15, this cut off can be changed. 
 ***
 ```{r grid visulization}
+
 gridplot(Group_df)
 
-gridplot(Group_df, cutoff = 10)
+gridplot(Group_df, cutoff = 15)
 ```
 
 # Performing individual fingerprint analysis 
@@ -92,6 +97,6 @@ Cut off for visulization is set at % of response > 15, this cut off can be chang
 ```{r fingerprint visualization}
 fingerprintplot(Individual_df)
 
-fingerprintplot(Individual_df, cutoff= 20)
+fingerprintplot(Individual_df, cutoff= 15)
 
 ```
