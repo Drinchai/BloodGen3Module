@@ -1,0 +1,97 @@
+---
+title: "Introduction to the BloodGen3Module R Package"
+author: "Darawan Rinchai"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+  ***
+This vignette gives a high level overview on how to use the BloodGen3Module R package to analyse blood transcriptome profiles. 
+This Gen3 modular repertoire consists of 382 modules (14,168 transcripts)
+
+```{r setup}
+library(BloodGen3Module)
+library(ComplexHeatmap)
+library(ggplot2)
+library(reshape2)
+library(gtools)
+library(matrixStats)
+library(preprocessCore)
+```
+
+# Input
+  ***
+To performe the modular repertiore analysis, the R package simply requires sample annotation table and the matrix format of raw transcriptome data as inputs.  Expression data should be normalized before starting the analysis. In this example, the quantile normalization was applied using function "normalize.quantiles from library(preprocessCore).
+
+
+Examples data could be downloaded here; https://github.com/Drinchai/DC_Gen3_Module_analysis.
+
+```{r raw data and annotaion preparation}
+#Load expression data
+data.matrix = read.csv(file = "./GSE13015_GPL6106_data_matrix.csv",stringsAsFactors = F)
+rownames(data.matrix) = data.matrix$Symbol
+data.matrix$Symbol = NULL
+
+##quantile normalization using function "normalize.quantiles"" from library(preprocessCore)
+data.matrix.nor <- normalize.quantiles(as.matrix(data.matrix))
+colnames(data.matrix.nor) = colnames(data.matrix)
+rownames(data.matrix.nor) = rownames(data.matrix)
+
+#Load sample annotation file 
+sample.info = read.csv(file = "./GSE13015_GPL6106sample_info.csv",stringsAsFactors = F)
+rownames(sample.info) = sample.info$GEO_ID
+
+#Check if sample are in the same order 
+rownames(sample.info) == colnames(data.matrix)
+
+```
+
+# Performing Group comparison analysis 
+This is the function for group comparison analysis, in this example is the comparison between "Sepsis vs control".
+In this function, you are able to set foldchnage cutoff on FC = (putting your cutoff) and p-value = cut off for pvalue or FDR (if FDR = TRUE)
+***
+```{r group comparison analysis}
+Group_df = Groupcomparison(data.matrix, FC = 1.5, pval = 0.1 , FDR = TRUE)
+```
+
+# Grid plot of group comparison analysis 
+This is function for grid visulization, after runing this function you will have a pdf file apprearing in your working directory.
+Cut off for visulization is set at % of response > 15, this cut off can be changed. 
+***
+```{r grid visulization}
+gridplot(Group_df)
+
+gridplot(Group_df, cutoff = 10)
+```
+
+# Performing individual fingerprint analysis 
+This is the function for individual comparison analysis, in this example is the comparison between each single sample to control.
+In this function, you are able to set foldchnage cutoff on FC = (putting your foldchange cutoff) and differenc cut off; DIFF = (putting your difference cutoff)
+Default is setting FC =1.5 and DIFF =10
+
+***
+```{r individual single sample analysis}
+Individual_df = Individualcomparison(data.matrix, FC = 1.5, DIFF = 10)
+```
+
+# Visualizing Fingerprint heatmap at individual level 
+This is function for fingerprint heatmap visulization, after runing this function you will have a pdf file of heatmap apprearing in your working directory.
+Cut off for visulization is set at % of response > 15, this cut off can be changed. 
+***
+```{r fingerprint visualization}
+fingerprintplot(Individual_df)
+
+fingerprintplot(Individual_df, cutoff= 20)
+
+```
