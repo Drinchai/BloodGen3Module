@@ -144,7 +144,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
                           col = list(Module = plate_color))
 
   ha_column = HeatmapAnnotation(df = data.frame(Group = sample_info$Group_test),
-                                show_annotation_name = TRUE, simple_anno_size = unit(0.3, "cm"),
+                                show_annotation_name = FALSE, simple_anno_size = unit(0.3, "cm"),
                                 col = list(Group = my.pattle))
 
   #DOT HEATMAP
