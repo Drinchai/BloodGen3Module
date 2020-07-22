@@ -15,9 +15,15 @@ fingerprintplot = function(Individual_df, cutoff = NULL, Aggregate = NULL, heigh
   Module_ann  <- cSplit(Module_ann, "Module_col", sep = ",", direction = "wide", fixed = TRUE,
                         drop = TRUE)
 
-  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position","Module_color")
-  Module_ann = as.data.frame(Module_ann)
+  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position")
+  Module_ann = data.frame(Module_ann)
+  Module_ann$Module = as.character(Module_ann$Module)
+  Module_ann$Cluster = as.character(Module_ann$Cluster)
+  Module_ann$Function = as.character(Module_ann$Function)
+  Module_ann$position = as.character(Module_ann$position)
+
   rownames(Module_ann) = Module_ann$Module
+  Module_ann$Module_color = Module.platte
 
 
   Sum.mod.sin = Individual_df
