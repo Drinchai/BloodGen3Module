@@ -150,7 +150,7 @@ gridplot = function(Group_df, cutoff = NULL){
     pdf(paste0("Group_comparison_", disease, "vsControl_Grid.pdf"), height = 5.5, width = 8.5)
     plot = ggplot(melt_test, aes(Aggregate, as.factor(Sub_aggregate))) +
       geom_tile(color="#E6E6E6" , size = 0.2, fill=color )+
-      geom_point(aes(colour=`%Response`),size=4.5)+
+      geom_point(aes(colour=`%Response`),size=4.3)+
       ylab("") +
       xlab("") +
       labs(title= disease)+
