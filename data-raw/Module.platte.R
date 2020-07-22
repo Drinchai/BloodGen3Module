@@ -38,3 +38,4 @@ Module.platte= c("#99C68E", "#FFFFFF", "#C226D9", "#00D7D6", "#F85B4D", "#EA7C1E
 "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#FFEE07", "#EA7C1E", "#000000", "#FFFFFF", "#FFABA8",
 "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#99C68E", "#FFFFFF", "#FFFFFF", "#F94A8B", "#FFFFFF", "#6BA3D7", 
 "#FFFFFF", "#FFFFFF")
+devtools::use_data(Module.platte, overwrite = TRUE)
