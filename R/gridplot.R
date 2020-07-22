@@ -14,9 +14,10 @@ gridplot = function(Group_df, cutoff = NULL){
   Module_ann  <- cSplit(Module_ann, "Module_col", sep = ",", direction = "wide", fixed = TRUE,
                         drop = TRUE)
 
-  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position","Module_color")
+  colnames(Module_ann) = c("Module","Cluster","Cluster_location","Function","position")
   Module_ann = as.data.frame(Module_ann)
   rownames(Module_ann) = Module_ann$Module
+  Module_ann$Module_color = Module.platte
 
   ## prepared cluter position
   Group_plot = Group_df
