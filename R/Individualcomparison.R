@@ -13,10 +13,17 @@ Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
   colnames(Module_table) = "Module_list"
 
   Module_table  <- cSplit(Module_table, "Module_list", sep = ",", direction = "wide", fixed = TRUE,
-                        drop = TRUE)
+                          drop = TRUE)
 
   colnames(Module_table) = c("Module","Gene","Probes","Module_gene","Function","Cluster","Cluster_location","position")
-  Module_table = as.data.frame(Module_table)
+  Module_table = data.frame(Module_table)
+  Module_table$Module = as.character(Module_table$Module)
+  Module_table$Gene = as.character(Module_table$Gene)
+  Module_table$Module_gene = as.character(Module_table$Module_gene)
+  Module_table$Function = as.character(Module_table$Function)
+  Module_table$Cluster = as.character(Module_table$Cluster)
+  Module_table$position = as.character(Module_table$position)
+
   rownames(Module_table) = Module_table$Module_gene
 
   ### Prepare expression matrix with module list
