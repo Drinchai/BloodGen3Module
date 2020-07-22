@@ -8,11 +8,8 @@
 #' @return A matrix of the infile
 #' @export
 Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
-  Module_list = system.file("data", "Module_listGen3.csv", package = "BloodGen3Module")
-  rownames(Module_list) = Module_list$Module_gene
-
   ### Prepare expression matrix with module list
-  df1=Module_list                       # This is module list annotation table
+  df1=Module_listGen3                   # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
   df2$Gene = rownames(df2)
 
