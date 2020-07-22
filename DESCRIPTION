@@ -20,7 +20,8 @@ Imports:
    matrixStats,
    gtools,
    reshape2,
-   preprocessCore
+   preprocessCore,
+   splitstackshape
 Suggests: 
     knitr,
     rmarkdown
