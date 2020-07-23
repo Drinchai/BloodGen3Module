@@ -53,7 +53,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
     sample_info = sample.info
   }
   else {
-    sample_info = sample.info[-which(sample.info[, Group_column] == Ref_group ,]
+    sample_info = sample.info[!sample.info[, Group_column]== Ref_group,]
   }
 
 
