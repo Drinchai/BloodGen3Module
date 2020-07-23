@@ -8,27 +8,9 @@
 #' @return A matrix of the infile
 #' @export
 Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
-  #Load module list table 
-  Module_table = Module_listGen3
-  colnames(Module_table) = "Module_list"
-
-  Module_table  <- cSplit(Module_table, "Module_list", sep = ",", direction = "wide", fixed = TRUE,
-                          drop = TRUE)
-
-  colnames(Module_table) = c("Module","Gene","Probes","Module_gene","Function","Cluster","Cluster_location","position")
-  Module_table = data.frame(Module_table)
-  Module_table$Module = as.character(Module_table$Module)
-  Module_table$Module_gene = as.character(Module_table$Module_gene)
-  Module_table$Gene = sapply(strsplit(Module_table$Module_gene,"_"),"[",2)
-  Module_table$Function = as.character(Module_table$Function)
-  Module_table$Cluster = as.character(Module_table$Cluster)
-  Module_table$position = as.character(Module_table$position)
-
-  rownames(Module_table) = Module_table$Module_gene
-
-
+ 
   ### Prepare expression matrix with module list
-  df1=Module_table                   # This is module list annotation table
+  df1=Module_listGen3                   # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
   df2$Gene = rownames(df2)
 
