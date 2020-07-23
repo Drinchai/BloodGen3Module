@@ -21,7 +21,8 @@ Imports:
    gtools,
    reshape2,
    preprocessCore,
-   splitstackshape
+   splitstackshape,
+   randomcoloR
 Suggests: 
     knitr,
     rmarkdown
