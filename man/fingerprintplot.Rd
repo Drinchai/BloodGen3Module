@@ -2,18 +2,41 @@
 % Please edit documentation in R/fingerprintplot.R
 \name{fingerprintplot}
 \alias{fingerprintplot}
-\title{This is a function for individual fingerprint  plot}
+\title{Heatmap fingerprint  visualization}
 \usage{
-fingerprintplot(Individual_df)
+fingerprintplot(
+  Individual_df,
+  cutoff = NULL,
+  rowSplit = TRUE,
+  Ref_group = NULL,
+  Group_column = NULL,
+  Aggregate = NULL,
+  height = NULL,
+  width = NULL
+)
 }
 \arguments{
-\item{infile}{Path to the input file}
+\item{Individual_df}{A result output table after running Individualcomparison}
+
+\item{cutoff}{Setting of cut off for visualization, the rank can be from 0-100}
+
+\item{rowSplit}{splitting row of heatmap by each aggregate}
+
+\item{Ref_group}{Reference group or samples that considered as control}
+
+\item{Group_column}{Column name of the conditions that considered for analysis}
+
+\item{Aggregate}{selected specific aggregated for heatmap fingerprint plot}
 }
 \value{
-A matrix of the infile
+A heatmap of \% of module response in each single sample
 }
 \description{
-This function will perform fingerprint heatmap in pdf file.
-We assumes that you setup the specific working directory for your analysis. The result of the plot should be in your working folder.
-The result of the plot should be in your working folder.
+fingerprintplot function will perform fingerprint heatmap plot in a pdf file.
+Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
+}
+\examples{
+fingerprintplot(Individual_df, cutoff = 15, rowSplit= TRUE , Group_column= "Group_test", Ref_group =  "Control", Aggregate = NULL, height = NULL, width = NULL)
+#' @author
+Darawan Rinchai <drinchai@gmail.com>
 }
