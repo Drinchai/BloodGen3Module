@@ -1,12 +1,20 @@
-#' This is a function for fingerprint grid plot
+#' Fingerprint grid visualization
 #'
-#' This function will perform grid plot in pdf file.
-#' We assumes that you setup the specific working directory for your analysis. The result of the plot should be in your working folder.
-#' The result of the plot should be in your working folder.
+#'The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+#'The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
 #'
-#' @param infile Path to the input file
-#' @return A matrix of the infile
+#' @param Group_df    Output table generated after running the 'Groupcomparison' function
+#' @param cutoff 			Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
+#' @param Ref_group 		Reference group or samples that considered as control
+#' @return A pdf file of grid plot
+#' @examples
+#' gridplot(Group_df, cutoff = 15, Ref_group = "Control")
+#' #' @author
+#' Darawan Rinchai <drinchai@gmail.com>
 #' @export
+#' == author
+# Darawan Rinchai <drinchai@gmail.com>
+#
 gridplot = function(Group_df, cutoff = NULL, Ref_group = NULL){
 
   ## prepared cluster position
