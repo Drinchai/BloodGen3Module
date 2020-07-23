@@ -7,15 +7,15 @@
 #' @param infile Path to the input file
 #' @return A matrix of the infile
 #' @export
-gridplot = function(Group_df, cutoff = NULL){
-  
-  ## prepared cluter position
+gridplot = function(Group_df, cutoff = NULL, Ref_group = NULL){
+
+  ## prepared cluster position
   Group_plot = Group_df
   Group_plot <-Group_plot[rownames(Gen3_ann),]
   rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
   rownames(Group_plot) <- Gen3_ann$position
   Group_plot <- as.data.frame(Group_plot)
-  
+
   ########## An example of DISPLAY DATA > 15 %
   if (is.null(cutoff)) {
     cutoff = 15
@@ -24,21 +24,22 @@ gridplot = function(Group_df, cutoff = NULL){
     cutoff = as.numeric(cutoff)
   }
   Group_plot[abs(Group_plot) < cutoff ] <- 0
-  
+
   #check data
   head(Group_plot)
-  
+
   # creat new grid with all filtered cluster##
   mod.group1 <- matrix(nrow=38,ncol=42)
   rownames (mod.group1) <- paste0("A",c(1:38))
   colnames (mod.group1) <- paste0("",c(1:42))
   ##
-  
+
   diseases = colnames(Group_plot)
   N.disease = length(diseases)
-  
+
   for (i in 1:N.disease){
     disease = diseases[i]
+    if(disease == Ref_group){next}
     for (i in 1 : nrow(Group_plot)){
       Mx <- as.numeric(gsub(x = strsplit (rownames(Group_plot)[i],"\\.")[[1]][[1]],pattern = "A",replacement = ""))
       My <- as.numeric(strsplit (rownames(Group_plot)[i],"\\.")[[1]][[2]])
@@ -63,7 +64,7 @@ gridplot = function(Group_df, cutoff = NULL){
       theme(panel.border = element_rect(color = "black",size = 0.5),
             axis.text.x = element_text(colour="black",size=9,angle=0,hjust=0.5,vjust=2,face="plain"),
             axis.text.y = element_text(colour="black",size=9,angle=0,hjust=0.5,vjust=0.5,face="plain"))
-    
+
     plot(plot)
     dev.off()
   }
