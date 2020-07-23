@@ -8,56 +8,12 @@
 #' @return A matrix of the infile
 #' @export
 gridplot = function(Group_df, cutoff = NULL){
-  Module_ann = Gen3_ann
-  #Grid color
-  color <- c(rep("white",27),
-             rep("white",27),
-             rep("white",9),"#E6E6E6","white","#E6E6E6",rep("white",15),
-             rep("white",9),"#E6E6E6","white","#E6E6E6",rep("white",15),
-             rep("white",9),"#E6E6E6","white","#E6E6E6",rep("white",14),"#E6E6E6",
-             rep("white",9),rep("#E6E6E6",3),rep("white",3),"#E6E6E6",rep("white",2),"#E6E6E6",rep("white",3),"#E6E6E6",rep("white",3),"#E6E6E6",
-             rep("white",6),"#E6E6E6",rep("white",2),rep("#E6E6E6",3),rep("white",3),rep("#E6E6E6",2),"white","#E6E6E6",rep("white",3),"#E6E6E6","white","#E6E6E6","white","#E6E6E6",
-             rep("white",6),"#E6E6E6",rep("white",2),rep("#E6E6E6",3),rep("white",3),rep("#E6E6E6",2),"white","#E6E6E6",rep("white",3),"#E6E6E6","white","#E6E6E6","white","#E6E6E6",
-             rep("white",6),rep("#E6E6E6",2),"white",rep("#E6E6E6",3),rep("white",3),rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white","#E6E6E6","white","#E6E6E6",
-             rep("white",6),rep("#E6E6E6",2),"white",rep("#E6E6E6",3),rep("white",3),rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white","#E6E6E6","white","#E6E6E6",
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",2),"white",rep("#E6E6E6",3),rep("white",3),rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white","#E6E6E6","white","#E6E6E6",
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",7),rep("white",2),rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",8),"white",rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",8),"white",rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",8),"white",rep("#E6E6E6",5),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),"#E6E6E6","white",rep("#E6E6E6",3),
-             rep("white",3),rep("#E6E6E6",2),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",14),rep("white",2),rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",15),"white",rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",15),"white",rep("#E6E6E6",5),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",21),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",21),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",21),
-             rep("white",2),rep("#E6E6E6",3),"white",rep("#E6E6E6",21),
-             rep("white",2),rep("#E6E6E6",25),
-             rep("white",2),rep("#E6E6E6",25),
-             "#E6E6E6","white",rep("#E6E6E6",25),
-             "#E6E6E6","white",rep("#E6E6E6",25),
-             "#E6E6E6","white",rep("#E6E6E6",25),
-             "#E6E6E6","white",rep("#E6E6E6",25))
   
   ## prepared cluter position
   Group_plot = Group_df
-  Group_plot <-Group_plot[rownames(Module_ann),]
-  rownames(Group_plot)==rownames(Module_ann)                         # check if rownames is the same
-  rownames(Group_plot) <- Module_ann$position
+  Group_plot <-Group_plot[rownames(Gen3_ann),]
+  rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
+  rownames(Group_plot) <- Gen3_ann$position
   Group_plot <- as.data.frame(Group_plot)
   
   ########## An example of DISPLAY DATA > 15 %
