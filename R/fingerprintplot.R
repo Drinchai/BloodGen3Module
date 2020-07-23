@@ -1,18 +1,22 @@
-#' Individual fingerprint  visualization
+#' Individual fingerprint visualization
 #'
-#' This function will perform fingerprint heatmap in pdf file.
-#' We assumes that you setup the specific working directory for your analysis. The result of the plot should be in your working folder.
-#' The result of the plot should be in your working folder.
+#'The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+#'The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
 #'
-#' @param infile Path to the input file
+#' @param Individual_df 		Output table generated after running the 'Individualcomparison' function
+#' @param cutoff 			Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
+#' @param rowSplit		 Splits row of heatmap by each aggregate
+#' @param Ref_group 		Reference group or samples that considered as control
+#' @param Group_column		 Name of the columns for the groups used for the analysis
+#' @param Aggregate		 Selects specific module aggregates for heatmap fingerprint plot
+#' @param height			 Sets height dimension for the heatmap plot
+#' @param width		 	Sets width dimension for the heatmap plot
 #' @return A heatmap of % of module response in each single sample
-#' @export
-#' fingerprintplot(Individual_df, cutoff = NULL, rowSplit= TRUE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL)
-#'
 #' @examples
-#' fingerprintplot(Individual_df, cutoff = 10, rowSplit= FALSE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL)
-#' fingerprintplot(Individual_df, cutoff = NULL, rowSplit= TRUE ,showControl= FALSE ,Aggregate = c("A28"), height = 10, width = 17)
-
+#'fingerprintplot(Individual_df, cutoff = 15, rowSplit= TRUE , Group_column= "Group_test", Ref_group =  "Control", Aggregate = c("A28), height = NULL, width = NULL)
+#'#' @author
+#' Darawan Rinchai <drinchai@gmail.com>
+#' @export
 fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_group = NULL, Group_column= NULL,
                            Aggregate = NULL, height = NULL, width = NULL){
   #Load module annotation
@@ -61,14 +65,14 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
 
   colnames(df_plot)==rownames(sample_info)
 
-  n.group = length(unique(sample_info$Group_test))
+  n.group = length(unique(sample_info[, Group_column]))
 
   library(randomcoloR)
   n <- n.group
   palette <- distinctColorPalette(n)
 
   my.pattle = palette
-  names(my.pattle) = unique(sample_info$Group_test)
+  names(my.pattle) = unique(sample_info[, Group_column])
 
 
 
@@ -100,7 +104,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
                           show_annotation_name = FALSE,simple_anno_size = unit(0.3, "cm"),
                           col = list(Module = plate_color))
 
-  ha_column = HeatmapAnnotation(df = data.frame(Group = sample_info$Group_test),
+  ha_column = HeatmapAnnotation(df = data.frame(Group = sample_info[, Group_column]),
                                 show_annotation_name = FALSE, simple_anno_size = unit(0.3, "cm"),
                                 col = list(Group = my.pattle))
   if (rowSplit == TRUE) {
@@ -125,7 +129,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
     width = as.numeric(height)
   }
 
-  pdf(paste0("Gen3_Individual_analysis.pdf"), height = height, width = width)
+  pdf(paste0("Gen3_Individual_analysis_",Aggregate,".pdf"), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
              cluster_columns = T,
