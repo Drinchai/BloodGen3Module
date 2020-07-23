@@ -122,7 +122,7 @@ fingerprintplot(Individual_df,
                 rowSplit= TRUE ,
                 Group_column= "Group_test",
                 Ref_group =  "Control",
-                Aggregate = NULL,
+                Aggregate = c("A28"),
                 height = NULL,
                 width = NULL)
 
