@@ -128,7 +128,8 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
   else {
     width = as.numeric(height)
   }
-
+  df_plot = as.matrix(df_plot)
+  
   pdf(paste0("Gen3_Individual_analysis_",Aggregate,".pdf"), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
