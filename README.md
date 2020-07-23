@@ -66,7 +66,7 @@ sample.info = sample_ann
 ```
 
 ## Group comparison analysis 
-The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.  
+The **Groupcomparison** function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.  
 - Expression matrix and sample annotation files are required to perform this analysis. 
 - The sample annotation file must be loaded using a specific name = "sample.info". 
 - The names of the columns for the conditions used in the analysis must be specified.
@@ -81,7 +81,7 @@ Group_df <- Groupcomparison(data.matrix,
 ```
 
 ## Fingerprint grid visualization 
-The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+The **gridplot** function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
 
 The default cut off for visualization is set at 15%, it can changed to any value between 0-100%. 
 
@@ -93,7 +93,7 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control")
 ```
 
 ## Individual single sample analysis 
-The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased. 
+The **Individualcomparison** function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased. 
 
 - Expression matrix and sample annotation file are required in order to perform this analysis. 
 - The sample annotation file must be loaded using a specific name = "sample.info".
@@ -110,7 +110,7 @@ Individual_df = Individualcomparison(data.matrix,
 ```
 
 ## Individual fingerprint visualization 
-The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+The **fingerprintplot** function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
 
 The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.  
  
