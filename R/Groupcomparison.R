@@ -1,17 +1,22 @@
 #' Group comparison analysis
 #'
-#' Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.
-#' Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response
-#' Expression matrix and sample annotation file is required for performing this analysis. The sample annotation file must loaded as specific name = "sample.info"
-#' A specific column of conditions for analysis must be indicated
+#'The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.
+
+#'- Expression matrix and sample annotation files are required to perform this analysis.
+#'- The sample annotation file must be loaded using a specific name = "sample.info".
+#'- The names of the columns for the conditions used in the analysis must be specified.
 #'
-#' @param data.matrix 		Raw normalized expression data
-#' @param FC	   foldchange cut off to consider increasing or decreasing as comparison to reference group (Ref_group)
-#' @param pval			 p-value cut off or False discovery rate when FDR = FALSE
-#' @param FDR			 False discovery rate cut off
-#' @param Group_column		 Column name of the conditions that considered for analysis
+#' @param data.matrix   Normalized expression data (not Log2 transformed)
+#' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @parampval             p-value cut off or False discovery rate when FDR = FALSE
+#' @paramFDR              False discovery rate cut off
 #' @param Ref_group 		Reference group or samples that considered as control
-#' @return A matrix of the infile
+#' @param Group_column		 Name of the columns for the groups used for the analysis
+#' @return A matrix of the percentahe of module response in each group comparison
+#' @examples
+#' Group_df <- Groupcomparison(data.matrix, FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
+#' #' @author
+#' Darawan Rinchai <drinchai@gmail.com>
 #' @export
 #' == author
 # Darawan Rinchai <drinchai@gmail.com>
