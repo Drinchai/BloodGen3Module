@@ -2,7 +2,7 @@
 % Please edit documentation in R/fingerprintplot.R
 \name{fingerprintplot}
 \alias{fingerprintplot}
-\title{Heatmap fingerprint  visualization}
+\title{Individual fingerprint visualization}
 \usage{
 fingerprintplot(
   Individual_df,
@@ -16,27 +16,26 @@ fingerprintplot(
 )
 }
 \arguments{
-\item{Individual_df}{A result output table after running Individualcomparison}
+\item{Individual_df}{Output table generated after running the 'Individualcomparison' function}
 
-\item{cutoff}{Setting of cut off for visualization, the rank can be from 0-100}
+\item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
-\item{rowSplit}{splitting row of heatmap by each aggregate}
+\item{rowSplit}{Splits row of heatmap by each aggregate}
 
 \item{Ref_group}{Reference group or samples that considered as control}
 
-\item{Group_column}{Column name of the conditions that considered for analysis}
+\item{Group_column}{Name of the columns for the groups used for the analysis}
 
-\item{Aggregate}{selected specific aggregated for heatmap fingerprint plot}
+\item{Aggregate}{Selects specific module aggregates for heatmap fingerprint plot}
+
+\item{height}{Sets height dimension for the heatmap plot}
+
+\item{width}{Sets width dimension for the heatmap plot}
 }
 \value{
 A heatmap of \% of module response in each single sample
 }
 \description{
-fingerprintplot function will perform fingerprint heatmap plot in a pdf file.
-Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
-}
-\examples{
-fingerprintplot(Individual_df, cutoff = 15, rowSplit= TRUE , Group_column= "Group_test", Ref_group =  "Control", Aggregate = NULL, height = NULL, width = NULL)
-#' @author
-Darawan Rinchai <drinchai@gmail.com>
+The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+The default cut off for visualization is set at 15\%, it can changed to any value between 0-100\%.
 }

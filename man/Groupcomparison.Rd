@@ -14,15 +14,11 @@ Groupcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{Raw normalized expression data}
+\item{data.matrix}{Normalized expression data (not Log2 transformed)}
 
-\item{FC}{foldchange cut off to consider increasing or decreasing as comparison to reference group (Ref_group)}
+\item{FC}{Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
 
-\item{pval}{p-value cut off or False discovery rate when FDR = FALSE}
-
-\item{FDR}{False discovery rate cut off}
-
-\item{Group_column}{Column name of the conditions that considered for analysis}
+\item{Group_column}{Name of the columns for the groups used for the analysis}
 
 \item{Ref_group}{Reference group or samples that considered as control}
 }
@@ -30,10 +26,12 @@ Groupcomparison(
 A matrix of the percentahe of module response in each group comparison
 }
 \description{
-Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.
-Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response
-Expression matrix and sample annotation file is required for performing this analysis. The sample annotation file must loaded as specific name = "sample.info"
-A specific column of conditions for analysis must be indicated
+The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.
+\itemize{
+\item Expression matrix and sample annotation files are required to perform this analysis.
+\item The sample annotation file must be loaded using a specific name = "sample.info".
+\item The names of the columns for the conditions used in the analysis must be specified.
+}
 }
 \examples{
 Group_df <- Groupcomparison(data.matrix, FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")

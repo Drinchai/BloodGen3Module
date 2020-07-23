@@ -7,9 +7,9 @@
 gridplot(Group_df, cutoff = NULL, Ref_group = NULL)
 }
 \arguments{
-\item{Group_df}{A result output table after running Groupcomparison}
+\item{Group_df}{Output table generated after running the 'Groupcomparison' function}
 
-\item{cutoff}{Setting of cut off for visualization, the rank can be from 0-100}
+\item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
 \item{Ref_group}{Reference group or samples that considered as control}
 }
@@ -17,8 +17,8 @@ gridplot(Group_df, cutoff = NULL, Ref_group = NULL)
 A pdf file of grid plot
 }
 \description{
-gridplot function will perform grid plot in a pdf file.
-Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
+The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+The default cut off for visualization is set at 15\%, it can changed to any value between 0-100\%.
 }
 \examples{
 gridplot(Group_df, cutoff = 15, Ref_group = "Control")
