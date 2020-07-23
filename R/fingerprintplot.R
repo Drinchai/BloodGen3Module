@@ -1,14 +1,21 @@
-#' This is a function for individual fingerprint  plot
+#' Individual fingerprint  visualization
 #'
 #' This function will perform fingerprint heatmap in pdf file.
 #' We assumes that you setup the specific working directory for your analysis. The result of the plot should be in your working folder.
 #' The result of the plot should be in your working folder.
 #'
 #' @param infile Path to the input file
-#' @return A matrix of the infile
+#' @return A heatmap of % of module response in each single sample
 #' @export
-fingerprintplot = function(Individual_df, cutoff = NULL,rowSplit= TRUE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL){
-  
+#' fingerprintplot(Individual_df, cutoff = NULL, rowSplit= TRUE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL)
+#'
+#' @examples
+#' fingerprintplot(Individual_df, cutoff = 10, rowSplit= FALSE ,showControl= FALSE ,Aggregate = NULL, height = NULL, width = NULL)
+#' fingerprintplot(Individual_df, cutoff = NULL, rowSplit= TRUE ,showControl= FALSE ,Aggregate = c("A28"), height = 10, width = 17)
+
+fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_group = NULL, Group_column= NULL,
+                           Aggregate = NULL, height = NULL, width = NULL){
+  #Load module annotation
   Sum.mod.sin = Individual_df
   Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
   rownames(Sum.mod.sin) == rownames(Gen3_ann)
@@ -42,11 +49,11 @@ fingerprintplot = function(Individual_df, cutoff = NULL,rowSplit= TRUE ,showCont
   df_plot[abs(df_plot) < cutoff] <- 0
 
   ###remove control sample from plot
-  if (showControl == FALSE) {
-    sample_info = sample.info[-which(sample.info$Group_test==c("Control")),]
+  if (is.null(Ref_group)) {
+    sample_info = sample.info
   }
   else {
-    sample_info = sample.info
+    sample_info = sample.info[-which(sample.info[, Group_column] == Ref_group ,]
   }
 
 
@@ -56,6 +63,7 @@ fingerprintplot = function(Individual_df, cutoff = NULL,rowSplit= TRUE ,showCont
 
   n.group = length(unique(sample_info$Group_test))
 
+  library(randomcoloR)
   n <- n.group
   palette <- distinctColorPalette(n)
 
