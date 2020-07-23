@@ -1,12 +1,24 @@
-#' Module individual fingerprint analysis
+#' Individual single sample analysis
 #'
-#' This function will perform single sample analysis.
-#' We assumes that your expression file = data.matrix and annotation file = sample.info.
-#' In the sample_test table must contains a colum name "Group_test" with specific information which sample ID = test or control
+#'The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
 #'
-#' @param infile Path to the input file
-#' @return A matrix of the infile
+#'- Expression matrix and sample annotation file are required in order to perform this analysis.
+#'- The sample annotation file must be loaded using a specific name = "sample.info".
+#'- The names of the columns for the conditions used in the analysis must be specified
+#'- The default cutoff is set at FC =1.5 and DIFF =10
+#'
+#' @param data.matrix   Normalized expression data (not Log2 transformed)
+#' @param FC               Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param DIFF             Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param Group_column		 Name of the columns for the groups used for the analysis
+#' @param Ref_group 		Reference group or samples that considered as control
+#' @return A matrix of the percentahe of module response at individual level
+#' @examples
+#' Individual_df = Individualcomparison(data.matrix, FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 #' @export
+#' @author
+#' Darawan Rinchai <drinchai@gmail.com>
+#
 Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL,
                                  Group_column = NULL, Ref_group = NULL){
 
