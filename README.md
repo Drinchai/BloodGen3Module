@@ -37,6 +37,7 @@ library(randomcoloR)
 ```{r argument}
 data.matrix      Normalized expression data (not Log2 transformed)
 FC               Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+DIFF             Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 pval             p-value cut off or False discovery rate when FDR = FALSE
 FDR              False discovery rate cut off
 Group_column     Name of the columns for the groups used for the analysis
