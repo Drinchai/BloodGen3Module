@@ -12,7 +12,6 @@ Steps involved in module repertoire analysis and visualization include:
 
 
 ## Installation
-***
 It is recommended to use the install_github function from the devtools package in order to install the R package.
 
 ```{r Package installation}
@@ -21,7 +20,6 @@ devtools::install_github("Drinchai/BloodGen3Module")
 ```
 
 ## Usage
-***
 ```{r setup, warning=FALSE,message=FALSE}
 # Load library
 
@@ -55,7 +53,6 @@ width            Sets width dimension for the heatmap plot
 
 
 ## Input
-***
 To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix
 For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/BloodGen3Module/tree/master/data.
 
@@ -69,7 +66,6 @@ sample.info = sample_ann
 ```
 
 ## Group comparison analysis 
-***
 The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.  
 - Expression matrix and sample annotation files are required to perform this analysis. 
 - The sample annotation file must be loaded using a specific name = "sample.info". 
@@ -85,7 +81,6 @@ Group_df <- Groupcomparison(data.matrix,
 ```
 
 ## Fingerprint grid visualization 
-***
 The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
 
 The default cut off for visualization is set at 15%, it can changed to any value between 0-100%. 
@@ -98,7 +93,6 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control")
 ```
 
 ## Individual single sample analysis 
-***
 The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased. 
 
 - Expression matrix and sample annotation file are required in order to perform this analysis. 
@@ -116,7 +110,6 @@ Individual_df = Individualcomparison(data.matrix,
 ```
 
 ## Individual fingerprint visualization 
-***
 The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
 
 The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.  
@@ -136,10 +129,8 @@ fingerprintplot(Individual_df,
 ```
 
 ## Notes
-***
 •	It is important to note that the sample annotation file must re-named to sample.info after loading into R.
 
 ## Publication
-***
 A manuscript is currently under consideration for publication, in order to cite the work currently please refer to the bioRxiv preprint:
 https://www.biorxiv.org/content/10.1101/2020.07.16.205963v1
