@@ -2,18 +2,26 @@
 % Please edit documentation in R/gridplot.R
 \name{gridplot}
 \alias{gridplot}
-\title{This is a function for fingerprint grid plot}
+\title{Fingerprint grid visualization}
 \usage{
-gridplot(Group_df)
+gridplot(Group_df, cutoff = NULL, Ref_group = NULL)
 }
 \arguments{
-\item{infile}{Path to the input file}
+\item{Group_df}{A result output table after running Groupcomparison}
+
+\item{cutoff}{Setting of cut off for visualization, the rank can be from 0-100}
+
+\item{Ref_group}{Reference group or samples that considered as control}
 }
 \value{
-A matrix of the infile
+A pdf file of grid plot
 }
 \description{
-This function will perform grid plot in pdf file.
-We assumes that you setup the specific working directory for your analysis. The result of the plot should be in your working folder.
-The result of the plot should be in your working folder.
+gridplot function will perform grid plot in a pdf file.
+Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
+}
+\examples{
+gridplot(Group_df, cutoff = 15, Ref_group = "Control")
+#' @author
+Darawan Rinchai <drinchai@gmail.com>
 }

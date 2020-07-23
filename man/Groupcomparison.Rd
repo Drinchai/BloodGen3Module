@@ -2,18 +2,41 @@
 % Please edit documentation in R/Groupcomparison.R
 \name{Groupcomparison}
 \alias{Groupcomparison}
-\title{Module group comparison analysis}
+\title{Group comparison analysis}
 \usage{
-Groupcomparison(data.matrix)
+Groupcomparison(
+  data.matrix,
+  FC = NULL,
+  pval = NULL,
+  FDR = TRUE,
+  Group_column = NULL,
+  Ref_group = NULL
+)
 }
 \arguments{
-\item{infile}{Path to the input file}
+\item{data.matrix}{Raw normalized expression data}
+
+\item{FC}{foldchange cut off to consider increasing or decreasing as comparison to reference group (Ref_group)}
+
+\item{pval}{p-value cut off or False discovery rate when FDR = FALSE}
+
+\item{FDR}{False discovery rate cut off}
+
+\item{Group_column}{Column name of the conditions that considered for analysis}
+
+\item{Ref_group}{Reference group or samples that considered as control}
 }
 \value{
-A matrix of the infile
+A matrix of the percentahe of module response in each group comparison
 }
 \description{
-This function will perform group comparison analysis.
-We assumes that your expression file = data.matrix and annotation file = sample.info.
-#' In the sample_test table must contains a colum name "Group_test" with specific information which sample ID = group1, group2 or control
+Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.
+Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response
+Expression matrix and sample annotation file is required for performing this analysis. The sample annotation file must loaded as specific name = "sample.info"
+A specific column of conditions for analysis must be indicated
+}
+\examples{
+Group_df <- Groupcomparison(data.matrix, FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
+#' @author
+Darawan Rinchai <drinchai@gmail.com>
 }
