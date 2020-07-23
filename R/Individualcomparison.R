@@ -7,8 +7,9 @@
 #' @param infile Path to the input file
 #' @return A matrix of the infile
 #' @export
-Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
- 
+Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL,
+                                 Group_column = NULL, Ref_group = NULL){
+
   ### Prepare expression matrix with module list
   df1=Module_listGen3                       # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
@@ -42,7 +43,7 @@ Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
     test.table <- sample.info
     test.table$scores <- df_raw[k,]
     T4 <- test.table
-    T3 <- test.table[test.table$Group_test %in% c("Control"),]
+    T3 <- test.table[test.table[, Group_column] == Ref_group,]
     Diff.mod.ind.sin[k,] <- (T4$scores-(mean(T3$scores)))
   }
 
@@ -57,7 +58,7 @@ Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
     test.table <- sample.info
     test.table$scores <- df_raw[k,]
     T4 <- test.table
-    T3 <- test.table[test.table$Group_test %in% c("Control"),]
+    T3 <- test.table[test.table[, Group_column] == Ref_group,]
     FC.mod.ind.sin[k,] <- foldchange(T4$scores,mean(T3$scores))
   }
 
@@ -73,6 +74,7 @@ Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL){
   else {
     FC_cutoff = as.numeric(FC)
   }
+
 
   if (is.null(DIFF)) {
     DIFF_cutoff = 10
