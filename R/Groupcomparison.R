@@ -1,12 +1,21 @@
-#' Module group comparison analysis
+#' Group comparison analysis
 #'
-#' This function will perform group comparison analysis.
-#' We assumes that your expression file = data.matrix and annotation file = sample.info.
-#' #' In the sample_test table must contains a colum name "Group_test" with specific information which sample ID = group1, group2 or control
+#' Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.
+#' Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response
+#' Expression matrix and sample annotation file is required for performing this analysis. The sample annotation file must loaded as specific name = "sample.info"
+#' A specific column of conditions for analysis must be indicated
 #'
-#' @param infile Path to the input file
+#' @param data.matrix 		Raw normalized expression data
+#' @param FC	   foldchange cut off to consider increasing or decreasing as comparison to reference group (Ref_group)
+#' @param pval			 p-value cut off or False discovery rate when FDR = FALSE
+#' @param FDR			 False discovery rate cut off
+#' @param Group_column		 Column name of the conditions that considered for analysis
+#' @param Ref_group 		Reference group or samples that considered as control
 #' @return A matrix of the infile
 #' @export
+#' == author
+# Darawan Rinchai <drinchai@gmail.com>
+#
 Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
                             Group_column = NULL, Ref_group = NULL){
 
