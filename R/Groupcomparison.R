@@ -7,8 +7,9 @@
 #' @param infile Path to the input file
 #' @return A matrix of the infile
 #' @export
-Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
- 
+Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
+                            Group_column = NULL, Ref_group = NULL){
+
   ### Prepare expression matrix with module list
   df1=Module_listGen3                   # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
@@ -37,7 +38,7 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
   dat_log2 <- as.matrix(log(df_raw,2))      # tranform data to log 2
 
   ## prepare entry table
-  group.test = unique(sample_info$Group_test)
+  group.test = unique(sample_info[, Group_column])
 
   ########################
   ##### T test
@@ -58,8 +59,8 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
     i=1
     for (i in 1:length(group.test)) {
       group = group.test[i]
-      T2 <- test.table[test.table$Group_test == group,]             # "Group_test"; the selected column could be changed to your interested group comparison
-      T1 <- test.table[test.table$Group_test==c("Control"),]        # "Group_test"; the selected column could be changed to your interested group comparison
+      T2 <- test.table[test.table[, Group_column] == group,]             # "Group_test"; the selected column could be changed to your interested group comparison
+      T1 <- test.table[test.table[, Group_column] == Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
       if(all(T1$scores == T2$scores)){
         tt_pval[signature,group] = 1
       }else{
@@ -94,8 +95,8 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE){
     test.table$scores <- df_raw[k,]
     for (i in 1:length(group.test)) {
       group = group.test[i]
-      T2 <- test.table[test.table$Group_test==group,]             # "Group_test"; the selected column could be changed to your interested group comparison
-      T1 <- test.table[test.table$Group_test==c("Control"),]      # "Group_test"; the selected column could be changed to your interested group comparison
+      T2 <- test.table[test.table[, Group_column]==group,]             # "Group_test"; the selected column could be changed to your interested group comparison
+      T1 <- test.table[test.table[, Group_column]== Ref_group,]      # "Group_test"; the selected column could be changed to your interested group comparison
       FC.group[signature,group] <- foldchange(mean(T2$scores),mean(T1$scores))
     }
   }
