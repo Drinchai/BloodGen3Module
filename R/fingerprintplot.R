@@ -76,7 +76,7 @@ fingerprintplot = function(Individual_df,
 
   n.group = length(unique(sample_info[, Group_column]))
 
-  library(randomcoloR)
+
   n <- n.group
   palette <- distinctColorPalette(n)
 
