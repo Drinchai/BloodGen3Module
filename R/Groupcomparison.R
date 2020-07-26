@@ -75,7 +75,7 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
       group = group.test[i]
       T2 <- test.table[test.table[, Group_column] == group,]             # "Group_test"; the selected column could be changed to your interested group comparison
       T1 <- test.table[test.table[, Group_column] == Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
-      if(all(T1$scores == T2$scores)){
+      if(mean(T1$scores)==mean(T2$scores)){
         tt_pval[signature,group] = 1
       }else{
         tt_pval[signature,group] <- t.test(x =T1$scores,y=T2$scores,paired = FALSE,var.equal = T)$p.value
