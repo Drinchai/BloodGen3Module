@@ -12,7 +12,7 @@ Steps involved in module repertoire analysis and visualization include:
 
 
 ## Installation
-It is recommended to use the install_github function from the devtools package in order to install the R package.
+It is recommended to use the ```install_github``` function from the ```devtools``` package in order to install the R package.
 
 ```{r Package installation}
 install.packages("devtools")
