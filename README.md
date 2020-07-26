@@ -65,18 +65,18 @@ For illustrative purposes sample input files can be downloaded here; https://git
 data.matrix = data_exp
 
 #Sample annotation file
-sample.info = sample_ann
+Sample_info = sample_ann
 
 ```
 
 ## Group comparison analysis 
 The **Groupcomparison** function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.  
 - Expression matrix and sample annotation files are required to perform this analysis. 
-- The sample annotation file must be loaded using a specific name = "sample.info". 
 - The names of the columns for the conditions used in the analysis must be specified.
 
 ```{r group comparison analysis,warning=FALSE}
 Group_df <- Groupcomparison(data.matrix,
+                            sample_info = sample_ann,
                             FC = 1.5,
                             pval = 0.1 ,
                             FDR = TRUE,
@@ -92,7 +92,10 @@ The default cut off for visualization is set at 15%, it can changed to any value
 
 ```{r grid visulization}
 
-gridplot(Group_df, cutoff = 15, Ref_group = "Control")
+gridplot(Group_df, 
+         cutoff = 15, 
+         Ref_group = "Control",
+         filename= "Group_comparison_")
 
 ```
 
@@ -100,13 +103,14 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control")
 The **Individualcomparison** function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased. 
 
 - Expression matrix and sample annotation file are required in order to perform this analysis. 
-- The sample annotation file must be loaded using a specific name = "sample.info".
 - The names of the columns for the conditions used in the analysis must be specified
 - The default cutoff is set at FC =1.5 and DIFF =10 
 
 
 ```{r individual single sample analysis, warning=FALSE}
+
 Individual_df = Individualcomparison(data.matrix,
+                                     sample_info = sample_ann,
                                      FC = 1.5,
                                      DIFF = 10,
                                      Group_column = "Group_test",
@@ -121,16 +125,16 @@ The default cut off for visualization is set at 15%, it can changed to any value
 
 ```{r fingerprint visualization, warning=FALSE}
 
-fingerprintplot(Individual_df, 
+fingerprintplot(Individual_df,
                 sample_info = sample_ann,
-                cutoff = NULL, 
-                rowSplit= TRUE , 
-                Ref_group=NULL,
-                show_ref_group = FALSE, 
+                cutoff = 15,
+                rowSplit= TRUE ,
                 Group_column= "Group_test",
-                Aggregate = "A28", 
-                filename = "Gen3_Individual_analysis", 
-                height = NULL, 
+                show_ref_group = FALSE, 
+                Ref_group =  "Control",
+                Aggregate = "A28",
+                filename = "Gen3_Individual_plot",
+                height = NULL,
                 width = NULL)
 
 ```
