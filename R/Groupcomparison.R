@@ -21,8 +21,13 @@
 #' == author
 # Darawan Rinchai <drinchai@gmail.com>
 #
-Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
-                            Group_column = NULL, Ref_group = NULL){
+Groupcomparison <- function(data.matrix,
+                            sample_info = sample_info,
+                            FC = NULL,
+                            pval = NULL ,
+                            FDR = TRUE,
+                            Group_column = NULL,
+                            Ref_group = NULL){
 
   ### Prepare expression matrix with module list
   df1=Module_listGen3                   # This is module list annotation table
@@ -39,7 +44,6 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
   #prepare data for analysis
   ###########
   df_raw = as.matrix(dat.mod.Gen3)          # replace "dat.mod.Gen3" with data_matrix in raw expression data
-  sample_info = sample.info                 # replace "sample_info" with sample annotation
   mod_func = dat.mod.func.Gen3              # repleace "mod_func" with Gene module annotation table
 
   #### make sure that expression matrix and sample information are the same order
@@ -75,7 +79,7 @@ Groupcomparison <- function(data.matrix, FC = NULL, pval = NULL , FDR = TRUE,
       group = group.test[i]
       T2 <- test.table[test.table[, Group_column] == group,]             # "Group_test"; the selected column could be changed to your interested group comparison
       T1 <- test.table[test.table[, Group_column] == Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
-      if(mean(T1$scores)==mean(T2$scores)){
+      if(mean(T1$scores) == mean(T2$scores)){
         tt_pval[signature,group] = 1
       }else{
         tt_pval[signature,group] <- t.test(x =T1$scores,y=T2$scores,paired = FALSE,var.equal = T)$p.value
