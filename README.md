@@ -36,7 +36,7 @@ library(randomcoloR)
 ## Arguments
 ```{r argument}
 data.matrix      Normalized expression data (not Log2 transformed)
-sample_info		 	 A table of sample annotation 
+sample_info      A table of sample annotation 
 FC               Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 DIFF             Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 pval             p-value cut off or False discovery rate when FDR = FALSE
@@ -49,7 +49,7 @@ cutoff           Sets the percentage cut off used for fingerprint visualization,
 rowSplit         Splits row of heatmap by each aggregate 
 show_ref_group	 Plot reference group in the heatmap
 Aggregate        Selects specific module aggregates for heatmap fingerprint plot
-filename			   Give a name for saving file
+filename         Give a name for saving file
 height           Sets height dimension for the heatmap plot
 width            Sets width dimension for the heatmap plot
 ```
@@ -121,13 +121,16 @@ The default cut off for visualization is set at 15%, it can changed to any value
 
 ```{r fingerprint visualization, warning=FALSE}
 
-fingerprintplot(Individual_df,
-                cutoff = 15,
-                rowSplit= TRUE ,
+fingerprintplot(Individual_df, 
+                sample_info = sample_ann,
+                cutoff = NULL, 
+                rowSplit= TRUE , 
+                Ref_group=NULL,
+                show_ref_group = FALSE, 
                 Group_column= "Group_test",
-                Ref_group =  "Control",
-                Aggregate = c("A28"),
-                height = NULL,
+                Aggregate = "A28", 
+                filename = "Gen3_Individual_analysis", 
+                height = NULL, 
                 width = NULL)
 
 ```
