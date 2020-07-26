@@ -140,6 +140,8 @@ fingerprintplot(Individual_df,
                 width = NULL)
 
 ```
+### Heatmap fingerprint visualization
+![Individual_plot](https://github.com/Drinchai/BloodGen3Module/blob/master/2020%20July26%20Individual%20comparison_Fig2.png)
 
 ## Notes
 •	It is important to note that the sample annotation file must re-named to sample.info after loading into R.
