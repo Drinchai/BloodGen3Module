@@ -3,7 +3,6 @@
 #'The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.
 
 #'- Expression matrix and sample annotation files are required to perform this analysis.
-#'- The sample annotation file must be loaded using a specific name = "sample.info".
 #'- The names of the columns for the conditions used in the analysis must be specified.
 #'
 #' @param data.matrix   Normalized expression data (not Log2 transformed)
@@ -66,8 +65,8 @@ Groupcomparison <- function(data.matrix,
   colnames(tt_pval) = group.test
   rownames(tt_pval) = rownames(dat_log2)
 
-  # Check if rownames of sample.info and colnames of dat_log2 are in the same order before running loop below
-  rownames(sample.info) == colnames(dat_log2)
+  # Check if rownames of sample_info and colnames of dat_log2 are in the same order before running loop below
+  rownames(sample_info) == colnames(dat_log2)
 
   k=1
   for (k in 1:nrow(dat_log2)) {
