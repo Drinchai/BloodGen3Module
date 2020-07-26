@@ -43,7 +43,6 @@ Individualcomparison <- function(data.matrix,
   #prepare data for analysis
   ###########
   df_raw = as.matrix(dat.mod.Gen3)          # replace "dat.mod.Gen3" with data_matrix in raw expression data
-  sample_info = sample.info                 # replace "sample_info" with sample annotation
   mod_func = dat.mod.func.Gen3              # repleace "mod_func" with Gene module annotation table
 
   #### make sure that expression matrix and sample information are the same order
