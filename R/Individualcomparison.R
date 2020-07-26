@@ -8,8 +8,9 @@
 #'- The default cutoff is set at FC =1.5 and DIFF =10
 #'
 #' @param data.matrix   Normalized expression data (not Log2 transformed)
-#' @param FC               Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
-#' @param DIFF             Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param sample_info		 Sample annotation table
+#' @param FC               Foldchange cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param DIFF             Difference cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 #' @param Group_column		 Name of the columns for the groups used for the analysis
 #' @param Ref_group 		Reference group or samples that considered as control
 #' @return A matrix of the percentahe of module response at individual level
@@ -19,8 +20,12 @@
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #
-Individualcomparison <- function(data.matrix, FC = NULL, DIFF = NULL,
-                                 Group_column = NULL, Ref_group = NULL){
+Individualcomparison <- function(data.matrix,
+                                 sample_info = sample_info,
+                                 FC = NULL,
+                                 DIFF = NULL,
+                                 Group_column = NULL,
+                                 Ref_group = NULL){
 
   ### Prepare expression matrix with module list
   df1=Module_listGen3                       # This is module list annotation table
