@@ -4,11 +4,14 @@
 #'The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
 #'
 #' @param Individual_df 		Output table generated after running the 'Individualcomparison' function
+#' @param sample_info		 	Sample annotation table
 #' @param cutoff 			Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
 #' @param rowSplit		 Splits row of heatmap by each aggregate
 #' @param Ref_group 		Reference group or samples that considered as control
 #' @param Group_column		 Name of the columns for the groups used for the analysis
+#' @param show_ref_group	 Plot reference group in the heatmap
 #' @param Aggregate		 Selects specific module aggregates for heatmap fingerprint plot
+#' @param filename			 Give a name for the file
 #' @param height			 Sets height dimension for the heatmap plot
 #' @param width		 	Sets width dimension for the heatmap plot
 #' @return A heatmap of % of module response in each single sample
@@ -17,8 +20,17 @@
 #'#' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
-fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_group = NULL, Group_column= NULL,
-                           Aggregate = NULL, height = NULL, width = NULL){
+fingerprintplot = function(Individual_df,
+                           sample_info = sample_info,
+                           cutoff = NULL,
+                           rowSplit= TRUE ,
+                           Ref_group=NULL,
+                           show_ref_group = FALSE,
+                           Group_column= NULL,
+                           Aggregate = NULL,
+                           filename = NULL,
+                           height = NULL,
+                           width = NULL){
   #Load module annotation
   Sum.mod.sin = Individual_df
   Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
@@ -53,11 +65,8 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
   df_plot[abs(df_plot) < cutoff] <- 0
 
   ###remove control sample from plot
-  if (is.null(Ref_group)) {
-    sample_info = sample.info
-  }
-  else {
-    sample_info = sample.info[!sample.info[, Group_column]== Ref_group,]
+  if (show_ref_group == FALSE) {
+    sample_info = sample_info[!sample_info[, Group_column]== Ref_group,]
   }
 
 
@@ -128,9 +137,8 @@ fingerprintplot = function(Individual_df, cutoff = NULL, rowSplit= TRUE , Ref_gr
   else {
     width = as.numeric(height)
   }
-  df_plot = as.matrix(df_plot)
-  
-  pdf(paste0("Gen3_Individual_analysis_",Aggregate,".pdf"), height = height, width = width)
+
+  pdf(file = paste0(filename, "_", Aggregate,".pdf"), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
              cluster_columns = T,
