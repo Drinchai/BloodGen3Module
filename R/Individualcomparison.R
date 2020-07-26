@@ -56,7 +56,7 @@ Individualcomparison <- function(data.matrix,
   k=1
   for (k in 1:nrow(df_raw)) {
     signature = rownames(df_raw)[k]
-    test.table <- sample.info
+    test.table <- sample_info
     test.table$scores <- df_raw[k,]
     T4 <- test.table
     T3 <- test.table[test.table[, Group_column] == Ref_group,]
@@ -71,7 +71,7 @@ Individualcomparison <- function(data.matrix,
 
   for (k in 1:nrow(df_raw)) {
     signature = rownames(df_raw)[k]
-    test.table <- sample.info
+    test.table <- sample_info
     test.table$scores <- df_raw[k,]
     T4 <- test.table
     T3 <- test.table[test.table[, Group_column] == Ref_group,]
