@@ -98,6 +98,8 @@ gridplot(Group_df,
          filename= "Group_comparison_")
 
 ```
+### Grid visualization
+![Sepsis vs Control](https://github.com/Drinchai/BloodGen3Module/blob/master/2020%20July26%20Group%20comparison_Fig1.png)
 
 ## Individual single sample analysis 
 The **Individualcomparison** function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased. 
