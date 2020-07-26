@@ -65,7 +65,7 @@ For illustrative purposes sample input files can be downloaded here; https://git
 data.matrix = data_exp
 
 #Sample annotation file
-Sample_info = sample_ann
+head(sample_ann)
 
 ```
 
