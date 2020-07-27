@@ -135,7 +135,7 @@ fingerprintplot = function(Individual_df,
     width = 17
   }
   else {
-    width = as.numeric(height)
+    width = as.numeric(width)
   }
   df_plot = as.matrix(df_plot)
   pdf(file = paste0(filename, "_", Aggregate,".pdf"), height = height, width = width)
