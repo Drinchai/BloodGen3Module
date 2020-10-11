@@ -37,6 +37,7 @@ The recommended installation for the R package is to use the install_github func
 ## Usage
   ***
 ##Load library
+These are list of required R packages that must be installed before the analysis.
 
 ```{r setup, warning=FALSE,message=FALSE}
 library(BloodGen3Module)
