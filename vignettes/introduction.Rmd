@@ -96,8 +96,19 @@ Groupcomparison function will perform group comparison analysis and the results 
 -The sample annotation file must load as specific name = "sample.info". 
 -A specific column of conditions for analysis must be indicated
 
-```{r group comparison analysis,warning=FALSE}
+## Using t-test statistical analysis
+```{r group comparison analysis using t-test statistical analysis,warning=FALSE}
 Group_df <- Groupcomparison(data.matrix,
+                            FC = 1.5,
+                            pval = 0.1 ,
+                            FDR = TRUE,
+                            Group_column = "Group_test",
+                            Ref_group = "Control")
+```
+
+## Using limma statistical analysis
+```{r group comparison analysis using limma statistical analysis,warning=FALSE}
+Group_limma <- Groupcomparison.limma(data.matrix,
                             FC = 1.5,
                             pval = 0.1 ,
                             FDR = TRUE,
@@ -111,10 +122,24 @@ gridplot function will perform grid plot in a pdf file. Specific working directo
 
 Cut off for visualization is set default at percentage of response > 15, it can be changed from 0-100%. 
 
+## After running "Groupcomparison" function
+```{r grid visulization after running "Groupcomparison" function}
 
-```{r grid visulization}
+gridplot(Group_df, 
+         cutoff = 15, 
+         Ref_group = "Control",
+         filename="Group_comparison_cutoff15")
 
-gridplot(Group_df, cutoff = 15, Ref_group = "Control")
+```
+
+
+## After running "Groupcomparison.limma" function
+```{r grid visulization after running "Groupcomparison.limma" function}
+
+gridplot.limma(Group_limma, 
+               cutoff = 15, 
+               Ref_group = "Control",
+               filename="Limma_group_comparison")
 
 ```
 
