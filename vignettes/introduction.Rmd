@@ -15,14 +15,14 @@ knitr::opts_chunk$set(echo = T,
 ```
 
 ***
-The **BloodGen3Module** package provides functions for R user performing module repertoire analyses and generating fingerprint representations.\
+The **BloodGen3Module** package provides functions for R user performing module repertoire analyses and generating fingerprint representations.
 
-Steps involved in module repertoire analysis and visualization include: \
-\
-1.	The annotation of the gene expression data matrix with module membership information.\ 
-2.	Running of statistical tests to determine for each module the proportion of its constitutive genes which are differentially expressed.\
-3.	The results are expressed “at the module level” as percent of genes increased or decreased. \
-4.	Visualization in a fingerprint grid format for group comparison and fingerprint heatmap for individual level analysis.\
+Steps involved in module repertoire analysis and visualization include: 
+
+1.	The annotation of the gene expression data matrix with module membership information. 
+2.	Running of statistical tests to determine for each module the proportion of its constitutive genes which are differentially expressed.
+3.	The results are expressed “at the module level” as percent of genes increased or decreased. 
+4.	Visualization in a fingerprint grid format for group comparison and fingerprint heatmap for individual level analysis.
 
 ## Installation
 ***
@@ -91,10 +91,10 @@ sample.info = sample_ann
 
 ## Group comparison analysis 
 ***
-Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response.\ 
--Expression matrix and sample annotation file are required for performing this analysis. \
--The sample annotation file must load as specific name = "sample.info". \
--A specific column of conditions for analysis must be indicated\
+Groupcomparison function will perform group comparison analysis and the results are expressed “at the module level” as percent of genes increased or decreased.Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response. 
+-Expression matrix and sample annotation file are required for performing this analysis. 
+-The sample annotation file must load as specific name = "sample.info". 
+-A specific column of conditions for analysis must be indicated
 
 ```{r group comparison analysis,warning=FALSE}
 Group_df <- Groupcomparison(data.matrix,
@@ -107,8 +107,8 @@ Group_df <- Groupcomparison(data.matrix,
 
 ## Fingerprint grid visualization 
 ***
-gridplot function will perform grid plot in a pdf file. Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.\
-\
+gridplot function will perform grid plot in a pdf file. Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
+
 Cut off for visualization is set default at percentage of response > 15, it can be changed from 0-100%. 
 
 
@@ -120,12 +120,12 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control")
 
 ## Individual single sample analysis 
 ***
-Individualcomparison function will perform single sample analysis as comparison to control and the results are expressed “at the module level” as percent of genes increased or decreased. Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response. \
-\
--Expression matrix and sample annotation file are required for performing this analysis. \
--The sample annotation file must load as specific name = "sample.info"\
--A specific column of conditions for analysis must be indicated\
--Default is setting FC =1.5 and DIFF =10 \
+Individualcomparison function will perform single sample analysis as comparison to control and the results are expressed “at the module level” as percent of genes increased or decreased. Annotation of the gene expression data matrix with module membership information. Then differential expression and calculation of percentage response. 
+
+-Expression matrix and sample annotation file are required for performing this analysis. 
+-The sample annotation file must load as specific name = "sample.info"
+-A specific column of conditions for analysis must be indicated
+-Default is setting FC =1.5 and DIFF =10 
 
 
 ```{r individual single sample analysis, warning=FALSE}
@@ -138,8 +138,8 @@ Individual_df = Individualcomparison(data.matrix,
 
 ## Individual fingerprint visualization 
 ***
-fingerprintplot function will perform fingerprint heatmap plot in a pdf file. Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.\
-\
+fingerprintplot function will perform fingerprint heatmap plot in a pdf file. Specific working directory for the analysis need to be specific for saving the file. The result of the plot should be return in the same working directory.
+
 Cut off for visualization is set at percentage of response > 15, this cut off can be changed from 0-100%. 
  
 
@@ -162,5 +162,5 @@ fingerprintplot(Individual_df,
 
 ##Publication
 ***
-A manuscript is currently under consideration for publication, to cite currently please refer to the bioRxiv preprint:\
+A manuscript is currently under consideration for publication, to cite currently please refer to the bioRxiv preprint:
 https://www.biorxiv.org/content/10.1101/2020.07.16.205963v1
