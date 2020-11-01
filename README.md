@@ -40,10 +40,12 @@ sample_info      A table of sample annotation
 FC               Foldchange cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 DIFF             Difference cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 pval             p-value cut off or False discovery rate when FDR = FALSE
-FDR              False discovery rate cut off
+FDR              False discovery rate cut off (using BH-method)
 Group_column     Name of the columns for the groups used for the analysis
+Test_group 		   Test group or samples that considered as test
 Ref_group        Reference group or samples that considered as control 
 Group_df         Output table generated after running the 'Groupcomparison' function 
+Group_limma      Output table generated after running the 'Groupcomparisonlimma' function
 Individual_df    Output table generated after running the 'Individualcomparison' function
 cutoff           Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
 rowSplit         Splits row of heatmap by each aggregate 
@@ -74,6 +76,7 @@ The **Groupcomparison** function will perform group comparison analyses and the 
 - Expression matrix and sample annotation files are required to perform this analysis. 
 - The names of the columns for the conditions used in the analysis must be specified.
 
+Using t-test
 ```{r group comparison analysis,warning=FALSE}
 Group_df <- Groupcomparison(data.matrix,
                             sample_info = sample_ann,
@@ -83,6 +86,19 @@ Group_df <- Groupcomparison(data.matrix,
                             Group_column = "Group_test",
                             Ref_group = "Control")
 ```
+Using "limma"
+
+```{r group comparison analysis using "limma",warning=FALSE}
+Group_limma <- Groupcomparisonlimma(data.matrix,
+                                    sample_info = sample_ann,
+                                    FC = 1.5,
+                                    pval = 0.1 ,
+                                    FDR = TRUE,
+                                    Group_column = "Group_test",
+                                    Test_group = "Sepsis",
+                                    Ref_group = "Control")
+```
+
 
 ## Fingerprint grid visualization 
 The **gridplot** function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
@@ -98,6 +114,17 @@ gridplot(Group_df,
          filename= "Group_comparison_")
 
 ```
+
+OR if using limma for group comparison
+
+```{r grid visulization}
+gridplotlimma(Group_limma, 
+              cutoff = 15, 
+              Ref_group = "Control",
+              filename="Limma_group_comparison")
+              
+```
+
 ### Grid visualization
 ![Sepsis vs Control](https://github.com/Drinchai/BloodGen3Module/blob/master/2020%20July26%20Group%20comparison_Fig1.png)
 
