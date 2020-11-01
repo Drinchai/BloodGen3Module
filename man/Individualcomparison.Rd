@@ -47,3 +47,4 @@ Individual_df = Individualcomparison(data.matrix, sample_info = sample_info,FC =
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }
+
