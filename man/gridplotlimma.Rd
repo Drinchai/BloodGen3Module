@@ -33,4 +33,4 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Limma_group_comp
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
-}
+} 
