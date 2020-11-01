@@ -3,23 +3,23 @@
 #'The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
 #'
 #'- Expression matrix and sample annotation file are required in order to perform this analysis.
-#'- The sample annotation file must be loaded using a specific name = "sample.info".
+#'- The sample annotation file must be loaded using a specific name = "sample_info".
 #'- The names of the columns for the conditions used in the analysis must be specified
 #'- The default cutoff is set at FC =1.5 and DIFF =10
-#'
-#' @param data.matrix   Normalized expression data (not Log2 transformed)
-#' @param sample_info		 Sample annotation table
-#' @param FC               Foldchange cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
-#' @param DIFF             Difference cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
-#' @param Group_column		 Name of the columns for the groups used for the analysis
+#' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @param data.matrix   Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+#' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)
+#' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param DIFF          Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param Group_column  Name of the columns for the groups used for the analysis
 #' @param Ref_group 		Reference group or samples that considered as control
-#' @return A matrix of the percentahe of module response at individual level
+#' @return              A matrix of the percentahe of module response at individual level
 #' @examples
-#' Individual_df = Individualcomparison(data.matrix, FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
-#' @export
+#' Individual_df = Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
-#
+#' @export
+
 Individualcomparison <- function(data.matrix,
                                  sample_info = sample_info,
                                  FC = NULL,
@@ -99,7 +99,7 @@ Individualcomparison <- function(data.matrix,
     DIFF_cutoff = as.numeric(DIFF)
   }
   #logical check ##
-  test.up <- (FC.mod.ind.sin > FC_cutoff) + (Diff.mod.ind.sin > DIFF_cutoff) == 2          # TRUE Up gene, Both TRUE
+  test.up <- (FC.mod.ind.sin > FC_cutoff) + (Diff.mod.ind.sin > DIFF_cutoff) == 2                  # TRUE Up gene, Both TRUE
   test.down <- (FC.mod.ind.sin < (FC_cutoff*-1)) + (Diff.mod.ind.sin < (DIFF_cutoff*-1)) == 2      # TRUE down gene, Both TRUE
 
   ### prepare gene annotation table
