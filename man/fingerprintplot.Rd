@@ -6,11 +6,14 @@
 \usage{
 fingerprintplot(
   Individual_df,
+  sample_info = sample_info,
   cutoff = NULL,
   rowSplit = TRUE,
   Ref_group = NULL,
+  show_ref_group = FALSE,
   Group_column = NULL,
   Aggregate = NULL,
+  filename = NULL,
   height = NULL,
   width = NULL
 )
@@ -18,24 +21,37 @@ fingerprintplot(
 \arguments{
 \item{Individual_df}{Output table generated after running the 'Individualcomparison' function}
 
+\item{sample_info}{Sample annotation table}
+
 \item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
 \item{rowSplit}{Splits row of heatmap by each aggregate}
 
 \item{Ref_group}{Reference group or samples that considered as control}
 
+\item{show_ref_group}{Plot reference group in the heatmap, default setting is show_ref_group = FALSE. Control subjects will not be plotted in the heatmap.}
+
 \item{Group_column}{Name of the columns for the groups used for the analysis}
 
 \item{Aggregate}{Selects specific module aggregates for heatmap fingerprint plot}
+
+\item{filename}{Give a file name for fingerprint heatmap plot}
 
 \item{height}{Sets height dimension for the heatmap plot}
 
 \item{width}{Sets width dimension for the heatmap plot}
 }
 \value{
-A heatmap of \% of module response in each single sample
+\preformatted{             A heatmap of \% of module response in each single sample
+}
 }
 \description{
 The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-The default cut off for visualization is set at 15\%, it can changed to any value between 0-100\%.
+The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
+}
+\examples{
+fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
+}
+\author{
+Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }

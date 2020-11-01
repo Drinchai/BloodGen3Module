@@ -4,24 +4,27 @@
 \alias{gridplot}
 \title{Fingerprint grid visualization}
 \usage{
-gridplot(Group_df, cutoff = NULL, Ref_group = NULL)
+gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 \arguments{
 \item{Group_df}{Output table generated after running the 'Groupcomparison' function}
 
 \item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
-\item{Ref_group}{Reference group or samples that considered as control}
+\item{Ref_group}{Reference group or samples that considered as control group}
+
+\item{filename}{Give a file name for grid plot}
 }
 \value{
-A pdf file of grid plot
+\preformatted{       A pdf file of grid plot
+}
 }
 \description{
 The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
-The default cut off for visualization is set at 15\%, it can changed to any value between 0-100\%.
+The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \examples{
-gridplot(Group_df, cutoff = 15, Ref_group = "Control")
+gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Group_comparison_cutoff15")
 #' @author
 Darawan Rinchai <drinchai@gmail.com>
 }

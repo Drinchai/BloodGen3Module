@@ -6,6 +6,7 @@
 \usage{
 Individualcomparison(
   data.matrix,
+  sample_info = sample_info,
   FC = NULL,
   DIFF = NULL,
   Group_column = NULL,
@@ -13,7 +14,9 @@ Individualcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{Normalized expression data (not Log2 transformed)}
+\item{data.matrix}{Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+
+\item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
 
 \item{FC}{Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
 
@@ -24,7 +27,8 @@ Individualcomparison(
 \item{Ref_group}{Reference group or samples that considered as control}
 }
 \value{
-A matrix of the percentahe of module response at individual level
+\preformatted{         A matrix of the percentahe of module response at individual level
+}
 }
 \description{
 The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
@@ -32,13 +36,13 @@ The Individualcomparison function will perform individual sample comparison anal
 \details{
 \itemize{
 \item Expression matrix and sample annotation file are required in order to perform this analysis.
-\item The sample annotation file must be loaded using a specific name = "sample.info".
+\item The sample annotation file must be loaded using a specific name = "sample_info".
 \item The names of the columns for the conditions used in the analysis must be specified
 \item The default cutoff is set at FC =1.5 and DIFF =10
 }
 }
 \examples{
-Individual_df = Individualcomparison(data.matrix, FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
+Individual_df = Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
