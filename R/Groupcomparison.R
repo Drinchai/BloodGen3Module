@@ -3,23 +3,24 @@
 #'The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.
 
 #'- Expression matrix and sample annotation files are required to perform this analysis.
+#'- The sample annotation file must be loaded using a specific name = "sample_info".
 #'- The names of the columns for the conditions used in the analysis must be specified.
-#'
-#' @param data.matrix   Normalized expression data (not Log2 transformed)
-#' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
-#' @parampval             p-value cut off or False discovery rate when FDR = FALSE
-#' @paramFDR              False discovery rate cut off
-#' @param Ref_group 		Reference group or samples that considered as control
+#' @import                 testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @param data.matrix      Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+#' @param sample_info      A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)
+#' @param FC               Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
+#' @param pval             p-value cut off or False discovery rate when FDR = FALSE
+#' @param FDR              False discovery rate cut off using BH method
 #' @param Group_column		 Name of the columns for the groups used for the analysis
-#' @return A matrix of the percentahe of module response in each group comparison
+#' @param Ref_group 	     Reference group or samples that considered as control
+#' @return                 A matrix of the percentahe of module response in each group comparison
 #' @examples
-#' Group_df <- Groupcomparison(data.matrix, FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
-#' #' @author
+#' Group_df <- Groupcomparison(data.matrix, sample_info = sample_info, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
+#' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
-#' == author
-# Darawan Rinchai <drinchai@gmail.com>
-#
+
+
 Groupcomparison <- function(data.matrix,
                             sample_info = sample_info,
                             FC = NULL,
@@ -29,7 +30,7 @@ Groupcomparison <- function(data.matrix,
                             Ref_group = NULL){
 
   ### Prepare expression matrix with module list
-  df1=Module_listGen3                   # This is module list annotation table
+  df1=Module_listGen3                       # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
   df2$Gene = rownames(df2)
 
@@ -52,7 +53,7 @@ Groupcomparison <- function(data.matrix,
   #############################################
   # Statistic analysis ##
   ############################################
-  dat_log2 <- as.matrix(log(df_raw,2))      # tranform data to log 2
+  dat_log2 <- as.matrix(log(df_raw+1,2))      # tranformed data to log 2
 
   ## prepare entry table
   group.test = unique(sample_info[, Group_column])
@@ -77,7 +78,7 @@ Groupcomparison <- function(data.matrix,
     for (i in 1:length(group.test)) {
       group = group.test[i]
       T2 <- test.table[test.table[, Group_column] == group,]             # "Group_test"; the selected column could be changed to your interested group comparison
-      T1 <- test.table[test.table[, Group_column] == Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
+      T1 <- test.table[test.table[, Group_column] == Ref_group,]         # "Group_test"; the selected column could be changed to your interested group comparison
       if(mean(T1$scores) == mean(T2$scores)){
         tt_pval[signature,group] = 1
       }else{
@@ -88,7 +89,7 @@ Groupcomparison <- function(data.matrix,
 
   pvalue_Group <- data.frame(tt_pval)
 
-  pvalue_Group.FDR <- apply(pvalue_Group,2,function(x) p.adjust(x,method = "fdr")) ## Apply multiple correction testing
+  pvalue_Group.FDR <- apply(pvalue_Group,2,function(x) p.adjust(x,method = "fdr"))     ## Apply multiple correction testing
   pvalue_Group.FDR <- as.data.frame(pvalue_Group.FDR)
 
   if(FDR == "TRUE"){
@@ -113,7 +114,7 @@ Groupcomparison <- function(data.matrix,
     for (i in 1:length(group.test)) {
       group = group.test[i]
       T2 <- test.table[test.table[, Group_column]==group,]             # "Group_test"; the selected column could be changed to your interested group comparison
-      T1 <- test.table[test.table[, Group_column]== Ref_group,]      # "Group_test"; the selected column could be changed to your interested group comparison
+      T1 <- test.table[test.table[, Group_column]== Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
       FC.group[signature,group] <- foldchange(mean(T2$scores),mean(T1$scores))
     }
   }
@@ -142,7 +143,7 @@ Groupcomparison <- function(data.matrix,
 
 
   #logical check ##
-  Group.up = (FCgroup > FC_cutoff) + (Pvalue_cutoff < pval) == 2        # TRUE Up gene, Both TRUE
+  Group.up = (FCgroup > FC_cutoff) + (Pvalue_cutoff < pval) == 2             # TRUE Up gene, Both TRUE
 
   Group.down = (FCgroup < (FC_cutoff*-1)) + (Pvalue_cutoff < pval) == 2      # TRUE down gene, Both TRUE
 
