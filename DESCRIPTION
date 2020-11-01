@@ -1,28 +1,34 @@
 Package: BloodGen3Module
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: This R package for performing module repertoire analyses and generating fingerprint representations.
+Version: 3.5.2
 Authors@R: 
     person(given = "Darawan",
            family = "Rinchai",
            role = c("aut", "cre"),
            email = "drinchai@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This R package for performing module repertoire analyses and generating fingerprint representations.
-License: GPL
-    pick a license
+           comment = c(ORCID = "0000-0001-8851-7730"))
+Description: The BloodGen3Module package provides functions for R user performing module repertoire analyses and generating fingerprint representations.
+License: GPL-2.0 License
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports:
-   ComplexHeatmap,
+   testthat,
+   ComplexHeatmap(>= 1.99.8),
    ggplot2,
    matrixStats,
    gtools,
    reshape2,
    preprocessCore,
-   randomcoloR
+   randomcoloR,
+   V8,
+   limma
+biocViews:Software, Visualization
 Suggests: 
+    testthat (>= 1.0.0),
+    RUnit, 
+    BiocGenerics,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
