@@ -42,7 +42,7 @@ DIFF             Difference cut off to consider the abundance of a given transcr
 pval             p-value cut off or False discovery rate when FDR = FALSE
 FDR              False discovery rate cut off (using BH-method)
 Group_column     Name of the columns for the groups used for the analysis
-Test_group 		   Test group or samples that considered as test
+Test_group       Test group or samples that considered as test
 Ref_group        Reference group or samples that considered as control 
 Group_df         Output table generated after running the 'Groupcomparison' function 
 Group_limma      Output table generated after running the 'Groupcomparisonlimma' function
