@@ -3,7 +3,7 @@
 #'The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
 #'The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import               testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param Group_limma    Output table generated after running the 'Groupcomparison.limma' function
+#' @param Group_limma    Output table generated after running the 'Groupcomparisonlimma' function
 #' @param cutoff 			   Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
 #' @param Ref_group 		 Reference group or samples that considered as control
 #' @param filename			 Give a file name for grid plot
