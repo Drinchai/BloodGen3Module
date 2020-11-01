@@ -1,25 +1,26 @@
 #' Individual fingerprint visualization
 #'
 #'The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-#'The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
-#'
+#'The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
+#' @import                  testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param Individual_df 		Output table generated after running the 'Individualcomparison' function
-#' @param sample_info		 	Sample annotation table
-#' @param cutoff 			Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
-#' @param rowSplit		 Splits row of heatmap by each aggregate
-#' @param Ref_group 		Reference group or samples that considered as control
-#' @param Group_column		 Name of the columns for the groups used for the analysis
-#' @param show_ref_group	 Plot reference group in the heatmap
-#' @param Aggregate		 Selects specific module aggregates for heatmap fingerprint plot
-#' @param filename			 Give a name for the file
-#' @param height			 Sets height dimension for the heatmap plot
-#' @param width		 	Sets width dimension for the heatmap plot
-#' @return A heatmap of % of module response in each single sample
+#' @param sample_info		 	  Sample annotation table
+#' @param cutoff 			      Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
+#' @param rowSplit		      Splits row of heatmap by each aggregate
+#' @param Ref_group 		    Reference group or samples that considered as control
+#' @param Group_column		  Name of the columns for the groups used for the analysis
+#' @param show_ref_group	  Plot reference group in the heatmap, default setting is show_ref_group = FALSE. Control subjects will not be plotted in the heatmap.
+#' @param Aggregate		      Selects specific module aggregates for heatmap fingerprint plot
+#' @param filename			    Give a file name for fingerprint heatmap plot
+#' @param height			      Sets height dimension for the heatmap plot
+#' @param width		 	        Sets width dimension for the heatmap plot
+#' @return                  A heatmap of % of module response in each single sample
 #' @examples
-#'fingerprintplot(Individual_df, cutoff = 15, rowSplit= TRUE , Group_column= "Group_test", Ref_group =  "Control", Aggregate = c("A28), height = NULL, width = NULL)
-#'#' @author
+#'fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
+#' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
+
 fingerprintplot = function(Individual_df,
                            sample_info = sample_info,
                            cutoff = NULL,
@@ -42,12 +43,12 @@ fingerprintplot = function(Individual_df,
   ##################### MODULES GEN3 and MODULE WITH FUNCTION DEFINED #######################################
   #modules with function deffined
 
-  Module.list <- unique(Gen3_ann[,c("Module","Function")])                                                             # creat new dataframe from Module
+  Module.list <- unique(Gen3_ann[,c("Module","Function")])                                             # creat new dataframe from Module
   Module.list$Modules <- paste(Module.list$Module, Module.list$Function, sep = ".")
   rownames(Module.list) <- Module.list$Modules
 
   mod.with.function <- Module.list$Modules[which(Module.list$Function!="TBD")]                         # select module that have only function
-  Sum.mod.sin.comp.withF <- Sum.mod.sin[rownames(Sum.mod.sin) %in% mod.with.function,]       # selected only modules that have function in this dataset
+  Sum.mod.sin.comp.withF <- Sum.mod.sin[rownames(Sum.mod.sin) %in% mod.with.function,]                 # selected only modules that have function in this dataset
 
   ####################################################################################
   ####### DOT Heatmap by complexHeatmap ####
@@ -137,7 +138,7 @@ fingerprintplot = function(Individual_df,
   else {
     width = as.numeric(width)
   }
-  df_plot = as.matrix(df_plot)
+
   pdf(file = paste0(filename, "_", Aggregate,".pdf"), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
