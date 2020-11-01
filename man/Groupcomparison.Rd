@@ -30,7 +30,7 @@ Groupcomparison(
 \item{Ref_group}{Reference group or samples that considered as control}
 }
 \value{
-\preformatted{A matrix of the percentahe of module response in each group comparison
+\preformatted{            A matrix of the percentahe of module response in each group comparison
 }
 }
 \description{
