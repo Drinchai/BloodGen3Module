@@ -54,4 +54,4 @@ fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit=
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
-}
+} 
