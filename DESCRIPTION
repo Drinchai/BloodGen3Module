@@ -32,3 +32,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+git_url: https://github.com/Drinchai/BloodGen3Module
