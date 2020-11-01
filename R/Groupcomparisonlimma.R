@@ -28,7 +28,7 @@ Groupcomparisonlimma <- function(data = data.matrix,
                             FDR = TRUE,
                             Group_column = NULL,
                             Test_group = "Test_group",
-                            Ref_group = NULL){
+                            Ref_group = "Control"){
 
   ### Prepare expression matrix with module list
   df1=Module_listGen3                   # This is module list annotation table
@@ -58,10 +58,6 @@ Groupcomparisonlimma <- function(data = data.matrix,
 
   ########################
   ##### limma test
-  ########################
-
-  # Set parameters
-  Ref_group = "Control"
 
   # Analysis
   Expression.matrix = as.data.frame(t(dat_log2))
@@ -93,12 +89,28 @@ Groupcomparisonlimma <- function(data = data.matrix,
     Pvalue_cutoff = pvalue_Group
   }
 
+  ####################################
+  ####calculate fold change ##
+  ####################################
 
+  FC.group = data.frame(matrix(ncol = length(Test_group), nrow = nrow(df_raw)))
+  colnames(FC.group) = Test_group
+  rownames(FC.group) = rownames(df_raw)
 
-## Log2 FC table
-  FCgroup <- data.frame(diff.stats[,"logFC"])
-  rownames(FCgroup) = rownames(diff.stats)
-  colnames(FCgroup) = "logFC"
+  k=1
+  for (k in 1:nrow(df_raw)) {
+    signature = rownames(df_raw)[k]
+    test.table <- sample_info
+    test.table$scores <- df_raw[k,]
+    for (i in 1:length(Test_group)) {
+      group = Test_group[i]
+      T2 <- test.table[test.table[, Group_column]==Test_group,]             
+      T1 <- test.table[test.table[, Group_column]== Ref_group,]             
+      FC.group[signature,group] <- foldchange(mean(T2$scores),mean(T1$scores))
+    }
+  }
+
+  FCgroup <- data.frame(FC.group)
 
   #############################################
   # Calculate percentage of response ##
