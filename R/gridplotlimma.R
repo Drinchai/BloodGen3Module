@@ -32,7 +32,7 @@ gridplotlimma = function(data = Group_limma,
   }
   else {
     cutoff = as.numeric(cutoff)
-  }
+  } 
   Group_plot[abs(Group_plot) < cutoff ] <- 0
 
   #check data
