@@ -50,3 +50,4 @@ Group_df <- Groupcomparisonlimma(data.matrix,sample_info = sample_info, FC = 0, 
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }
+
