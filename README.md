@@ -24,13 +24,7 @@ devtools::install_github("Drinchai/BloodGen3Module")
 # Load library
 
 library(BloodGen3Module)
-library(ComplexHeatmap)
-library(ggplot2)
-library(reshape2)
-library(gtools)
-library(matrixStats)
-library(preprocessCore)
-library(randomcoloR)
+
 ```
 
 ## Arguments
