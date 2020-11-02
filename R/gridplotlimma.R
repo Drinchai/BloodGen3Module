@@ -14,13 +14,13 @@
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
-gridplotlimma = function(data = Group_limma,
+gridplotlimma = function(Group_limma,
                     cutoff = NULL,
                     Ref_group = NULL,
                     filename=NULL){
 
   ## prepared cluster position
-  Group_plot = data
+  Group_plot = Group_limma
   Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=F]
   rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
   rownames(Group_plot) <- Gen3_ann$position
