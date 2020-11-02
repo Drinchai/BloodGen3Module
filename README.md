@@ -35,21 +35,21 @@ library(randomcoloR)
 
 ## Arguments
 ```{r argument}
-data.matrix      Normalized expression data (not Log2 transformed)
-sample_info      A table of sample annotation 
+data.matrix      Normalized expression matrix (Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+sample_info      A table of sample information (rownames of sample information must be the same names as in colnames of data.matrix)
 FC               Foldchange cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 DIFF             Difference cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 pval             p-value cut off or False discovery rate when FDR = FALSE
 FDR              False discovery rate cut off (using BH-method)
 Group_column     Name of the columns for the groups used for the analysis
-Test_group       Test group or samples that considered as test
-Ref_group        Reference group or samples that considered as control 
-Group_df         Output table generated after running the 'Groupcomparison' function 
-Group_limma      Output table generated after running the 'Groupcomparisonlimma' function
-Individual_df    Output table generated after running the 'Individualcomparison' function
+Test_group       Characters name of test group or samples that considered as test (Example: Sepsis, Cancer, RSV, Bacteria,.. etc.)
+Ref_group        Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc) 
+Group_df         Output matrix table generated after running the 'Groupcomparison' function 
+Group_limma      Output matrix table generated after running the 'Groupcomparisonlimma' function
+Individual_df    Output matrix table generated after running the 'Individualcomparison' function
 cutoff           Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
 rowSplit         Splits row of heatmap by each aggregate 
-show_ref_group	 Plot reference group in the heatmap
+show_ref_group	 Plot reference group in the heatmap, default setting is show_ref_group = FALSE. Control subjects will not be plotted in the heatmap
 Aggregate        Selects specific module aggregates for heatmap fingerprint plot
 filename         Give a name for saving file
 height           Sets height dimension for the heatmap plot
@@ -60,13 +60,15 @@ width            Sets width dimension for the heatmap plot
 
 ## Input
 To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix
-For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/BloodGen3Module/tree/master/data.
+For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/DC_Gen3_Module_analysis/tree/master/R%20data.
 
 ```{r raw data and annotaion preparation}
 #Load expression data
+load(./data_exp.rda)
 data.matrix = data_exp
 
 #Sample annotation file
+load(./sample_ann.rda)
 head(sample_ann)
 
 ```
