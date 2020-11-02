@@ -5,17 +5,19 @@
 \title{Group comparison analysis using limma}
 \usage{
 Groupcomparisonlimma(
-  data = data.matrix,
+  data.matrix,
   sample_info = sample_info,
   FC = NULL,
   pval = NULL,
   FDR = TRUE,
   Group_column = NULL,
   Test_group = "Test_group",
-  Ref_group = NULL
+  Ref_group = "Control"
 )
 }
 \arguments{
+\item{data.matrix}{A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+
 \item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
 
 \item{FC}{Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
@@ -26,11 +28,9 @@ Groupcomparisonlimma(
 
 \item{Group_column}{Name of the columns for the groups used for the analysis}
 
-\item{Test_group}{Test group or samples that considered as test}
+\item{Test_group}{Characters name of test group or samples that considered as test (Example: Sepsis, Cancer, RSV, Bacteria,.. etc.)}
 
-\item{Ref_group}{Reference group or samples that considered as control}
-
-\item{data.matrix}{Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response in each group comparison
@@ -50,4 +50,3 @@ Group_df <- Groupcomparisonlimma(data.matrix,sample_info = sample_info, FC = 0, 
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }
-
