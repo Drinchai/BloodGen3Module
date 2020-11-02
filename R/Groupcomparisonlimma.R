@@ -22,7 +22,7 @@
 #' @export
 
 
-Groupcomparisonlimma <- function(data = data.matrix,
+Groupcomparisonlimma <- function(data.matrix,
                             sample_info = sample_info,
                             FC = NULL,
                             pval = NULL ,
@@ -33,7 +33,7 @@ Groupcomparisonlimma <- function(data = data.matrix,
 
   ### Prepare expression matrix with module list
   df1=Module_listGen3                   # This is module list annotation table
-  df2=data.frame(data)                  # expression data (from your own datasets or from step 1)
+  df2=data.frame(data.matrix)                  # expression data (from your own datasets or from step 1)
   df2$Gene = rownames(df2)
 
   #Annotate gene module to expression matrix
