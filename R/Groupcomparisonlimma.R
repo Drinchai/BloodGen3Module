@@ -6,7 +6,7 @@
 #'- The sample annotation file must be loaded using a specific name = "sample_info".
 #'- The names of the columns for the conditions used in the analysis must be specified.
 #' @import              ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param data.matrix   Normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+#' @param data.matrix   A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
 #' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)
 #' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 #' @param pval          p-value cut off or False discovery rate when FDR = FALSE
@@ -20,6 +20,7 @@
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
+
 
 Groupcomparisonlimma <- function(data = data.matrix,
                             sample_info = sample_info,
