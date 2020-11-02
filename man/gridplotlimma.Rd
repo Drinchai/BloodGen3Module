@@ -4,21 +4,16 @@
 \alias{gridplotlimma}
 \title{Fingerprint grid visualization after performing "Groupcomparisonlimma"}
 \usage{
-gridplotlimma(
-  data = Group_limma,
-  cutoff = NULL,
-  Ref_group = NULL,
-  filename = NULL
-)
+gridplotlimma(Group_limma, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 \arguments{
+\item{Group_limma}{Output matrix generated after running the 'Groupcomparisonlimma' function}
+
 \item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
-\item{Ref_group}{Reference group or samples that considered as control}
+\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
 
 \item{filename}{Give a file name for grid plot}
-
-\item{Group_limma}{Output table generated after running the 'Groupcomparison.limma' function}
 }
 \value{
 \preformatted{          A pdf file of grid plot
@@ -33,4 +28,4 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Limma_group_comp
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
-} 
+}
