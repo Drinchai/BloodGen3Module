@@ -15,7 +15,7 @@ Groupcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+\item{data.matrix}{Normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
 
 \item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
 
@@ -27,7 +27,7 @@ Groupcomparison(
 
 \item{Group_column}{Name of the columns for the groups used for the analysis}
 
-\item{Ref_group}{Reference group or samples that considered as control}
+\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
 }
 \value{
 \preformatted{            A matrix of the percentahe of module response in each group comparison
@@ -47,3 +47,4 @@ Group_df <- Groupcomparison(data.matrix, sample_info = sample_info, FC = 0, pval
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }
+
