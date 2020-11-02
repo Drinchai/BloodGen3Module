@@ -21,6 +21,7 @@
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
+
 fingerprintplot = function(Individual_df,
                            sample_info = sample_info,
                            cutoff = NULL,
