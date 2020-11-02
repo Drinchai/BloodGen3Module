@@ -7,11 +7,11 @@
 gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 \arguments{
-\item{Group_df}{Output table generated after running the 'Groupcomparison' function}
+\item{Group_df}{Output matrix generated after running the 'Groupcomparison' function}
 
 \item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
-\item{Ref_group}{Reference group or samples that considered as control group}
+\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
 
 \item{filename}{Give a file name for grid plot}
 }
@@ -28,4 +28,3 @@ gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Group_comparison
 #' @author
 Darawan Rinchai <drinchai@gmail.com>
 }
- 
