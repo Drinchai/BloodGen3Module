@@ -41,13 +41,7 @@ These are list of required R packages that must be installed before the analysis
 
 ```{r setup, warning=FALSE,message=FALSE}
 library(BloodGen3Module)
-library(ComplexHeatmap)
-library(ggplot2)
-library(reshape2)
-library(gtools)
-library(matrixStats)
-library(preprocessCore)
-library(randomcoloR)
+
 ```
 
 ##Arguments
