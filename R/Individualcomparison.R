@@ -7,12 +7,12 @@
 #'- The names of the columns for the conditions used in the analysis must be specified
 #'- The default cutoff is set at FC =1.5 and DIFF =10
 #' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param data.matrix   Normalized expression data (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+#' @param data.matrix   Normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
 #' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)
 #' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 #' @param DIFF          Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 #' @param Group_column  Name of the columns for the groups used for the analysis
-#' @param Ref_group 		Reference group or samples that considered as control
+#' @param Ref_group 		Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)
 #' @return              A matrix of the percentahe of module response at individual level
 #' @examples
 #' Individual_df = Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
