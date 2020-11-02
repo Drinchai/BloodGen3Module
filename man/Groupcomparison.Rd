@@ -15,7 +15,7 @@ Groupcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{Normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+\item{data.matrix}{A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
 
 \item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
 
@@ -47,4 +47,3 @@ Group_df <- Groupcomparison(data.matrix, sample_info = sample_info, FC = 0, pval
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
 }
-
