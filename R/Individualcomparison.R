@@ -7,7 +7,7 @@
 #'- The names of the columns for the conditions used in the analysis must be specified
 #'- The default cutoff is set at FC =1.5 and DIFF =10
 #' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param data.matrix   Normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
+#' @param data.matrix   A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
 #' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)
 #' @param FC            Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 #' @param DIFF          Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
@@ -19,6 +19,7 @@
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
+
 
 Individualcomparison <- function(data.matrix,
                                  sample_info = sample_info,
