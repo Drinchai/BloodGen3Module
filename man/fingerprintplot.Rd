@@ -19,15 +19,15 @@ fingerprintplot(
 )
 }
 \arguments{
-\item{Individual_df}{Output table generated after running the 'Individualcomparison' function}
+\item{Individual_df}{Output matrix generated after running the 'Individualcomparison' function}
 
-\item{sample_info}{Sample annotation table}
+\item{sample_info}{A table of sample information (rownames of sample information must be the same names as in colnames of data.matrix)}
 
 \item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
 
 \item{rowSplit}{Splits row of heatmap by each aggregate}
 
-\item{Ref_group}{Reference group or samples that considered as control}
+\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
 
 \item{show_ref_group}{Plot reference group in the heatmap, default setting is show_ref_group = FALSE. Control subjects will not be plotted in the heatmap.}
 
@@ -54,4 +54,4 @@ fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit=
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
-} 
+}
