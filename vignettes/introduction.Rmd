@@ -55,7 +55,7 @@ To perform the modular repertoire analysis, the R package simply requires a samp
 
 ```{r raw data and annotaion preparation, warning=FALSE,message=FALSE,echo= TRUE}
 #Load expression data
-#Example expression data
+#Example expression data for package testting
 
 Test_sample =  matrix(data = rexp(1000, rate = 0.01), nrow = 14168, ncol = 20)
 control_sample = matrix(data = rexp(1000, rate = 0.1), nrow = 14168, ncol = 10)
