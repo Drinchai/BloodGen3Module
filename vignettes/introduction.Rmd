@@ -45,7 +45,6 @@ It is recommended to use the install_github function from the devtools package i
 ##Load library
 
 ```{r setup, warning=FALSE,message=FALSE, echo= TRUE}
-
 library(BloodGen3Module)
 
 ```
@@ -54,8 +53,8 @@ library(BloodGen3Module)
   ***
 To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/BloodGen3Module/tree/master/data.
 
-```{r raw data and annotaion preparation, echo= TRUE}
-
+```{r raw data and annotaion preparation, warning=FALSE,message=FALSE,echo= TRUE}
+#Load expression data
 #Example expression data
 
 Test_sample =  matrix(data = rexp(1000, rate = 0.01), nrow = 14168, ncol = 20)
@@ -74,7 +73,6 @@ sample_ann = data.frame(SampleID=(colnames(data.matrix)),Group_test = c(rep("Tes
 rownames(sample_ann) = sample_ann$SampleID
 rownames(sample_ann) == colnames(data.matrix)
 head(sample_ann)
-
 
 ```
 
@@ -104,7 +102,7 @@ Group_limma <- Groupcomparisonlimma(data.matrix,
                                     pval = 0.1 ,
                                     FDR = TRUE,
                                     Group_column = "Group_test",
-                                    Test_group = "Test",
+                                    Test_group = "Sepsis",
                                     Ref_group = "Control")
 ```
 
@@ -149,28 +147,6 @@ Individual_df = Individualcomparison(data.matrix,
                                      DIFF = 10,
                                      Group_column = "Group_test",
                                      Ref_group = "Control")
-```
-
-## Individual fingerprint visualization 
-***
-The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-
-The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
-
-```{r fingerprint visualization, warning=FALSE, echo= TRUE}
-
-fingerprintplot(Individual_df,
-                sample_info = sample_ann,
-                cutoff = 15,
-                rowSplit= TRUE ,
-                Group_column= "Group_test",
-                show_ref_group = FALSE,
-                Ref_group =  "Control",
-                Aggregate = c("A28"),
-                filename = "Gen3_Individual_plot",
-                height = NULL,
-                width = NULL)
-
 ```
 
 ##Notes
