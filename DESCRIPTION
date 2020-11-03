@@ -1,6 +1,6 @@
 Package: BloodGen3Module
 Title: This R package for performing module repertoire analyses and generating fingerprint representations.
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     person(given = "Darawan",
            family = "Rinchai",
