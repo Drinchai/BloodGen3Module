@@ -1,4 +1,7 @@
 library(BloodGen3Module)
+library(testthat)
+library(reshape2)
+library(ggplot2)
 
 gridplotlimma = function(Group_limma,
                          cutoff = NULL,
@@ -72,7 +75,7 @@ test_that("test gridplotlimma", {
                 cutoff = 15,
                 Ref_group = "Control",
                 filename="Limma_group_comparison")
-  b  = gridplotlimma(Group_limma1,
+  b  = gridplotlimma(Group_limma,
                      cutoff = 15,
                      Ref_group = "Control",
                      filename="Limma_group_comparison")
