@@ -45,15 +45,9 @@ It is recommended to use the install_github function from the devtools package i
 ##Load library
 
 ```{r setup, warning=FALSE,message=FALSE, echo= TRUE}
+
 library(BloodGen3Module)
-library(ComplexHeatmap)
-library(ggplot2)
-library(reshape2)
-library(gtools)
-library(matrixStats)
-library(preprocessCore)
-library(randomcoloR)
-library(limma)
+
 ```
 
 ## Input
