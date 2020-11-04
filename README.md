@@ -35,7 +35,7 @@ FC               Foldchange cut off to consider the abundance of a given transcr
 DIFF             Difference cut off to consider the abundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)
 pval             p-value cut off or False discovery rate when FDR = FALSE
 FDR              False discovery rate cut off (using BH-method)
-Group_column     Name of the columns for the groups used for the analysis
+Group_column     The column name for the groups used for the analysis
 Test_group       Characters name of test group or samples that considered as test (Example: Sepsis, Cancer, RSV, Bacteria,.. etc.)
 Ref_group        Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc) 
 Group_df         Output matrix table generated after running the 'Groupcomparison' function 
