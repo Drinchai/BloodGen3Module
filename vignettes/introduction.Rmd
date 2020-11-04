@@ -10,7 +10,6 @@ vignette: >
 
 ```{r, echo = FALSE, eval = FALSE}
 library(knitr)
-setwd("~/Dropbox (SMCP)/DARAWAN/Module analysis/R packages/BloodGen3Module/")
 knitr::opts_chunk$set(
     error = FALSE,
     tidy  = FALSE,
