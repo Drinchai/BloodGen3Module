@@ -164,7 +164,7 @@ fingerprintplot(Individual_df,
 
 ```
 ### Heatmap fingerprint visualization
-![Individual_plot](https://github.com/Drinchai/BloodGen3Module/blob/master/2020%20July26%20Individual%20comparison_Fig2.png)
+![Individual_plot](https://github.com/Drinchai/DC_Gen3_Module_analysis/blob/master/2020%20July26%20Individual%20comparison_Fig2.afdesign)
 
 
 ## Publication
