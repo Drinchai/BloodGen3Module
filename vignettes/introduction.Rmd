@@ -122,7 +122,7 @@ gridplot(Group_df,
 ```
 
 
-## After running "Groupcomparison.limma" function
+## After running "Groupcomparisonlimma" function
 ```{r grid visulization after running "Groupcomparison.limma" function}
 gridplotlimma(Group_limma, 
                cutoff = 15, 
