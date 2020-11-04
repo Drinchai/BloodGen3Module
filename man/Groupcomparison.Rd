@@ -40,7 +40,7 @@ Groupcomparison(
 ##- The names of the columns for the conditions used in the analysis must be specified.
 }
 \examples{
-Groupcomparison(data.matrix, sample_info = sample_ann, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
+== Groupcomparison(data.matrix, sample_info = sample_ann, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
