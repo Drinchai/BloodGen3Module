@@ -16,7 +16,7 @@
 #' @param Ref_group 		Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)
 #' @return              A matrix of the percentahe of module response in each group comparison
 #' @examples
-#' Groupcomparisonlimma(data.matrix,sample_info = sample_info, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Test_group = "Sepsis", Ref_group = "Control")
+#' Groupcomparisonlimma(data.matrix,sample_info = sample_ann, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Test_group = "Sepsis", Ref_group = "Control")
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export

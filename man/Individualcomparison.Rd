@@ -40,7 +40,7 @@ Individualcomparison(
 ##- The default cutoff is set at FC =1.5 and DIFF =10
 }
 \examples{
-Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
+Individualcomparison(data.matrix, sample_info = sample_ann,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

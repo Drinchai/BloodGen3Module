@@ -15,7 +15,7 @@
 #' @param width	         Sets width dimension for the heatmap plot
 #' @return                A heatmap of % of module response in each single sample
 #' @examples
-#'fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
+#'fingerprintplot(Individual_df, sample_info = sample_ann, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export

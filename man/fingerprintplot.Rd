@@ -53,7 +53,7 @@ fingerprintplot(
 ##he default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \examples{
-fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
+fingerprintplot(Individual_df, sample_info = sample_ann, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

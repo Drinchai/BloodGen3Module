@@ -15,7 +15,7 @@
 #' @param Ref_group 		Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)
 #' @return              A matrix of the percentahe of module response at individual level
 #' @examples
-#' Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
+#' Individualcomparison(data.matrix, sample_info = sample_ann,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 #' @author
 #' Darawan Rinchai <drinchai@gmail.com>
 #' @export
