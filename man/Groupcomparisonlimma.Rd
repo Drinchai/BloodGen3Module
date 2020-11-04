@@ -2,7 +2,7 @@
 % Please edit documentation in R/Groupcomparisonlimma.R
 \name{Groupcomparisonlimma}
 \alias{Groupcomparisonlimma}
-\title{Group comparison analysis using limma}
+\title{##Group comparison analysis using limma}
 \usage{
 Groupcomparisonlimma(
   data.matrix,
@@ -37,11 +37,14 @@ Groupcomparisonlimma(
 }
 }
 \description{
-The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
-\itemize{
-\item Expression matrix and sample annotation files are required to perform this analysis.
-\item The sample annotation file must be loaded using a specific name = "sample_info".
-\item The names of the columns for the conditions used in the analysis must be specified.
+##The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
+\subsection{- Expression matrix and sample annotation files are required to perform this analysis.}{
+}
+
+\subsection{- The sample annotation file must be loaded using a specific name = "sample_info".}{
+}
+
+\subsection{- The names of the columns for the conditions used in the analysis must be specified.}{
 }
 }
 \examples{

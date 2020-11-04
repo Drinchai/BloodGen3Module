@@ -1,10 +1,10 @@
-#' Group comparison analysis using limma
+#' ##Group comparison analysis using limma
 #'
-#'The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
+#' ##The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
 
-#'- Expression matrix and sample annotation files are required to perform this analysis.
-#'- The sample annotation file must be loaded using a specific name = "sample_info".
-#'- The names of the columns for the conditions used in the analysis must be specified.
+#' ## - Expression matrix and sample annotation files are required to perform this analysis.
+#' ## - The sample annotation file must be loaded using a specific name = "sample_info".
+#' ## - The names of the columns for the conditions used in the analysis must be specified.
 #' @import              ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param data.matrix   A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
 #' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gridplotlimma.R
 \name{gridplotlimma}
 \alias{gridplotlimma}
-\title{Fingerprint grid visualization after performing "Groupcomparisonlimma"}
+\title{##Fingerprint grid visualization after performing "Groupcomparisonlimma"}
 \usage{
 gridplotlimma(Group_limma, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
@@ -20,8 +20,8 @@ gridplotlimma(Group_limma, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 }
 \description{
-The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
-The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
+##The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+##The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \examples{
 gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Limma_group_comparison")

@@ -1,7 +1,6 @@
-#' Individual fingerprint visualization
-#'
-#'The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-#'The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
+#' ##Individual fingerprint visualization
+#' ##The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+#' ##he default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import               testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param Individual_df  Output matrix generated after running the 'Individualcomparison' function
 #' @param sample_info	   A table of sample information (rownames of sample information must be the same names as in colnames of data.matrix)

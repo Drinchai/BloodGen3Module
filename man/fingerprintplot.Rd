@@ -2,7 +2,9 @@
 % Please edit documentation in R/fingerprintplot.R
 \name{fingerprintplot}
 \alias{fingerprintplot}
-\title{Individual fingerprint visualization}
+\title{##Individual fingerprint visualization
+##The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+##he default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.}
 \usage{
 fingerprintplot(
   Individual_df,
@@ -46,8 +48,9 @@ fingerprintplot(
 }
 }
 \description{
-The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
+##Individual fingerprint visualization
+##The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+##he default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \examples{
 fingerprintplot(Individual_df, sample_info = sample_info, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)

@@ -1,11 +1,11 @@
-#' Individual single sample analysis
+#' ##Individual single sample analysis
 #'
-#'The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
+#' ##The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
 #'
-#'- Expression matrix and sample annotation file are required in order to perform this analysis.
-#'- The sample annotation file must be loaded using a specific name = "sample_info".
-#'- The names of the columns for the conditions used in the analysis must be specified
-#'- The default cutoff is set at FC =1.5 and DIFF =10
+#' ##- Expression matrix and sample annotation file are required in order to perform this analysis.
+#' ##- The sample annotation file must be loaded using a specific name = "sample_info".
+#' ##- The names of the columns for the conditions used in the analysis must be specified
+#' ##- The default cutoff is set at FC =1.5 and DIFF =10
 #' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param data.matrix   A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)
 #' @param sample_info   A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)

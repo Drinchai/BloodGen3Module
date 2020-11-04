@@ -2,7 +2,7 @@
 % Please edit documentation in R/Individualcomparison.R
 \name{Individualcomparison}
 \alias{Individualcomparison}
-\title{Individual single sample analysis}
+\title{##Individual single sample analysis}
 \usage{
 Individualcomparison(
   data.matrix,
@@ -31,15 +31,13 @@ Individualcomparison(
 }
 }
 \description{
-The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
+##The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
 }
 \details{
-\itemize{
-\item Expression matrix and sample annotation file are required in order to perform this analysis.
-\item The sample annotation file must be loaded using a specific name = "sample_info".
-\item The names of the columns for the conditions used in the analysis must be specified
-\item The default cutoff is set at FC =1.5 and DIFF =10
-}
+##- Expression matrix and sample annotation file are required in order to perform this analysis.
+##- The sample annotation file must be loaded using a specific name = "sample_info".
+##- The names of the columns for the conditions used in the analysis must be specified
+##- The default cutoff is set at FC =1.5 and DIFF =10
 }
 \examples{
 Individualcomparison(data.matrix, sample_info = sample_info,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
