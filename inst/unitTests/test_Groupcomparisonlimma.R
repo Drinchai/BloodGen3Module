@@ -16,7 +16,7 @@ data.matrix$Symbol = NULL
 colnames(data.matrix) = c(paste0(rep("SampleID",30),1:30))
 
 ##example sample information
-sample_ann = data.frame(SampleID=(colnames(data.matrix)),Group_test = c(rep("Test",20),rep("Control",10)),stringsAsFactors = F)
+sample_ann = data.frame(SampleID=(colnames(data.matrix)),Group_test = c(rep("Test",20),rep("Control",10)),stringsAsFactors = FALSE)
 rownames(sample_ann) = sample_ann$SampleID
 rownames(sample_ann) == colnames(data.matrix)
 head(sample_ann)

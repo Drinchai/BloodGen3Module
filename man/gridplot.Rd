@@ -9,9 +9,9 @@ gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
 \arguments{
 \item{Group_df}{Dataframe with output generated after running the'Groupcomparison' function}
 
-\item{cutoff}{Numeric value specifying the percentage cut off used for fingerprint visualization (range of acceptable values from 0 to 100)}
+\item{cutoff}{Numeric value specifying the percentage cut off used for fingerprint visualization (from 0 to 100)}
 
-\item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group (samples considered as control), Example: Control, baseline, Pre-treatment,... etc}
+\item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
 
 \item{filename}{Character vector with a name for saving file}
 }
@@ -22,6 +22,33 @@ gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
 \description{
 The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
 The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
+}
+\examples{
+#' ## example sample information Example expression
+## data for package testting
+Test_sample = matrix(data = rexp(1000, rate = 0.01),
+                    nrow = 14168, ncol = 20)
+control_sample = matrix(data = rexp(1000, rate = 0.1),
+                       nrow = 14168, ncol = 10)
+data.matrix = data.frame(cbind(Test_sample, control_sample))
+data.matrix$Symbol = Module_listGen3$Gene
+data.matrix = aggregate(data.matrix, FUN = mean, by = list(data.matrix$Symbol))
+rownames(data.matrix) = data.matrix$Group.1
+data.matrix$Group.1 = NULL
+data.matrix$Symbol = NULL
+colnames(data.matrix) = c(paste0(rep("SampleID", 30),
+                                1:30))
+## Example of ample information
+sample_ann = data.frame(SampleID = (colnames(data.matrix)),
+                       Group_test = c(rep("Test", 20), rep("Control",
+                                                           10)), stringsAsFactors = FALSE)
+rownames(sample_ann) = sample_ann$SampleID
+Group_df = Groupcomparison(data.matrix, sample_info = sample_ann,
+                          FC = 0, pval = 0.1, FDR = TRUE,
+                          Group_column = "Group_test", Ref_group = "Control")
+gridplot(Group_df, cutoff = 15,
+         Ref_group = "Control",
+         filename="Group_comparison_cutoff15")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

@@ -16,21 +16,21 @@ Groupcomparisonlimma(
 )
 }
 \arguments{
-\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed). Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
+\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed). Genes should be in rows and Sample ID in columns.Row names are required to be valid Gene Symbols}
 
-\item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: Sample ID (exactly matching Sample ID of data.matrix) and a column specifying group annotation}
+\item{sample_info}{A dataframe with sample annotation.}
 
-\item{FC}{Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)}
+\item{FC}{Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group}
 
 \item{pval}{Numeric value specifying p-value cut off or False discovery rate when FDR = TRUE}
 
-\item{FDR}{Logical operator (TRUE/FALSE) to specify whether False discovery rate cut off (using BH-method) should be used}
+\item{FDR}{Logical operator  to specify whether False discovery rate cut off (using BH-method) should be used}
 
 \item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
 
-\item{Test_group}{Character vector specifying value within the group column (Group_column) that will be used as Test group (samples considered as “intervention” group), Example: Sepsis, Cancer, RSV, Bacteria,.. etc.}
+\item{Test_group}{Character vector specifying value within the group column that will be used as Test group}
 
-\item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group (samples considered as control)(Example: Control, baseline, Pre-treatment,... etc)}
+\item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response in each group comparison
@@ -43,6 +43,30 @@ The Groupcomparisonlimma function will perform group comparison analyses using "
 \item The sample annotation file must be loaded using a specific name = "sample_info".
 \item The names of the columns for the conditions used in the analysis must be specified.
 }
+}
+\examples{
+## example sample information Example expression
+## data for package testting
+Test_sample = matrix(data = rexp(1000, rate = 0.01),
+                    nrow = 14168, ncol = 20)
+control_sample = matrix(data = rexp(1000, rate = 0.1),
+                       nrow = 14168, ncol = 10)
+data.matrix = data.frame(cbind(Test_sample, control_sample))
+data.matrix$Symbol = Module_listGen3$Gene
+data.matrix = aggregate(data.matrix, FUN = mean, by = list(data.matrix$Symbol))
+rownames(data.matrix) = data.matrix$Group.1
+data.matrix$Group.1 = NULL
+data.matrix$Symbol = NULL
+colnames(data.matrix) = c(paste0(rep("SampleID", 30),
+                                1:30))
+## Example of ample information
+sample_ann = data.frame(SampleID = (colnames(data.matrix)),
+                       Group_test = c(rep("Test", 20), rep("Control",
+                                                           10)), stringsAsFactors = FALSE)
+rownames(sample_ann) = sample_ann$SampleID
+Group_limma <- Groupcomparisonlimma(data.matrix, sample_info = sample_ann,
+FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Test",
+Test_group = "Sepsis", Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

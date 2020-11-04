@@ -4,10 +4,37 @@
 #' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import               testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param Group_limma    Dataframe with output generated after running the'Groupcomparisonlimma' function
-#' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization (range of acceptable values from 0 to 100)
-#' @param Ref_group 		 Character vector specifying value within the group column	(Group_column) that will be used as Reference group (samples considered as control), Example: Control, baseline, Pre-treatment,... etc
+#' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization (0 to 100)
+#' @param Ref_group 		 Character vector specifying value within the group column that will be used as Reference group
 #' @param filename			 Character vector with a name for saving file
 #' @return               A pdf file of grid plot
+#' @examples
+#' ## example sample information Example expression
+#' ## data for package testting
+#'Test_sample = matrix(data = rexp(1000, rate = 0.01),
+#'                     nrow = 14168, ncol = 20)
+#'control_sample = matrix(data = rexp(1000, rate = 0.1),
+#'                        nrow = 14168, ncol = 10)
+#'data.matrix = data.frame(cbind(Test_sample, control_sample))
+#'data.matrix$Symbol = Module_listGen3$Gene
+#'data.matrix = aggregate(data.matrix, FUN = mean, by = list(data.matrix$Symbol))
+#'rownames(data.matrix) = data.matrix$Group.1
+#'data.matrix$Group.1 = NULL
+#'data.matrix$Symbol = NULL
+#'colnames(data.matrix) = c(paste0(rep("SampleID", 30),
+#'                                 1:30))
+#'## Example of ample information
+#'sample_ann = data.frame(SampleID = (colnames(data.matrix)),
+#'                        Group_test = c(rep("Test", 20), rep("Control",
+#'                                                            10)), stringsAsFactors = FALSE)
+#'rownames(sample_ann) = sample_ann$SampleID
+#'Group_limma <- Groupcomparisonlimma(data.matrix, sample_info = sample_ann,
+#'FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Test",
+#'Test_group = "Sepsis", Ref_group = "Control")
+#'gridplotlimma(Group_limma,
+#'              cutoff = 15,
+#'              Ref_group = "Control",
+#'              filename="Limma_group_comparison")
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
@@ -18,7 +45,7 @@ gridplotlimma = function(Group_limma,
 
   ## prepared cluster position
   Group_plot = Group_limma
-  Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=F]
+  Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=FALSE]
   rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
   rownames(Group_plot) <- Gen3_ann$position
   Group_plot <- as.data.frame(Group_plot)
@@ -37,8 +64,8 @@ gridplotlimma = function(Group_limma,
 
   # creat new grid with all filtered cluster##
   mod.group1 <- matrix(nrow=38,ncol=42)
-  rownames (mod.group1) <- paste0("A",c(1:38))
-  colnames (mod.group1) <- paste0("",c(1:42))
+  rownames(mod.group1) = paste0("A",seq_len(38))
+  colnames(mod.group1) = paste0("",seq_len(42))
   ##
 
   diseases = colnames(Group_plot)
@@ -48,8 +75,8 @@ gridplotlimma = function(Group_limma,
     disease = diseases[i]
     if(disease == Ref_group){next}
     for (i in 1 : nrow(Group_plot)){
-      Mx <- as.numeric(gsub(x = strsplit (rownames(Group_plot)[i],"\\.")[[1]][[1]],pattern = "A",replacement = ""))
-      My <- as.numeric(strsplit (rownames(Group_plot)[i],"\\.")[[1]][[2]])
+      Mx <- as.numeric(gsub(x = strsplit(rownames(Group_plot)[i],"\\.")[[1]][[1]],pattern = "A",replacement = ""))
+      My <- as.numeric(strsplit(rownames(Group_plot)[i],"\\.")[[1]][[2]])
       mod.group1[Mx,My] <- Group_plot[,disease][i]
     }
     mod.group <- mod.group1[-c(9:14,19:23),]
