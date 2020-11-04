@@ -8,9 +8,9 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, eval = FALSE}
-library(knitr)
-knitr::opts_chunk$set(
+```{r, echo = FALSE}
+require(knitr)
+opts_chunk$set(
     error = FALSE,
     tidy  = FALSE,
     message = FALSE,
