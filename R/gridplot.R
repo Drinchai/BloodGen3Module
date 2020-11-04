@@ -1,17 +1,14 @@
-#' ##Fingerprint grid visualization
+#' Fingerprint grid visualization
 #'
-#' ##The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
-#' ##The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
+#' The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+#' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import            testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param Group_df    Output matrix generated after running the 'Groupcomparison' function
-#' @param cutoff 			Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
-#' @param Ref_group 	Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)
-#' @param filename	  Give a file name for grid plot
+#' @param Group_df    Dataframe with output generated after running the'Groupcomparison' function
+#' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization (range of acceptable values from 0 to 100)
+#' @param Ref_group 		 Character vector specifying value within the group column (Group_column) that will be used as Reference group (samples considered as control), Example: Control, baseline, Pre-treatment,... etc
+#' @param filename			 Character vector with a name for saving file
 #' @return            A pdf file of grid plot
-#' @examples
-#' gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Group_comparison_cutoff15")
-#' #' @author
-#' Darawan Rinchai <drinchai@gmail.com>
+#' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
 gridplot = function(Group_df,

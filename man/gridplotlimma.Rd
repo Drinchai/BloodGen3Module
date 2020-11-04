@@ -2,29 +2,26 @@
 % Please edit documentation in R/gridplotlimma.R
 \name{gridplotlimma}
 \alias{gridplotlimma}
-\title{##Fingerprint grid visualization after performing "Groupcomparisonlimma"}
+\title{Fingerprint grid visualization after performing "Groupcomparisonlimma"}
 \usage{
 gridplotlimma(Group_limma, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 \arguments{
-\item{Group_limma}{Output matrix generated after running the 'Groupcomparisonlimma' function}
+\item{Group_limma}{Dataframe with output generated after running the'Groupcomparisonlimma' function}
 
-\item{cutoff}{Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100}
+\item{cutoff}{Numeric value specifying the percentage cut off used for fingerprint visualization (range of acceptable values from 0 to 100)}
 
-\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
+\item{Ref_group}{Character vector specifying value within the group column    (Group_column) that will be used as Reference group (samples considered as control), Example: Control, baseline, Pre-treatment,... etc}
 
-\item{filename}{Give a file name for grid plot}
+\item{filename}{Character vector with a name for saving file}
 }
 \value{
 \preformatted{          A pdf file of grid plot
 }
 }
 \description{
-##The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
-##The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
-}
-\examples{
-gridplot(Group_df, cutoff = 15, Ref_group = "Control",filename="Limma_group_comparison")
+The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

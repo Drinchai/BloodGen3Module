@@ -2,7 +2,7 @@
 % Please edit documentation in R/Groupcomparisonlimma.R
 \name{Groupcomparisonlimma}
 \alias{Groupcomparisonlimma}
-\title{##Group comparison analysis using limma}
+\title{Group comparison analysis using limma}
 \usage{
 Groupcomparisonlimma(
   data.matrix,
@@ -16,39 +16,33 @@ Groupcomparisonlimma(
 )
 }
 \arguments{
-\item{data.matrix}{A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed). Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
 
-\item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
+\item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: Sample ID (exactly matching Sample ID of data.matrix) and a column specifying group annotation}
 
-\item{FC}{Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
+\item{FC}{Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)}
 
-\item{pval}{p-value cut off or False discovery rate when FDR = FALSE}
+\item{pval}{Numeric value specifying p-value cut off or False discovery rate when FDR = TRUE}
 
-\item{FDR}{False discovery rate cut off using BH method}
+\item{FDR}{Logical operator (TRUE/FALSE) to specify whether False discovery rate cut off (using BH-method) should be used}
 
-\item{Group_column}{Name of the columns for the groups used for the analysis}
+\item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
 
-\item{Test_group}{Characters name of test group or samples that considered as test (Example: Sepsis, Cancer, RSV, Bacteria,.. etc.)}
+\item{Test_group}{Character vector specifying value within the group column (Group_column) that will be used as Test group (samples considered as “intervention” group), Example: Sepsis, Cancer, RSV, Bacteria,.. etc.}
 
-\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
+\item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group (samples considered as control)(Example: Control, baseline, Pre-treatment,... etc)}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response in each group comparison
 }
 }
 \description{
-##The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
-\subsection{- Expression matrix and sample annotation files are required to perform this analysis.}{
+The Groupcomparisonlimma function will perform group comparison analyses using "limma" function from "limma R package" and the results are expressed “at the module level” as percent of genes increased or decreased.
+\itemize{
+\item Expression matrix and sample annotation files are required to perform this analysis.
+\item The sample annotation file must be loaded using a specific name = "sample_info".
+\item The names of the columns for the conditions used in the analysis must be specified.
 }
-
-\subsection{- The sample annotation file must be loaded using a specific name = "sample_info".}{
-}
-
-\subsection{- The names of the columns for the conditions used in the analysis must be specified.}{
-}
-}
-\examples{
-Groupcomparisonlimma(data.matrix,sample_info = sample_ann, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Test_group = "Sepsis", Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

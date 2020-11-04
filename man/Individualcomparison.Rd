@@ -2,7 +2,7 @@
 % Please edit documentation in R/Individualcomparison.R
 \name{Individualcomparison}
 \alias{Individualcomparison}
-\title{##Individual single sample analysis}
+\title{Individual single sample analysis}
 \usage{
 Individualcomparison(
   data.matrix,
@@ -14,33 +14,32 @@ Individualcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{A table of normalized expression matrix (Important: Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function)}
+\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed). Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
 
-\item{sample_info}{A table of sample information (Important: rownames of sample information must be the same names as in colnames of data.matrix)}
+\item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: Sample ID (exactly matching Sample ID of data.matrix) and a column specifying group annotation}
 
-\item{FC}{Foldchange cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
+\item{FC}{Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)}
 
-\item{DIFF}{Difference cut off to consider th eabundance of a given transcript to be increased or decreased compared to a reference group (Ref_group)}
+\item{DIFF}{Numeric value specifying the difference cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)}
 
-\item{Group_column}{Name of the columns for the groups used for the analysis}
+\item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
 
-\item{Ref_group}{Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)}
+\item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group (samples considered as control), Example: Control, baseline, Pre-treatment,... etc}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response at individual level
 }
 }
 \description{
-##The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
+The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
 }
 \details{
-##- Expression matrix and sample annotation file are required in order to perform this analysis.
-##- The sample annotation file must be loaded using a specific name = "sample_info".
-##- The names of the columns for the conditions used in the analysis must be specified
-##- The default cutoff is set at FC =1.5 and DIFF =10
+\itemize{
+\item Expression matrix and sample annotation file are required in order to perform this analysis.
+\item The sample annotation file must be loaded using a specific name = "sample_info".
+\item The names of the columns for the conditions used in the analysis must be specified
+\item The default cutoff is set at FC =1.5 and DIFF =10
 }
-\examples{
-Individualcomparison(data.matrix, sample_info = sample_ann,FC = 1.5, DIFF = 10, Group_column = "Group_test",Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}

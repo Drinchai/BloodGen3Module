@@ -1,23 +1,20 @@
-#' ##Individual fingerprint visualization
-#' ##The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
-#' ##he default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
+#' Individual fingerprint visualization
+#' The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
+#' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import               testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param Individual_df  Output matrix generated after running the 'Individualcomparison' function
-#' @param sample_info	   A table of sample information (rownames of sample information must be the same names as in colnames of data.matrix)
-#' @param cutoff 			   Sets the percentage cut off used for fingerprint visualization, range of acceptable values from 0 to 100
-#' @param rowSplit		   Splits row of heatmap by each aggregate
+#' @param Individual_df  Dataframe with output generated after running the 'Individualcomparison' function
+#' @param sample_info	   A dataframe with sample annotation. Sample_info dataframe requires two columns: Sample ID (exactly matching Sample ID of 		data.matrix) and a column specifying group annotation
+#' @param cutoff 			   SNumeric value specifying the percentage cut off used for fingerprint visualization (range of acceptable values from 0 to 100).
+#' @param rowSplit		   Logical operator (TRUE/FALSE) to indicate if rows of the heatmaps should be split by each aggregate
 #' @param Ref_group      Characters name of reference group or samples that considered as control (Example: Control, baseline, Pre-treatment,... etc)
 #' @param Group_column   Name of the columns for the groups used for the analysis
-#' @param show_ref_group Plot reference group in the heatmap, default setting is show_ref_group = FALSE. Control subjects will not be plotted in the heatmap.
-#' @param Aggregate      Selects specific module aggregates for heatmap fingerprint plot
-#' @param filename       Give a file name for fingerprint heatmap plot
-#' @param height         Sets height dimension for the heatmap plot
-#' @param width	         Sets width dimension for the heatmap plot
-#' @return                A heatmap of % of module response in each single sample
-#' @examples
-#'fingerprintplot(Individual_df, sample_info = sample_ann, cutoff = 15, rowSplit= TRUE ,Ref_group ="Control", show_ref_group = FALSE,Group_column= "Group_test",  Aggregate = c("A28"), filename = NULL, height = NULL, width = NULL)
-#' @author
-#' Darawan Rinchai <drinchai@gmail.com>
+#' @param show_ref_group Character vector specifying value within the group column 		(Group_column) that will be used as Reference group (samples considered as control)
+#' @param Aggregate      Character vector specifying name of specific module aggregates	for heatmap fingerprint plot
+#' @param filename       Character vector with a name for saving file
+#' @param height         Sets the height of the graphics region in inches. The default values are 28
+#' @param width	         Sets the width of the graphics region in inches. The default values are 17
+#' @return               A heatmap of % of module response in each single sample
+#' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
 
