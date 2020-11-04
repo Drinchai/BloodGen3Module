@@ -51,7 +51,7 @@ library(BloodGen3Module)
 
 ## Input
   ***
-To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/BloodGen3Module/tree/master/data.
+To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/DC_Gen3_Module_analysis/tree/master/R%20data.
 
 ```{r raw data and annotaion preparation, warning=FALSE,message=FALSE,echo= TRUE}
 #Load expression data

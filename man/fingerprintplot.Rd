@@ -42,7 +42,7 @@ fingerprintplot(
 \item{width}{Sets width dimension for the heatmap plot}
 }
 \value{
-\preformatted{             A heatmap of \% of module response in each single sample
+\preformatted{           A heatmap of \% of module response in each single sample
 }
 }
 \description{

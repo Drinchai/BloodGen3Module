@@ -42,7 +42,7 @@ The Groupcomparison function will perform group comparison analyses and the resu
 }
 }
 \examples{
-Group_df <- Groupcomparison(data.matrix, sample_info = sample_info, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
+Groupcomparison(data.matrix, sample_info = sample_info, FC = 0, pval = 0.1, FDR = TRUE, Group_column = "Group_test", Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
