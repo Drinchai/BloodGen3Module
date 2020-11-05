@@ -1,7 +1,7 @@
 #' Individual fingerprint visualization
 #' The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
 #' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
-#' @import               testthat circlize grid ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @import methods grid graphics stats grDevices testthat circlize grid ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param Individual_df  Dataframe with output generated after running the 'Individualcomparison' function
 #' @param sample_info	   A dataframe with sample annotation.
 #' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization ( 0 to 100).
