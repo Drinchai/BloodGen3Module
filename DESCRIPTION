@@ -10,6 +10,8 @@ Authors@R:
            email = "drinchai@gmail.com",
            comment = c(ORCID = "0000-0001-8851-7730"))
 Description: The BloodGen3Module package provides functions for R user performing module repertoire analyses and generating fingerprint representations.
+Functions can perform group comparison or individual sample analysis and visualization by fingerprint grid plot or fingerprint heatmap. 
+Support is provided for analysis none log-transformed input normalized transcriptional profile from different platforms (e.g., microarray, RNA-seq).
 Depends: R (>= 4.0.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
