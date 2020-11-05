@@ -1,4 +1,5 @@
 Package: BloodGen3Module
+Type: Package
 Title: This R package for performing module repertoire analyses and generating fingerprint representations
 Version: 0.99.17
 Date: 2020-11-05
@@ -15,13 +16,6 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports:
-   testthat,
-   methods, 
-   grid, 
-   graphics, 
-   stats, 
-   grDevices,
-   circlize,
    ComplexHeatmap(>= 1.99.8),
    ggplot2,
    matrixStats,
@@ -29,14 +23,20 @@ Imports:
    reshape2,
    preprocessCore,
    randomcoloR,
-   V8,
    limma
 biocViews:Software, Visualization, GeneExpression
 Suggests: 
     testthat (>= 1.0.0),
+    methods, 
+    grid, 
+    graphics, 
+    stats, 
+    grDevices,
+    circlize,
     RUnit, 
     BiocGenerics,
     knitr,
-    rmarkdown
+    rmarkdown,  
+    V8
 VignetteBuilder: knitr
-git_url: https://github.com/Drinchai/BloodGen3Module
+URL: https://github.com/Drinchai/BloodGen3Module
