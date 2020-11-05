@@ -10,6 +10,7 @@ Authors@R:
            email = "drinchai@gmail.com",
            comment = c(ORCID = "0000-0001-8851-7730"))
 Description: The BloodGen3Module package provides functions for R user performing module repertoire analyses and generating fingerprint representations
+Depends: R (>= 3.1.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -23,20 +24,19 @@ Imports:
    reshape2,
    preprocessCore,
    randomcoloR,
-   limma
+   limma,
+   V8,
+   methods, 
+   grid, 
+   graphics, 
+   stats, 
+   grDevices,
+   circlize,
 biocViews:Software, Visualization, GeneExpression
 Suggests: 
     testthat (>= 1.0.0),
-    methods, 
-    grid, 
-    graphics, 
-    stats, 
-    grDevices,
-    circlize,
     RUnit, 
     BiocGenerics,
     knitr,
-    rmarkdown,  
-    V8
+    rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/Drinchai/BloodGen3Module
