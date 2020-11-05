@@ -42,6 +42,12 @@ fingerprintplot(
 \item{height}{Sets the height of the graphics region in inches. The default values are 28}
 
 \item{width}{Sets the width of the graphics region in inches. The default values are 17}
+
+\item{Gen3_ann}{Dataframe of functional annotation of third generation module}
+
+\item{Module_listGen3}{Dataframe of module list annotation}
+
+\item{Color}{Character vector color of grid plot}
 }
 \value{
 \preformatted{          A heatmap of \% of module response in each single sample

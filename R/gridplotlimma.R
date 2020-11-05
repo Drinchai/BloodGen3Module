@@ -7,6 +7,9 @@
 #' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization (0 to 100)
 #' @param Ref_group 		 Character vector specifying value within the group column that will be used as Reference group
 #' @param filename			 Character vector with a name for saving file
+#' @param Gen3_ann         Dataframe of functional annotation of third generation module
+#' @param Module_listGen3  Dataframe of module list annotation
+#' @param Color            Character vector color of grid plot
 #' @return               A pdf file of grid plot
 #' @examples
 #' ## example sample information Example expression

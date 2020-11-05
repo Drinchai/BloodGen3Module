@@ -31,6 +31,12 @@ Groupcomparisonlimma(
 \item{Test_group}{Character vector specifying value within the group column that will be used as Test group}
 
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
+
+\item{Gen3_ann}{Dataframe of functional annotation of third generation module}
+
+\item{Module_listGen3}{Dataframe of module list annotation}
+
+\item{Color}{Character vector color of grid plot}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response in each group comparison
