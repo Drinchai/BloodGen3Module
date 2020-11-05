@@ -13,9 +13,6 @@
 #' @param filename       Character vector with a name for saving file
 #' @param height         Sets the height of the graphics region in inches. The default values are 28
 #' @param width	         Sets the width of the graphics region in inches. The default values are 17
-#' @param Gen3_ann         Dataframe of functional annotation of third generation module
-#' @param Module_listGen3  Dataframe of module list annotation
-#' @param Color            Character vector color of grid plot
 #' @return               A heatmap of % of module response in each single sample
 #' @examples
 #' ## example sample information Example expression

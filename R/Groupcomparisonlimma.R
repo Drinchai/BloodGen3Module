@@ -14,9 +14,6 @@
 #' @param Group_column  Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis
 #' @param Test_group 		Character vector specifying value within the group column that will be used as Test group
 #' @param Ref_group 		Character vector specifying value within the group column that will be used as Reference group
-#' @param Gen3_ann         Dataframe of functional annotation of third generation module
-#' @param Module_listGen3  Dataframe of module list annotation
-#' @param Color            Character vector color of grid plot
 #' @return              A matrix of the percentahe of module response in each group comparison
 #' @examples
 #' ## example sample information Example expression
