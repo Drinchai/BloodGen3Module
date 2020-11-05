@@ -74,7 +74,7 @@ rownames(sample_ann) = sample_ann$SampleID
 Individual_df = Individualcomparison(data.matrix, sample_info = sample_ann,
                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
                                     Ref_group = "Control")
-fingerprintplot(Individual_df, sample_info = sample_info,
+fingerprintplot(Individual_df, sample_info = sample_ann,
                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
                show_ref_group = FALSE, Group_column = "Group_test",
                Aggregate = c("A28"), filename = "Individual_comparison", height = 5,
