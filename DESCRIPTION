@@ -1,6 +1,6 @@
 Package: BloodGen3Module
 Title: This R package for performing module repertoire analyses and generating fingerprint representations
-Version: 0.99.14
+Version: 0.99.15
 Date: 2020-11-05
 Authors@R: 
     person(given = "Darawan",
@@ -17,7 +17,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports:
    testthat,
-   grid,
+   methods, 
+   grid, 
+   graphics, 
+   stats, 
+   grDevices
    circlize,
    ComplexHeatmap(>= 1.99.8),
    ggplot2,
