@@ -24,7 +24,6 @@ Imports:
    grDevices,
    circlize,
    testthat,
-   devtools,
    ComplexHeatmap(>= 1.99.8),
    ggplot2,
    matrixStats,
@@ -37,6 +36,7 @@ Imports:
 biocViews:Software, Visualization, GeneExpression
 Suggests: 
     RUnit, 
+    devtools,
     BiocGenerics,
     knitr,
     rmarkdown
