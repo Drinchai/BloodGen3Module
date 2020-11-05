@@ -65,8 +65,8 @@ sample_ann = data.frame(SampleID = (colnames(data.matrix)),
                                                            10)), stringsAsFactors = FALSE)
 rownames(sample_ann) = sample_ann$SampleID
 Group_limma <- Groupcomparisonlimma(data.matrix, sample_info = sample_ann,
-FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Test",
-Test_group = "Sepsis", Ref_group = "Control")
+FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test",
+Test_group = "Test", Ref_group = "Control")
 }
 \author{
 Darawan Rinchai \href{mailto:drinchai@gmail.com}{drinchai@gmail.com}
