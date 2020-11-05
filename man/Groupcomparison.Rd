@@ -28,12 +28,6 @@ Groupcomparison(
 \item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
 
 \item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group}
-
-\item{Gen3_ann}{Dataframe of functional annotation of third generation module}
-
-\item{Module_listGen3}{Dataframe of module list annotation}
-
-\item{Color}{Character vector color of grid plot}
 }
 \value{
 \preformatted{            A matrix of the percentahe of module response in each group comparison

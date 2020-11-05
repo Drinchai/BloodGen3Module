@@ -14,12 +14,6 @@ gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
 
 \item{filename}{Character vector with a name for saving file}
-
-\item{Gen3_ann}{Dataframe of functional annotation of third generation module}
-
-\item{Module_listGen3}{Dataframe of module list annotation}
-
-\item{Color}{Character vector color of grid plot}
 }
 \value{
 \preformatted{       A pdf file of grid plot
