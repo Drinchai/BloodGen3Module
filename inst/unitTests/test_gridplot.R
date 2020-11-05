@@ -8,10 +8,9 @@ control_sample = matrix(data = rexp(1000, rate = 0.1), nrow = 14168, ncol = 10)
 
 data.matrix = data.frame(cbind(Test_sample,control_sample))
 data.matrix$Symbol = Module_listGen3$Gene
-data.matrix = aggregate(data.matrix,FUN = mean,by=list(data.matrix$Symbol))
+data.matrix = aggregate(data.matrix[,-31],FUN = mean,by=list(data.matrix$Symbol))
 rownames(data.matrix) = data.matrix$Group.1
 data.matrix$Group.1 = NULL
-data.matrix$Symbol = NULL
 colnames(data.matrix) = c(paste0(rep("SampleID",30),1:30))
 
 ##example sample information
@@ -27,7 +26,7 @@ Group_limma <- Groupcomparisonlimma(data.matrix,
                                     pval = 0.1 ,
                                     FDR = TRUE,
                                     Group_column = "Group_test",
-                                    Test_group = "Sepsis",
+                                    Test_group = "Test",
                                     Ref_group = "Control")
 gridplotlimma(Group_limma,
               cutoff = 15,

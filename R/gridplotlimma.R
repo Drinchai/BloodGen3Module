@@ -17,10 +17,9 @@
 #'                        nrow = 14168, ncol = 10)
 #'data.matrix = data.frame(cbind(Test_sample, control_sample))
 #'data.matrix$Symbol = Module_listGen3$Gene
-#'data.matrix = aggregate(data.matrix, FUN = mean, by = list(data.matrix$Symbol))
+#'data.matrix = aggregate(data.matrix[,-31], FUN = mean, by = list(data.matrix$Symbol))
 #'rownames(data.matrix) = data.matrix$Group.1
 #'data.matrix$Group.1 = NULL
-#'data.matrix$Symbol = NULL
 #'colnames(data.matrix) = c(paste0(rep("SampleID", 30),
 #'                                 1:30))
 #'## Example of ample information
