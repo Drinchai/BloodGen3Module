@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "drinchai@gmail.com",
            comment = c(ORCID = "0000-0001-8851-7730"))
-Depends: R (>= 3.1.2), methods, grid, graphics, stats, grDevices
+Depends: methods, grid, graphics, stats, grDevices
 Description: The BloodGen3Module package provides functions for R user performing module repertoire analyses and generating fingerprint representations
 License: MIT + file LICENSE
 Encoding: UTF-8
