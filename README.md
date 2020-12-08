@@ -14,22 +14,15 @@ Steps involved in module repertoire analysis and visualization include:
 ## Installation
 It is recommended to use the ```install_github``` function from the ```devtools``` package in order to install the R package.
 
-
-
-
-library(devtools)
-install_github("jokergoo/ComplexHeatmap")
-
 ```{r Package installation}
 
-BloodGen3Module is available on Bioconductor, you can install it by:
+#Installation from Bioconductor: 
 
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 BiocManager::install("BloodGen3Module")
 
 If you want the latest version, install it directly from GitHub:
-
 #Installation from Github
 install.packages("devtools")
 devtools::install_github("Drinchai/BloodGen3Module")
