@@ -15,8 +15,13 @@ Steps involved in module repertoire analysis and visualization include:
 It is recommended to use the ```install_github``` function from the ```devtools``` package in order to install the R package.
 
 ```{r Package installation}
+
+#Installation from Github
 install.packages("devtools")
 devtools::install_github("Drinchai/BloodGen3Module")
+
+#Installation from Bioconductor
+Bioconductor BiocManager::install("BloodGen3Module")
 ```
 
 ## Usage
