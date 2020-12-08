@@ -23,7 +23,9 @@ if (!requireNamespace("BiocManager", quietly=TRUE))
 BiocManager::install("BloodGen3Module")
 
 If you want the latest version, install it directly from GitHub:
+
 #Installation from Github
+
 install.packages("devtools")
 devtools::install_github("Drinchai/BloodGen3Module")
 
