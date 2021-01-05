@@ -115,16 +115,6 @@ gridplot(Group_df,
 
 ```
 
-OR if using limma for group comparison
-
-```{r grid visulization}
-gridplotlimma(Group_limma, 
-              cutoff = 15, 
-              Ref_group = "Control",
-              filename="Limma_group_comparison")
-              
-```
-
 ### Grid visualization
 ![Sepsis vs Control](https://github.com/Drinchai/DC_Gen3_Module_analysis/blob/master/2020%20July26%20Group%20comparison_Fig1.png)
 
