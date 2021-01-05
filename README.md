@@ -16,14 +16,6 @@ It is recommended to use the ```install_github``` function from the ```devtools`
 
 ```{r Package installation}
 
-#Installation from Bioconductor: 
-
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install("BloodGen3Module")
-
-If you want the latest version, install it directly from GitHub:
-
 #Installation from Github
 
 install.packages("devtools")
