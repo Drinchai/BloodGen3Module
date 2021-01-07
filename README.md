@@ -49,13 +49,10 @@ rowSplit         Logical operator (TRUE/FALSE) to indicate if the rows of the he
 show_ref_group	 Logical operator (TRUE/FALSE) to indicate if a reference group should be plotted on the heatmap
 Aggregate        Character vector specifying the name of specific module aggregates on the heatmap fingerprint plot
 filename         Character vector specifying the name of the saved output file
-height           Sets the height of the graphics region in inches. The default 
-                 values is 28
-width            Sets the width of the graphics region in inches. The default 
-                 values is 17
+height           Sets the height of the graphics region in inches. The default values is 28
+width            Sets the width of the graphics region in inches. The default values is 17
 
 ```
-
 
 
 ## Input
