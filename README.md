@@ -71,9 +71,9 @@ head(sample_ann)
 ## Group comparison analysis 
 The **Groupcomparison** function will perform group comparison analyses. The results are expressed “at the module level” as the percentage of genes that are increased or decreased for a given module.
 
-•	Expression matrix and sample annotation files are required to perform this analysis.
-•	The sample annotation file must be loaded using a specific name = "sample.info".
-•	The names of the columns for the conditions used in the analysis must be specified.
+- Expression matrix and sample annotation files are required to perform this analysis.
+- The sample annotation file must be loaded using a specific name = "sample.info".
+- The names of the columns for the conditions used in the analysis must be specified.
 
 Using t-test
 ```{r group comparison analysis,warning=FALSE}
@@ -123,10 +123,10 @@ gridplot(Group_df,
 ## Individual single sample analysis 
 The **Individualcomparison** function will perform an individual sample comparison analysis in reference to a control sample or group of samples. The results are expressed “at the module level” as the percentage of genes that are increased or decreased.
 
-•	Expression matrix and sample annotation files are required to perform this analysis.
-•	The sample annotation file must be loaded using a specific name = "sample.info".
-•	The names of the columns for the conditions used in the analysis must be specified.
-•	The default cut off is set at fold change (FC) =1.5 and absolute difference (DIFF) =10.
+- Expression matrix and sample annotation files are required to perform this analysis.
+- The sample annotation file must be loaded using a specific name = "sample.info".
+- The names of the columns for the conditions used in the analysis must be specified.
+- The default cut off is set at fold change (FC) =1.5 and absolute difference (DIFF) =10.
 
 
 
