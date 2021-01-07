@@ -33,39 +33,22 @@ library(BloodGen3Module)
 ## Arguments
 ```{r argument}
 data.matrix      Matrix of normalized expression data (that should not be Log2 transformed). Genes should be arranged as rows and Sample ID as columns.Row names are required to be valid Gene Symbols.
-
 sample_info      Dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names
-
 FC               Numeric value specifying the fold change cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)
-
 DIFF             Numeric value specifying the absolute difference cut off that will be applied to define increase or decrease of a given transcript compared to the reference group (Ref_group)
-
 pval             Numeric value specifying the p-value cut off or False discovery rate when FDR = TRUE
-
 FDR              Logical operator (TRUE/FALSE) to specify whether False discovery rate cut off (using BH-method) should be used.
-
 Group_column     Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis
-
 Test_group       Character vector specifying values within the group column (Group_column) that will be used as Test group (samples considered as cases or “intervention” group).
-
 Ref_group        Character vector specifying values within the group column (Group_column) that will be used as Reference group (samples considered as control).
-
 Group_df         Dataframe with output generated after running the 'Groupcomparison' function 
-
 Group_limma      Dataframe with output generated after running the 'Groupcomparisonlimma' function
-
 Individual_df    Dataframe with output generated after running the 'Individualcomparison' function
-
 cutoff           Numeric value specifying the percentage cut off used for fingerprint visualization (acceptable values range from 0 to 100).
-
 rowSplit         Logical operator (TRUE/FALSE) to indicate if the rows of the heatmap should be split by aggregate 
-
-show_ref_group	Logical operator (TRUE/FALSE) to indicate if a reference group should be plotted on the heatmap
-
+show_ref_group	 Logical operator (TRUE/FALSE) to indicate if a reference group should be plotted on the heatmap
 Aggregate        Character vector specifying the name of specific module aggregates on the heatmap fingerprint plot
-
 filename         Character vector specifying the name of the saved output file
-
 height           Sets the height of the graphics region in inches. The default 
                  values is 28
 width            Sets the width of the graphics region in inches. The default 
