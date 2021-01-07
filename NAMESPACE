@@ -3,8 +3,6 @@
 export(Groupcomparison)
 export(Groupcomparisonlimma)
 export(Individualcomparison)
-export(Individualcomparison_SD)
-export(Individualcomparison_SDplus)
 export(fingerprintplot)
 export(fold_change)
 export(gridplot)
