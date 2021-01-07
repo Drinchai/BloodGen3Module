@@ -4,16 +4,16 @@
 \alias{gridplot}
 \title{Fingerprint grid visualization}
 \usage{
-gridplot(Group_df, cutoff = NULL, Ref_group = NULL, filename = NULL)
+gridplot(Group_res, cutoff = NULL, Ref_group = NULL, filename = NULL)
 }
 \arguments{
-\item{Group_df}{Dataframe with output generated after running the'Groupcomparison' function}
-
 \item{cutoff}{Numeric value specifying the percentage cut off used for fingerprint visualization (from 0 to 100)}
 
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
 
 \item{filename}{Character vector with a name for saving file}
+
+\item{Group_df}{Dataframe with output generated after running the'Groupcomparison' function}
 }
 \value{
 \preformatted{       A pdf file of grid plot

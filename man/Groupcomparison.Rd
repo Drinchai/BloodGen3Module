@@ -11,7 +11,8 @@ Groupcomparison(
   pval = NULL,
   FDR = TRUE,
   Group_column = NULL,
-  Ref_group = NULL
+  Test_group = "Test_group",
+  Ref_group = "Control"
 )
 }
 \arguments{

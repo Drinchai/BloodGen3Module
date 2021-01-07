@@ -20,14 +20,15 @@ opts_chunk$set(
 ```
 
 ***
-The **BloodGen3Module** package provides functions for R user performing module repertoire analyses and generating fingerprint representations.
+The **BloodGen3Module** package provides functions for R users to perform module repertoire analyses and generate fingerprint representations.
 
-Steps involved in module repertoire analysis and visualization include:
+The steps involved in module repertoire analysis and visualization include:
 
-1. Annotating the gene expression data matrix with module membership information.\
-2. Running statistical tests to determine for each module the proportion of constitutive genes which are differentially expressed.\
-3. Expressing results “at the module level” as percent of genes increased or decreased.\
-4. Visualizing results from group comparison as a fingerprint grid and results from individual sample comparisons as a fingerprint heatmap.\
+1.	Annotating the gene expression data matrix with module membership information.\
+2.	Running statistical tests to determine the proportion of constitutive genes that are differentially expressed for each module.\
+3.	Expressing results “at the module level” as the percentage of genes that are increased or decreased.\
+4.	Visualizing results from group comparisons as a fingerprint grid and results from individual sample comparisons as a fingerprint heatmap.\
+
 
 ## Installation
 ***
@@ -50,7 +51,7 @@ library(BloodGen3Module)
 
 ## Input
   ***
-To perform the modular repertoire analysis, the R package simply requires a sample annotation table and a normalized expression data matrix For illustrative purposes sample input files can be downloaded here; https://github.com/Drinchai/DC_Gen3_Module_analysis/tree/master/R%20data.
+To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/BloodGen3Module/tree/master/data.
 
 ```{r raw data and annotaion preparation, warning=FALSE,message=FALSE,echo= TRUE}
 #Load expression data
@@ -76,10 +77,12 @@ head(sample_ann)
 
 ## Group comparison analysis 
 ***
-The Groupcomparison function will perform group comparison analyses and the results are expressed “at the module level” as percent of genes increased or decreased.
+The **Groupcomparison** function will perform group comparison analyses. The results are expressed “at the module level” as the percentage of genes that are increased or decreased for a given module.
 
-- Expression matrix and sample annotation files are required to perform this analysis.
-- The names of the columns for the conditions used in the analysis must be specified.
+•	Expression matrix and sample annotation files are required to perform this analysis.
+•	The sample annotation file must be loaded using a specific name = "sample.info".
+•	The names of the columns for the conditions used in the analysis must be specified.
+
 
 ## Using t-test statistical analysis
 ```{r group comparison analysis using t-test statistical analysis, warning=FALSE, echo= TRUE}
@@ -89,6 +92,7 @@ Group_df <- Groupcomparison(data.matrix,
                             pval = 0.1 ,
                             FDR = TRUE,
                             Group_column = "Group_test",
+                            Test_group = "Sepsis",
                             Ref_group = "Control")
 ```
 
@@ -108,12 +112,11 @@ Group_limma <- Groupcomparisonlimma(data.matrix,
 
 ## Fingerprint grid visualization 
 ***
-The gridplot function will generate a grid plot as a pdf file. Specific working directory for the analysis need to be specified for saving the file. The result of the plot should be return in the same working directory.
+The **gridplot** function will generate a grid plot as a PDF file. A specific working directory for the analysis must be specified to save the file. The result of the plot should be returned in the same working directory.
+The default cut off for visualization is set at 15%; it can be changed to any value between 0 and 100%.
 
-The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.
 
-## After running "Groupcomparison" function
-```{r grid visulization after running "Groupcomparison" function}
+```{r grid visulization after running group comparison analysis}
 gridplot(Group_df, 
          cutoff = 15, 
          Ref_group = "Control",
@@ -121,22 +124,14 @@ gridplot(Group_df,
 ```
 
 
-## After running "Groupcomparisonlimma" function
-```{r grid visulization after running "Groupcomparison.limma" function}
-gridplotlimma(Group_limma, 
-               cutoff = 15, 
-               Ref_group = "Control",
-               filename="Limma_group_comparison")
-```
-
 ## Individual single sample analysis 
 ***
-The Individualcomparison function will perform individual sample comparison analysis in reference to a control sample or group of samples, with the results are expressed “at the module level” as percent of genes increased or decreased.
+The **Individualcomparison** function will perform an individual sample comparison analysis in reference to a control sample or group of samples. The results are expressed “at the module level” as the percentage of genes that are increased or decreased.
 
-- Expression matrix and sample annotation file are required in order to perform this analysis.
-- The names of the columns for the conditions used in the analysis must be specified
-- The default cutoff is set at FC =1.5 and DIFF =10
-
+•	Expression matrix and sample annotation files are required to perform this analysis.
+•	The sample annotation file must be loaded using a specific name = "sample.info".
+•	The names of the columns for the conditions used in the analysis must be specified.
+•	The default cut off is set at fold change (FC) =1.5 and absolute difference (DIFF) =10.
 
 ```{r individual single sample analysis, warning=FALSE, echo= TRUE}
 Individual_df = Individualcomparison(data.matrix,
@@ -150,7 +145,7 @@ Individual_df = Individualcomparison(data.matrix,
 ##Notes
 ***
 •	It is important to note that:\
-- Expression matrix must be none Log2 transformed as it will be automatic transformed when running this function.\
+- Expression matrix must be none Log2 transformed as it will be automatically transformed when running theses function.\
 - rownames of sample information (sample_info) must be the same names as in colnames of data.matrix
 
 ##Publication

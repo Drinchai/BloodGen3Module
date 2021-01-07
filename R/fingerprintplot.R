@@ -153,7 +153,7 @@ fingerprintplot = function(Individual_df,sample_info = sample_info,
     width = as.numeric(width)
   }
 
-  pdf(file = paste0(filename, "_", Aggregate,".pdf"), height = height, width = width)
+  pdf(file = tempfile(paste0(filename, "_", Aggregate,".pdf")), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
              cluster_columns = TRUE,

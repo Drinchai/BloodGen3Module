@@ -27,7 +27,7 @@ Individualcomparison(
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
 }
 \value{
-\preformatted{         A matrix of the percentahe of module response at individual level
+\preformatted{         A matrix of the percentahe of module response at individual level and SummarizedExperiment object
 }
 }
 \description{

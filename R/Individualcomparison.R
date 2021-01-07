@@ -6,14 +6,14 @@
 #' - The sample annotation file must be loaded using a specific name = "sample_info".
 #' - The names of the columns for the conditions used in the analysis must be specified
 #' - The default cutoff is set at FC =1.5 and DIFF =10
-#' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @import              SummarizedExperiment testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param data.matrix   Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
 #' @param sample_info   A dataframe with sample annotation.
 #' @param FC            Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
 #' @param DIFF          Numeric value specifying the difference cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
 #' @param Group_column  Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis
 #' @param Ref_group 		Character vector specifying value within the group column that will be used as Reference group
-#' @return              A matrix of the percentahe of module response at individual level
+#' @return              A matrix of the percentahe of module response at individual level and SummarizedExperiment object
 #' @examples
 #' ## example sample information Example expression
 #' ## data for package testting
@@ -83,7 +83,6 @@ Individualcomparison <- function(data.matrix,
     T3 <- test.table[test.table[, Group_column] == Ref_group,]
     Diff.mod.ind.sin[k,] <- (T4$scores-(mean(T3$scores)))
   }
-
   Diff.mod.ind.sin <- as.data.frame(Diff.mod.ind.sin)
 
   ## fold change
@@ -100,7 +99,6 @@ Individualcomparison <- function(data.matrix,
   }
 
   FC.mod.ind.sin <- as.data.frame(FC.mod.ind.sin)
-
 
   #############################################
   # Calculate percentage of response ##
@@ -120,67 +118,44 @@ Individualcomparison <- function(data.matrix,
     DIFF_cutoff = as.numeric(DIFF)
   }
   #logical check ##
-  test.up <- (FC.mod.ind.sin > FC_cutoff) + (Diff.mod.ind.sin > DIFF_cutoff) == 2                  # TRUE Up gene, Both TRUE
-  test.down <- (FC.mod.ind.sin < (FC_cutoff*-1)) + (Diff.mod.ind.sin < (DIFF_cutoff*-1)) == 2      # TRUE down gene, Both TRUE
+  mod.up <- (FC.mod.ind.sin > FC_cutoff) + (Diff.mod.ind.sin > DIFF_cutoff) == 2                  # TRUE Up gene, Both TRUE
+  mod.down <- (FC.mod.ind.sin < (FC_cutoff*-1)) + (Diff.mod.ind.sin < (DIFF_cutoff*-1)) == 2      # TRUE down gene, Both TRUE
 
   ### prepare gene annotation table
-  Gene.matrix = dat.mod.func.Gen3[rownames(test.up),]
+  Gene.matrix = mod_func[rownames(mod.up),]
+
   #####UP GENE#######
-  up.mods.sin <- data.frame(Module = row.names(test.up), test.up,gene=0)                    # create a new blank table
-  up.mods.sin [,] <- NA
-  up.mods.sin <- up.mods.sin [-c(2:nrow(up.mods.sin)),]
+  pect_df <- data.frame(Module = row.names(mod.up), mod.up,genes=0)                    # create a new blank table
+  pect_df [,] <- NA
+  pect_df <- pect_df [-c(2:nrow(pect_df)),]
 
   for (i in 1:length(unique(Gene.matrix$Module))){                                         # length of module
     module <- unique(as.character(Gene.matrix$Module))[i]                                  # look for only unique module
-    sums <- colSums(test.up[Gene.matrix$Module==module,])                                  # sum upgene of each column by module
+    sums_up <- colSums(mod.up[Gene.matrix$Module==module,])                                  # sum upgene of each column by module
+    sums_down <- colSums(mod.down[Gene.matrix$Module==module,])
+    sums = sums_up-sums_down
     genes <- nrow(Gene.matrix[Gene.matrix$Module==module,])                                # sum number of gene in each module
-    up.mods.sin <- rbind(up.mods.sin,c(module,sums,genes))                                 # paste result into a new fake table
+    pect_df <- rbind(pect_df,c(module,sums,genes))                                 # paste result into a new fake table
   }
 
-  up.mods.sin <- up.mods.sin [-1,]
+  pect_df <- pect_df [-1,]
 
-  rownames(up.mods.sin) <- up.mods.sin$Module
-  up.mods.sin$Module <- NULL
-  up.mods.sin.cal <- up.mods.sin
-  up.mods.sin <- as.data.frame(lapply(up.mods.sin, as.numeric))                                       # convert data frame to be numberic
-  up.mods.sin <- (up.mods.sin/up.mods.sin$gene)*100
-  rownames(up.mods.sin) <-rownames(up.mods.sin.cal)
-  up.mods.sin <- up.mods.sin[,-ncol(up.mods.sin)]
+  rownames(pect_df) <- pect_df$Module
+  pect_df$Module <- NULL
+  pect_df.cal <- pect_df
+  pect_df <- as.data.frame(lapply(pect_df, as.numeric))                                       # convert data frame to be numberic
+  pect_df <- (pect_df/pect_df$genes)*100
+  rownames(pect_df) <-rownames(pect_df.cal)
+  pect_df <- pect_df[,-ncol(pect_df)]
 
+  Individual_df = pect_df
+  sample_info = sample_info[colnames(Individual_df),]
 
-  #####DOWN GENE#######
-  down.mods.sin <- data.frame(Module = row.names(test.down), test.down,gene=0)                         # create a new blank table
-  down.mods.sin [,] <- NA                                                                              # create a new blank table
-  down.mods.sin <- down.mods.sin [-c(2:nrow(down.mods.sin)),]
+  colData <- DataFrame(row.names=rownames(sample_info),
+                       SampleID =rownames(sample_info),
+                       Group_test=sample_info[, Group_column])
 
-  for (i in 1:length(unique(Gene.matrix$Module))){
-    module <- unique(Gene.matrix$Module)[i]
-    sums <- colSums (test.down[Gene.matrix$Module==module,])
-    genes <- nrow(Gene.matrix[Gene.matrix$Module==module,])
-    down.mods.sin <- rbind(down.mods.sin,c(module,sums,genes))
-  }
+  Individual_res <- SummarizedExperiment(assays=SimpleList(Percent=as.matrix(Individual_df)),
+                                      colData=colData)
 
-  down.mods.sin <- down.mods.sin [-1,]
-
-  rownames(down.mods.sin) <- down.mods.sin$Module
-  down.mods.sin$Module <- NULL
-  down.mods.sin.cal <- down.mods.sin
-  down.mods.sin <- as.data.frame(lapply(down.mods.sin, as.numeric))                                   # convert data frame to be numberic
-  down.mods.sin <- (down.mods.sin/down.mods.sin$gene)*100
-  rownames(down.mods.sin) <-rownames(down.mods.sin.cal)
-  down.mods.sin <- down.mods.sin[,-ncol(down.mods.sin)]
-
-
-  ## Prepare data for ploting ##
-  Sum.mod.sin <- down.mods.sin                                                                       ## prepare a new matrix for new data
-  Sum.mod.sin[,] <- NA                                                                               ## Empty matrix
-
-  for (i in 1: nrow(up.mods.sin)){
-    for (j in 1:ncol(down.mods.sin)){
-      up = up.mods.sin[i,j]
-      down = down.mods.sin[i,j]
-      Sum.mod.sin[i,j] = up-down
-    }
-  }
-  Individual_df = Sum.mod.sin
 }
