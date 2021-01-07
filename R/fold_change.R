@@ -2,7 +2,7 @@
 #'
 #'A function to calculate fold-change between group comparison; "Test_group" vs "Ref_group"
 #'
-#' @import   SummarizedExperiment testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @import   testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param x  Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
 #' @return   A matrix of the fold change comparison between "Test_group" vs ""Ref_group"
 #' @examples
