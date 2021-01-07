@@ -76,7 +76,7 @@ gridplot = function(Group_res,
     mod.group = mod.group1[-c(9:14,19:23),]
     melt_test = melt(mod.group,id.var=c("row.names"))
     colnames(melt_test) = c("Aggregate","Sub_aggregate","%Response")
-    pdf(tempfile(paste0(filename,"_",disease, "vs",Ref_group,"_Gridplot.pdf")), height = 5.5, width = 8.5)
+    pdf(paste0(filename,"_",disease, "vs",Ref_group,"_Gridplot.pdf"), height = 5.5, width = 8.5)
     plot = ggplot(melt_test, aes(Aggregate, as.factor(Sub_aggregate))) +
       geom_tile(color="#E6E6E6" , size = 0.2, fill=color )+
       geom_point(aes(colour=`%Response`),size=4.3)+
