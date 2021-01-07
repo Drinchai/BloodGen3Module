@@ -51,7 +51,6 @@ Aggregate        Character vector specifying the name of specific module aggrega
 filename         Character vector specifying the name of the saved output file
 height           Sets the height of the graphics region in inches. The default values is 28
 width            Sets the width of the graphics region in inches. The default values is 17
-
 ```
 
 
