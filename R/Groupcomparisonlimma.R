@@ -113,7 +113,20 @@ Groupcomparisonlimma <- function(data.matrix,
   ####calculate fold change ##
   ####################################
 
-  FCgroup = fold_change(df_raw)
+  FC.group = data.frame(matrix(ncol = 1, nrow = nrow(df_raw)))
+  colnames(FC.group) = Test_group
+  rownames(FC.group) = rownames(df_raw)
+
+  k=1
+  for (k in 1:nrow(df_raw)) {
+    signature = rownames(df_raw)[k]
+    test.table <- sample_info
+    test.table$scores <- df_raw[k,]
+      T2 <- test.table[test.table[, Group_column]==Test_group,]       # "Group_test"; the selected column could be changed to your interested group comparison
+      T1 <- test.table[test.table[, Group_column]==Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
+      FC.group[signature,] <- foldchange(mean(T2$scores),mean(T1$scores))
+    }
+  FCgroup <- data.frame(FC.group)
 
   #############################################
   # Calculate percentage of response ##
