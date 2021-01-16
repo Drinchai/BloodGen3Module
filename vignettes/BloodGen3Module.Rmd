@@ -92,7 +92,7 @@ Group_df <- Groupcomparison(data.matrix,
                             pval = 0.1 ,
                             FDR = TRUE,
                             Group_column = "Group_test",
-                            Test_group = "Sepsis",
+                            Test_group = "Test",
                             Ref_group = "Control")
 ```
 
