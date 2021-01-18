@@ -64,7 +64,7 @@ sample_ann = data.frame(SampleID = (colnames(data.matrix)),
                                                            10)), stringsAsFactors = FALSE)
 rownames(sample_ann) = sample_ann$SampleID
 Group_df = Groupcomparison(data.matrix, sample_info = sample_ann,
-                          FC = 0, pval = 0.1, FDR = TRUE,
+                          FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Test",
                           Group_column = "Group_test", Ref_group = "Control")
 }
 \author{
