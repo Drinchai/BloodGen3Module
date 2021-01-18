@@ -18,7 +18,7 @@ Groupcomparison(
 \arguments{
 \item{data.matrix}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
 
-\item{sample_info}{A dataframe with sample annotation.}
+\item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names}
 
 \item{FC}{Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group}
 
@@ -27,6 +27,8 @@ Groupcomparison(
 \item{FDR}{Logical operator to specify whether False discovery rate cut off (using BH-method) should be used}
 
 \item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
+
+\item{Test_group}{Character vector specifying values within the group column (Group_column) that will be used as Test group (samples considered as cases or “intervention” group).}
 
 \item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group}
 }
