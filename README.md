@@ -55,7 +55,7 @@ width            Sets the width of the graphics region in inches. The default va
 
 
 ## Input
-To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/GSE13015.
+To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/GSE13015 and https://github.com/Drinchai/DC_Gen3_Module_analysis/tree/master/R%20data
 
 ```{r raw data and annotaion preparation}
 #Load expression data
