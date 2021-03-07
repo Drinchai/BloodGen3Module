@@ -36,7 +36,7 @@
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
-gridplot = function(Group_res,
+gridplot = function(Group_df,
                     cutoff = NULL,
                     Ref_group = NULL,
                     filename=NULL){
