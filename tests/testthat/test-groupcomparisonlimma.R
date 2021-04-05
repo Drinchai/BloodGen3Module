@@ -16,7 +16,7 @@ head(sample_ann)
 
 test_that("test gridplotlimma", {
 
-  a  = Group_limma <- Groupcomparisonlimma(data.matrix,
+  a  = Group_limma <- Groupcomparisonlimma(data_matrix,
                                            sample_info = sample_ann,
                                            FC = 1.5,
                                            pval = 0.1 ,
@@ -24,7 +24,7 @@ test_that("test gridplotlimma", {
                                            Group_column = "Group_test",
                                            Test_group = "Test",
                                            Ref_group = "Control")
-  b  = Group_limma <- Groupcomparisonlimma(data.matrix,
+  b  = Group_limma <- Groupcomparisonlimma(data_matrix,
                                            sample_info = sample_ann,
                                            FC = 1.5,
                                            pval = 0.1 ,

@@ -18,6 +18,7 @@
 #' @examples
 #'## data could be downloaded from ExperimentHub("GSE13015")
 #'library(ExperimentHub)
+#'library(SummarizedExperiment)
 #'dat = ExperimentHub()
 #'res = query(dat , "GSE13015")
 #'GSE13015 = res[["EH5429"]]
