@@ -140,11 +140,11 @@ Individualcomparison <- function(data.matrix,
 
   sample_info = sample_info[colnames(Individual_df),]
 
-  colData <- DataFrame(row.names=rownames(sample_info),
-                       SampleID =rownames(sample_info),
-                       Group_test=sample_info[, Group_column])
+  colData = DataFrame(row.names=rownames(sample_info),
+                      SampleID =rownames(sample_info),
+                      Group_test=sample_info[, Group_column])
 
-  Individual_res <- SummarizedExperiment(assays=SimpleList(Percent=Individual_df),
+  Individual_res <- SummarizedExperiment(assays=SimpleList(Percent=as.matrix(Individual_df)),
                                          colData=colData)
 
 }
