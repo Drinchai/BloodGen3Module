@@ -60,6 +60,8 @@ To perform the modular repertoire analysis, the R package requires a sample anno
 ```{r raw data and annotaion preparation}
 #Load example expression data from ExperimentHub
 
+library(ExperimentHub)
+library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
