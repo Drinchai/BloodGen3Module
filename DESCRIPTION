@@ -23,7 +23,7 @@ Description: paste(c("The BloodGen3Module package provides functions for R user 
       c("These spots are subsequently represented either on a grid,"), 
       c("with each position being assigned to a given module,"), 
       c("or in a heatmap where the samples are arranged in columns and the modules in rows."))
-Depends: R (>= 3.5.2)
+Depends: R (>= 4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
