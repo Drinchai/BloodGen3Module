@@ -113,7 +113,7 @@ The default cut off for visualization is set at 15%; it can be changed to any va
 gridplot(Group_df, 
          cutoff = 15, 
          Ref_group = "Control",
-         filename= "Group_comparison_")
+         filename= tempfile())
 
 ```
 
@@ -156,7 +156,7 @@ fingerprintplot(Individual_df,
                 show_ref_group = FALSE, 
                 Ref_group =  "Control",
                 Aggregate = "A28",
-                filename = "Gen3_Individual_plot",
+                filename = tempfile() ,
                 height = NULL,
                 width = NULL)
 
