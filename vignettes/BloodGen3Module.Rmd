@@ -135,6 +135,27 @@ Individual_df = Individualcomparison(data_matrix,
                                      Ref_group = "Control")
 ```
 
+## Individual fingerprint visualization 
+The **fingerprintplot** ffunction will generate fingerprint heatmap plots as a PDF file. The file will be saved in the working directory specified for the analysis.
+
+The default cut off for visualization is set at 15%, it can changed to any value between 0-100%.  
+
+```{r fingerprint visualization, warning=FALSE}
+
+fingerprintplot(Individual_df= assay(Individual_df),
+                sample_info = data.frame(colData(Individual_df)),
+                cutoff = 15,
+                rowSplit= TRUE ,
+                Group_column= "Group_test",
+                show_ref_group = FALSE, 
+                Ref_group =  "Control",
+                Aggregate = "A28",
+                filename = tempfile() ,
+                height = NULL,
+                width = NULL)
+
+```
+
 ##Notes
 ***
 •	It is important to note that:\
