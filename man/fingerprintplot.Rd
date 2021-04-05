@@ -42,8 +42,6 @@ fingerprintplot(
 \item{height}{Sets the height of the graphics region in inches. The default values are 28}
 
 \item{width}{Sets the width of the graphics region in inches. The default values are 17}
-
-\item{Individual_res}{SummarizedExperiment output data generated after running the 'Individualcomparison' function}
 }
 \value{
 \preformatted{          A heatmap of \% of module response in each single sample

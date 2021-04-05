@@ -3,7 +3,6 @@
 #' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import methods grid graphics stats grDevices testthat circlize grid ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param Individual_df  Dataframe with output generated after running the 'Individualcomparison' function
-#' @param Individual_res SummarizedExperiment output data generated after running the 'Individualcomparison' function
 #' @param sample_info	   A dataframe with sample annotation.
 #' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization ( 0 to 100).
 #' @param rowSplit		   Logical operator (TRUE/FALSE) to indicate if rows of the heatmaps should be split by each aggregate

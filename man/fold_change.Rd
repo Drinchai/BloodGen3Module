@@ -39,7 +39,11 @@ GSE13015 = res[["EH5429"]]
 data_matrix = assay(GSE13015)
 sample_ann = data.frame(colData(GSE13015))
 
-FCgroup = fold_change(data.matrix)
+FCgroup = fold_change(df_raw = data_matrix[c(1:5),],
+                     sample_info = sample_info,
+                     Group_column = "Group_test",
+                     Test_group="Sepsis",
+                     Ref_group="Control")
 
 }
 \author{

@@ -9,20 +9,17 @@ Authors@R:
            role = c("aut", "cre"),
            email = "drinchai@gmail.com",
            comment = c(ORCID = "0000-0001-8851-7730"))
-Description: paste(c("The BloodGen3Module package provides functions for R user performing module"), 
-      c("repertoire analyses and generating fingerprint representations."),  
-      c("Functions can perform group comparison or individual sample analysis"), 
-      c("and visualization by fingerprint grid plot or fingerprint heatmap."), 
-      c("Module repertoire analyses typically involve determining the percentage of the"), 
-      c("constitutive genes for each module that are significantly increased or decreased. "),
-      c("As we describe in details; https://www.biorxiv.org/content/10.1101/525709v2"), 
-      c("and https://www.biorxiv.org/content/10.1101/2020.07.16.205963v1,"), 
-      c("the results of module repertoire analyses can be represented"), 
-      c("in a fingerprint format, where red and blue spots"), 
-      c("indicate increases or decreases in module activity."), 
-      c("These spots are subsequently represented either on a grid,"), 
-      c("with each position being assigned to a given module,"), 
-      c("or in a heatmap where the samples are arranged in columns and the modules in rows."))
+Description: The BloodGen3Module package provides functions for R user performing module repertoire analyses 
+ and generating fingerprint representations. Functions can perform group comparison or 
+ individual sample analysis and visualization by fingerprint grid plot or fingerprint heatmap. 
+ Module repertoire analyses typically involve determining the percentage of the constitutive genes 
+ for each module that are significantly increased or decreased.  
+ As we describe in details;https://www.biorxiv.org/content/10.1101/525709v2 and https://pubmed.ncbi.nlm.nih.gov/33624743/, 
+ the results of module repertoire analyses can be represented in a fingerprint format, 
+ where red and blue spots indicate increases or decreases in module activity. 
+ These spots are subsequently represented either on a grid, 
+ with each position being assigned to a given module, 
+ or in a heatmap where the samples are arranged in columns and the modules in rows.
 Depends: R (>= 4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8

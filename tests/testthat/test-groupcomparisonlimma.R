@@ -14,7 +14,7 @@ data_matrix = assay(GSE13015)
 sample_ann = data.frame(colData(GSE13015))
 head(sample_ann)
 
-test_that("test gridplotlimma", {
+test_that("test Groupcomparisonlimma", {
 
   a  = Group_limma <- Groupcomparisonlimma(data_matrix,
                                            sample_info = sample_ann,

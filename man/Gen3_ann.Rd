@@ -5,7 +5,7 @@
 \alias{Gen3_ann}
 \title{Functional annotation for visulization}
 \format{
-A data.frame with 6 variables:\code{Modules}, \code{Aggregate=Cluster}, \code{Sub_aggregate=Cluster_location},\code{Function},\code{Position},\code{Module_color}
+A data.frame with 6 variables:\code{Modules}, \code{Aggregate}, \code{subaggregate},\code{Function},\code{Position},\code{Module_color}
 }
 \usage{
 Gen3_ann
