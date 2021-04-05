@@ -5,7 +5,7 @@
 #' - Expression matrix and sample annotation files are required to perform this analysis.
 #' - The sample annotation file must be loaded using a specific name = "sample_info".
 #' - The names of the columns for the conditions used in the analysis must be specified.
-#' @import                 testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @import                 ExperimentHub testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param data.matrix      Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
 #' @param sample_info      A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names
 #' @param FC               Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
@@ -16,26 +16,15 @@
 #' @param Ref_group 	     Character vector specifying value within the group column (Group_column) that will be used as Reference group
 #' @return                 A matrix of the percentahe of module response in each group comparison
 #' @examples
-#' ## example sample information Example expression
-#'## data for package testting
-#'Test_sample = matrix(data = rexp(1000, rate = 0.01),
-#'                     nrow = 14168, ncol = 20)
-#'control_sample = matrix(data = rexp(1000, rate = 0.1),
-#'                        nrow = 14168, ncol = 10)
-#'data.matrix = data.frame(cbind(Test_sample, control_sample))
-#'data.matrix$Symbol = Module_listGen3$Gene
-#'data.matrix = aggregate(data.matrix[,-31], FUN = mean, by = list(data.matrix$Symbol))
-#'rownames(data.matrix) = data.matrix$Group.1
-#'data.matrix$Group.1 = NULL
-#'colnames(data.matrix) = c(paste0(rep("SampleID", 30),
-#'                                 1:30))
-#'## Example of ample information
-#'sample_ann = data.frame(SampleID = (colnames(data.matrix)),
-#'                        Group_test = c(rep("Test", 20), rep("Control",
-#'                                                            10)), stringsAsFactors = FALSE)
-#'rownames(sample_ann) = sample_ann$SampleID
-#'Group_df = Groupcomparison(data.matrix, sample_info = sample_ann,
-#'                           FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Test",
+#'## data could be downloaded from ExperimentHub("GSE13015")
+#'library(ExperimentHub)
+#'dat = ExperimentHub()
+#'res = query(dat , "GSE13015")
+#'GSE13015 = res[["EH5429"]]
+#'data_matrix = assay(GSE13015)
+#'sample_ann = data.frame(colData(GSE13015))
+#'Group_df = Groupcomparison(data_matrix, sample_info = sample_ann,
+#'                           FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Sepsis",
 #'                           Group_column = "Group_test", Ref_group = "Control")
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
@@ -116,20 +105,11 @@ Groupcomparison <- function(data.matrix,
   ####calculate fold change ##
   ####################################
 
-  FC.group = data.frame(matrix(ncol = 1, nrow = nrow(df_raw)))
-  colnames(FC.group) = Test_group
-  rownames(FC.group) = rownames(df_raw)
-
-  k=1
-  for (k in 1:nrow(df_raw)) {
-    signature = rownames(df_raw)[k]
-    test.table <- sample_info
-    test.table$scores <- df_raw[k,]
-      T2 <- test.table[test.table[, Group_column]==Test_group,]       # "Group_test"; the selected column could be changed to your interested group comparison
-      T1 <- test.table[test.table[, Group_column]==Ref_group,]        # "Group_test"; the selected column could be changed to your interested group comparison
-      FC.group[signature,] <- foldchange(mean(T2$scores),mean(T1$scores))
-    }
-  FCgroup <- data.frame(FC.group)
+  FCgroup = fold_change(df_raw = df_raw,
+                        sample_info = sample_info,
+                        Group_column = Group_column,
+                        Test_group=Test_group,
+                        Ref_group=Ref_group)
 
   #############################################
   # Calculate percentage of response ##
@@ -167,11 +147,11 @@ Groupcomparison <- function(data.matrix,
 
   for (i in 1:length(unique(Gene.matrix$Module))){                                         # length of module
     module <- unique(as.character(Gene.matrix$Module))[i]                                  # look for only unique module
-    sums_up <- colSums(mod.up[Gene.matrix$Module==module,1,drop=FALSE])                                  # sum upgene of each column by module
+    sums_up <- colSums(mod.up[Gene.matrix$Module==module,1,drop=FALSE])                    # sum upgene of each column by module
     sums_down <- colSums(mod.down[Gene.matrix$Module==module,1,drop=FALSE])
     sums = sums_up-sums_down
     genes <- nrow(Gene.matrix[Gene.matrix$Module==module,])                                # sum number of gene in each module
-    pect_df <- rbind(pect_df,c(module,sums,genes))                                 # paste result into a new fake table
+    pect_df <- rbind(pect_df,c(module,sums,genes))                                         # paste result into a new fake table
   }
 
   pect_df <- pect_df [-1,]
@@ -179,9 +159,9 @@ Groupcomparison <- function(data.matrix,
   rownames(pect_df) <- pect_df$Module
   pect_df$Module <- NULL
   pect_df.cal <- pect_df
-  pect_df <- as.data.frame(lapply(pect_df, as.numeric))                                       # convert data frame to be numberic
+  pect_df <- as.data.frame(lapply(pect_df, as.numeric))                                    # convert data frame to be numberic
   pect_df <- (pect_df/pect_df$genes)*100
   rownames(pect_df) <-rownames(pect_df.cal)
-  pect_df <- pect_df[,-ncol(pect_df),drop=F]
+  pect_df <- pect_df[,-ncol(pect_df),drop=FALSE]
   Group_df = pect_df
 }

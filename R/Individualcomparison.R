@@ -6,7 +6,7 @@
 #' - The sample annotation file must be loaded using a specific name = "sample_info".
 #' - The names of the columns for the conditions used in the analysis must be specified
 #' - The default cutoff is set at FC =1.5 and DIFF =10
-#' @import              testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @import              ExperimentHub SummarizedExperiment testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
 #' @param data.matrix   Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
 #' @param sample_info   A dataframe with sample annotation.
 #' @param FC            Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
@@ -15,26 +15,14 @@
 #' @param Ref_group 		Character vector specifying value within the group column that will be used as Reference group
 #' @return              A matrix of the percentahe of module response at individual level and SummarizedExperiment object
 #' @examples
-#' ## example sample information Example expression
-#' ## data for package testting
-#'Test_sample = matrix(data = rexp(1000, rate = 0.01),
-#'                     nrow = 14168, ncol = 20)
-#'control_sample = matrix(data = rexp(1000, rate = 0.1),
-#'                        nrow = 14168, ncol = 10)
-#'data.matrix = data.frame(cbind(Test_sample, control_sample))
-#'data.matrix$Symbol = Module_listGen3$Gene
-#'data.matrix = aggregate(data.matrix[,-31], FUN = mean, by = list(data.matrix$Symbol))
-#'rownames(data.matrix) = data.matrix$Group.1
-#'data.matrix$Group.1 = NULL
-#'colnames(data.matrix) = c(paste0(rep("SampleID", 30),
-#'                                 1:30))
-#'## Example of ample information
-#'sample_ann = data.frame(SampleID = (colnames(data.matrix)),
-#'                        Group_test = c(rep("Test", 20), rep("Control",
-#'                                                            10)), stringsAsFactors = FALSE)
-#'rownames(sample_ann) = sample_ann$SampleID
-#'
-#'Individual_df = Individualcomparison(data.matrix, sample_info = sample_ann,
+#'## data could be downloaded from ExperimentHub("GSE13015")
+#'library(ExperimentHub)
+#'dat = ExperimentHub()
+#'res = query(dat , "GSE13015")
+#'GSE13015 = res[["EH5429"]]
+#'data_matrix = assay(GSE13015)
+#'sample_ann = data.frame(colData(GSE13015))
+#'Individual_df = Individualcomparison(data_matrix, sample_info = sample_ann,
 #'                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
 #'                                     Ref_group = "Control")
 #' @author Darawan Rinchai <drinchai@gmail.com>
@@ -149,5 +137,14 @@ Individualcomparison <- function(data.matrix,
   pect_df <- pect_df[,-ncol(pect_df)]
 
   Individual_df = pect_df
+
+  sample_info = sample_info[colnames(Individual_df),]
+
+  colData <- DataFrame(row.names=rownames(sample_info),
+                       SampleID =rownames(sample_info),
+                       Group_test=sample_info[, Group_column])
+
+  Individual_res <- SummarizedExperiment(assays=SimpleList(Percent=Individual_df),
+                                         colData=colData)
 
 }

@@ -55,16 +55,16 @@ width            Sets the width of the graphics region in inches. The default va
 
 
 ## Input
-To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/GSE13015 and https://github.com/Drinchai/DC_Gen3_Module_analysis/tree/master/R%20data
+To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/GSE13015 
 
 ```{r raw data and annotaion preparation}
-#Load expression data
-load(./data_exp.rda)
-data.matrix = data_exp
+#Load example expression data from ExperimentHub
 
-#Sample annotation file
-load(./sample_ann.rda)
-head(sample_ann)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+data_matrix = assay(GSE13015)
+sample_ann = data.frame(colData(GSE13015))
 
 ```
 
@@ -77,7 +77,7 @@ The **Groupcomparison** function will perform group comparison analyses. The res
 
 Using t-test
 ```{r group comparison analysis,warning=FALSE}
-Group_df <- Groupcomparison(data.matrix,
+Group_df <- Groupcomparison(data_matrix,
                             sample_info = sample_ann,
                             FC = 1.5,
                             pval = 0.1 ,
@@ -89,7 +89,7 @@ Group_df <- Groupcomparison(data.matrix,
 Using "limma"
 
 ```{r group comparison analysis using "limma",warning=FALSE}
-Group_limma <- Groupcomparisonlimma(data.matrix,
+Group_limma <- Groupcomparisonlimma(data_matrix,
                                     sample_info = sample_ann,
                                     FC = 1.5,
                                     pval = 0.1 ,
@@ -132,7 +132,7 @@ The **Individualcomparison** function will perform an individual sample comparis
 
 ```{r individual single sample analysis, warning=FALSE}
 
-Individual_df = Individualcomparison(data.matrix,
+Individual_df = Individualcomparison(data_matrix,
                                      sample_info = sample_ann,
                                      FC = 1.5,
                                      DIFF = 10,
@@ -166,5 +166,5 @@ fingerprintplot(Individual_df,
 
 
 ## Publication
-A manuscript is currently under consideration for publication, in order to cite the work currently please refer to the bioRxiv preprint:
-https://www.biorxiv.org/content/10.1101/2020.07.16.205963v1
+A manuscript is currently in Bioinformatics, in order to cite the work currently please refer to:
+https://pubmed.ncbi.nlm.nih.gov/33624743/ 

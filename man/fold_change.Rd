@@ -4,10 +4,18 @@
 \alias{fold_change}
 \title{calculation of Fold-Change}
 \usage{
-fold_change(x)
+fold_change(
+  df_raw = df_raw,
+  sample_info = sample_info,
+  Group_column = Group_column,
+  Test_group = Test_group,
+  Ref_group = Ref_group
+)
 }
 \arguments{
-\item{x}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
+\item{df_raw}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
+
+\item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names}
 }
 \value{
 A matrix of the fold change comparison between "Test_group" vs ""Ref_group"
@@ -16,24 +24,13 @@ A matrix of the fold change comparison between "Test_group" vs ""Ref_group"
 A function to calculate fold-change between group comparison; "Test_group" vs "Ref_group"
 }
 \examples{
-## example sample information Example expression
-## data for package testting
-Test_sample = matrix(data = rexp(1000, rate = 0.01),
-                    nrow = 14168, ncol = 20)
-control_sample = matrix(data = rexp(1000, rate = 0.1),
-                       nrow = 14168, ncol = 10)
-data.matrix = data.frame(cbind(Test_sample, control_sample))
-data.matrix$Symbol = Module_listGen3$Gene
-data.matrix = aggregate(data.matrix[,-31], FUN = mean, by = list(data.matrix$Symbol))
-rownames(data.matrix) = data.matrix$Group.1
-data.matrix$Group.1 = NULL
-colnames(data.matrix) = c(paste0(rep("SampleID", 30),
-                                1:30))
-## Example of ample information
-sample_ann = data.frame(SampleID = (colnames(data.matrix)),
-                       Group_test = c(rep("Test", 20), rep("Control",
-                                                           10)), stringsAsFactors = FALSE)
-rownames(sample_ann) = sample_ann$SampleID
+## data could be downloaded from ExperimentHub("GSE13015")
+library(ExperimentHub)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+data_matrix = assay(GSE13015)
+sample_ann = data.frame(colData(GSE13015))
 
 FCgroup = fold_change(data.matrix)
 

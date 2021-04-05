@@ -42,6 +42,8 @@ fingerprintplot(
 \item{height}{Sets the height of the graphics region in inches. The default values are 28}
 
 \item{width}{Sets the width of the graphics region in inches. The default values are 17}
+
+\item{Individual_res}{SummarizedExperiment output data generated after running the 'Individualcomparison' function}
 }
 \value{
 \preformatted{          A heatmap of \% of module response in each single sample
@@ -53,28 +55,17 @@ The fingerprintplot function will generate fingerprint heatmap plots as a pdf fi
 The default cut off for visualization is set at 15\%, it can be changed to any value between 0-100\%.
 }
 \examples{
-## example sample information Example expression
-## data for package testting
-Test_sample = matrix(data = rexp(1000, rate = 0.01),
-                    nrow = 14168, ncol = 20)
-control_sample = matrix(data = rexp(1000, rate = 0.1),
-                       nrow = 14168, ncol = 10)
-data.matrix = data.frame(cbind(Test_sample, control_sample))
-data.matrix$Symbol = Module_listGen3$Gene
-data.matrix = aggregate(data.matrix[,-31], FUN = mean, by = list(data.matrix$Symbol))
-rownames(data.matrix) = data.matrix$Group.1
-data.matrix$Group.1 = NULL
-colnames(data.matrix) = c(paste0(rep("SampleID", 30),
-                                1:30))
-## Example of ample information
-sample_ann = data.frame(SampleID = (colnames(data.matrix)),
-                       Group_test = c(rep("Test", 20), rep("Control",
-                                                           10)), stringsAsFactors = FALSE)
-rownames(sample_ann) = sample_ann$SampleID
-Individual_df = Individualcomparison(data.matrix, sample_info = sample_ann,
+## data could be downloaded from ExperimentHub("GSE13015")
+library(ExperimentHub)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+data_matrix = assay(GSE13015)
+sample_ann = data.frame(colData(GSE13015))
+Individual_df = Individualcomparison(data_matrix, sample_info = sample_ann,
                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
                                     Ref_group = "Control")
-fingerprintplot(Individual_df, sample_info = sample_ann,
+fingerprintplot(Individual_res, sample_info = NULL,
                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
                show_ref_group = FALSE, Group_column = "Group_test",
                Aggregate = c("A28"), filename = "Individual_comparison", height = 5,

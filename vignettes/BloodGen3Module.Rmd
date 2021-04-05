@@ -51,26 +51,19 @@ library(BloodGen3Module)
 
 ## Input
   ***
-To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from: https://github.com/Drinchai/BloodGen3Module/tree/master/data.
+To perform the modular repertoire analysis, the R package requires a sample annotation table and a normalized expression data matrix. For illustrative purposes, the sample input files can be downloaded from:ExperimentHub ("GSE13013")
 
 ```{r raw data and annotaion preparation, warning=FALSE,message=FALSE,echo= TRUE}
 #Load expression data
 #Example expression data for package testting
+library(ExperimentHub)
+library(SummarizedExperiment)
 
-Test_sample =  matrix(data = rexp(1000, rate = 0.01), nrow = 14168, ncol = 20)
-control_sample = matrix(data = rexp(1000, rate = 0.1), nrow = 14168, ncol = 10)
-
-data.matrix = data.frame(cbind(Test_sample,control_sample))
-data.matrix$Symbol = Module_listGen3$Gene
-data.matrix = aggregate(data.matrix[,-31],FUN = mean,by=list(data.matrix$Symbol))
-rownames(data.matrix) = data.matrix$Group.1
-data.matrix$Group.1 = NULL
-colnames(data.matrix) = c(paste0(rep("SampleID",30),1:30))
-
-##example sample information
-sample_ann = data.frame(SampleID=(colnames(data.matrix)),Group_test = c(rep("Test",20),rep("Control",10)),stringsAsFactors = FALSE)
-rownames(sample_ann) = sample_ann$SampleID
-rownames(sample_ann) == colnames(data.matrix)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+data_matrix = assay(GSE13015)
+sample_ann = data.frame(colData(GSE13015))
 head(sample_ann)
 
 ```
@@ -86,25 +79,25 @@ The **Groupcomparison** function will perform group comparison analyses. The res
 
 ## Using t-test statistical analysis
 ```{r group comparison analysis using t-test statistical analysis, warning=FALSE, echo= TRUE}
-Group_df <- Groupcomparison(data.matrix,
+Group_df <- Groupcomparison(data_matrix,
                             sample_info = sample_ann,
                             FC = 1.5,
                             pval = 0.1 ,
                             FDR = TRUE,
                             Group_column = "Group_test",
-                            Test_group = "Test",
+                            Test_group = "Sepsis",
                             Ref_group = "Control")
 ```
 
 ## Using limma statistical analysis
 ```{r group comparison analysis using limma statistical analysis,warning=FALSE}
-Group_limma <- Groupcomparisonlimma(data.matrix,
+Group_limma <- Groupcomparisonlimma(data_matrix,
                                     sample_info = sample_ann,
                                     FC = 1.5,
                                     pval = 0.1 ,
                                     FDR = TRUE,
                                     Group_column = "Group_test",
-                                    Test_group = "Test",
+                                    Test_group = "Sepsis",
                                     Ref_group = "Control")
 ```
 
@@ -120,7 +113,7 @@ The default cut off for visualization is set at 15%; it can be changed to any va
 gridplot(Group_df, 
          cutoff = 15, 
          Ref_group = "Control",
-         filename="Group_comparison_cutoff15")
+         filename= tempfile())
 ```
 
 
@@ -134,7 +127,7 @@ The **Individualcomparison** function will perform an individual sample comparis
 •	The default cut off is set at fold change (FC) =1.5 and absolute difference (DIFF) =10.
 
 ```{r individual single sample analysis, warning=FALSE, echo= TRUE}
-Individual_df = Individualcomparison(data.matrix,
+Individual_df = Individualcomparison(data_matrix,
                                      sample_info = sample_ann,
                                      FC = 1.5,
                                      DIFF = 10,
@@ -150,5 +143,5 @@ Individual_df = Individualcomparison(data.matrix,
 
 ##Publication
 ***
-A manuscript is currently under consideration for publication, to cite currently please refer to the bioRxiv preprint:\
-https://www.biorxiv.org/content/10.1101/2020.07.16.205963v1
+BloodGen3Module: blood transcriptional module repertoire analysis and visualization using R
+https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btab121/6149124

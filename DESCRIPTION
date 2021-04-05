@@ -27,8 +27,10 @@ Depends: R (>= 3.5.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports:
+   SummarizedExperiment,
+   ExperimentHub,
    methods,
    grid, 
    graphics, 
@@ -45,7 +47,7 @@ Imports:
    randomcoloR,
    V8,
    limma
-biocViews:Software, Visualization, GeneExpression
+biocViews: Software, Visualization, GeneExpression
 Suggests: 
     RUnit, 
     devtools,
@@ -53,4 +55,3 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-LazyData: true
