@@ -4,25 +4,15 @@ library(reshape2)
 library(ggplot2)
 
 #Load expression data
-#Example expression data for package testting
+library(ExperimentHub)
+library(SummarizedExperiment)
 
-Test_sample =  matrix(data = rexp(1000, rate = 0.01), nrow = 14168, ncol = 20)
-control_sample = matrix(data = rexp(1000, rate = 0.1), nrow = 14168, ncol = 10)
-
-data.matrix = data.frame(cbind(Test_sample,control_sample))
-data.matrix$Symbol = Module_listGen3$Gene
-data.matrix = aggregate(data.matrix[,-31],FUN = mean,by=list(data.matrix$Symbol))
-rownames(data.matrix) = data.matrix$Group.1
-data.matrix$Group.1 = NULL
-colnames(data.matrix) = c(paste0(rep("SampleID",30),1:30))
-
-##example sample information
-sample_ann = data.frame(SampleID=(colnames(data.matrix)),Group_test = c(rep("Test",20),rep("Control",10)),stringsAsFactors = FALSE)
-rownames(sample_ann) = sample_ann$SampleID
-rownames(sample_ann) == colnames(data.matrix)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+data_matrix = assay(GSE13015)
+sample_ann = data.frame(colData(GSE13015))
 head(sample_ann)
-
-
 
 test_that("test gridplotlimma", {
 
