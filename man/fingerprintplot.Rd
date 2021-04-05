@@ -65,7 +65,7 @@ sample_ann = data.frame(colData(GSE13015))
 Individual_df = Individualcomparison(data_matrix, sample_info = sample_ann,
                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
                                     Ref_group = "Control")
-fingerprintplot(Individual_res, sample_info = NULL,
+fingerprintplot(Individual_df= assay(Individual_df), sample_info = data.frame(colData(Individual_df)),
                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
                show_ref_group = FALSE, Group_column = "Group_test",
                Aggregate = c("A28"), filename = "Individual_comparison", height = 5,
