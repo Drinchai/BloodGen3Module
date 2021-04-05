@@ -16,6 +16,12 @@ fold_change(
 \item{df_raw}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
 
 \item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names}
+
+\item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
+
+\item{Test_group}{Character vector specifying values within the group column (Group_column) that will be used as Test group (samples considered as cases or “intervention” group).}
+
+\item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group}
 }
 \value{
 A matrix of the fold change comparison between "Test_group" vs ""Ref_group"
@@ -26,6 +32,7 @@ A function to calculate fold-change between group comparison; "Test_group" vs "R
 \examples{
 ## data could be downloaded from ExperimentHub("GSE13015")
 library(ExperimentHub)
+library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]

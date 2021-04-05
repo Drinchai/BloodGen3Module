@@ -26,6 +26,7 @@ The default cut off for visualization is set at 15\%, it can be changed to any v
 \examples{
 ## data could be downloaded from ExperimentHub("GSE13015")
 library(ExperimentHub)
+library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
