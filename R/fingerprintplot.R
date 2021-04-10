@@ -30,7 +30,7 @@
 #'                sample_info = data.frame(colData(Individual_df)),
 #'                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
 #'                show_ref_group = FALSE, Group_column = "Group_test",
-#'                Aggregate = c("A28"), filename = "Individual_comparison", height = 5,
+#'                Aggregate = c("A28"), filename = tempfile(), height = 5,
 #'                width = 10)
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
@@ -134,7 +134,7 @@ fingerprintplot = function(Individual_df, sample_info = sample_info,
     width = as.numeric(width)
   }
 
-  pdf(file = paste0(filename, "_", Aggregate,".pdf"), height = height, width = width)
+  pdf(file = paste0(filename,".pdf"), height = height, width = width)
   ht=Heatmap(df_plot,
              cluster_rows = TRUE,
              cluster_columns = TRUE,

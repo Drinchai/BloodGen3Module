@@ -68,7 +68,7 @@ fingerprintplot(Individual_df= assay(Individual_df),
                sample_info = data.frame(colData(Individual_df)),
                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
                show_ref_group = FALSE, Group_column = "Group_test",
-               Aggregate = c("A28"), filename = "Individual_comparison", height = 5,
+               Aggregate = c("A28"), filename = tempfile(), height = 5,
                width = 10)
 }
 \author{

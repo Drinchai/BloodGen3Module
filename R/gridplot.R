@@ -18,11 +18,11 @@
 #'data_matrix = assay(GSE13015)
 #'sample_ann = data.frame(colData(GSE13015))
 #'Group_df = Groupcomparison(data_matrix, sample_info = sample_ann,
-#'                           FC = 0, pval = 0.1, FDR = TRUE,
+#'                           FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Sepsis",
 #'                           Group_column = "Group_test", Ref_group = "Control")
 #'gridplot(Group_df, cutoff = 15,
 #'          Ref_group = "Control",
-#'          filename="Group_comparison_cutoff15")
+#'          filename= tempfile())
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 
