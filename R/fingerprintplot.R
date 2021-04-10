@@ -34,17 +34,16 @@
 #'                width = 10)
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
-fingerprintplot = function(Individual_df,sample_info = sample_info,
-                           cutoff = NULL,rowSplit= TRUE ,Ref_group=NULL,
-                           show_ref_group = FALSE,Group_column= NULL,
-                           Aggregate = NULL,filename = NULL,
+fingerprintplot = function(Individual_df, sample_info = sample_info,
+                           cutoff = NULL, rowSplit= TRUE, Ref_group=NULL,
+                           show_ref_group = FALSE, Group_column= NULL,
+                           Aggregate = NULL, filename = NULL,
                            height = NULL, width = NULL){
   #Load module annotation
   Sum.mod.sin = Individual_df
   Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
-  rownames(Sum.mod.sin) == rownames(Gen3_ann)
 
-  rownames(Sum.mod.sin) <- paste(Gen3_ann$Module, Gen3_ann$Function, sep = ".")
+  rownames(Sum.mod.sin) = paste(Gen3_ann$Module, Gen3_ann$Function, sep = ".")
 
   #modules with function deffined
 
@@ -68,7 +67,7 @@ fingerprintplot = function(Individual_df,sample_info = sample_info,
     cutoff = as.numeric(cutoff)
   }
 
-  df_plot[abs(df_plot) < cutoff] <- 0
+  df_plot[abs(df_plot) < cutoff] = 0
 
   ###remove control sample from plot
   if (show_ref_group == FALSE) {
@@ -78,8 +77,6 @@ fingerprintplot = function(Individual_df,sample_info = sample_info,
 
   df_plot = df_plot[,rownames(sample_info)]
 
-  colnames(df_plot)==rownames(sample_info)
-
   n.group = length(unique(sample_info[, Group_column]))
 
 
@@ -88,9 +85,6 @@ fingerprintplot = function(Individual_df,sample_info = sample_info,
 
   my.pattle = palette
   names(my.pattle) = unique(sample_info[, Group_column])
-
-
-
   col_fun = circlize::colorRamp2(c(-100,0,100), c("blue", "white", "red"))
 
   ##prepare annotation table
@@ -105,12 +99,8 @@ fingerprintplot = function(Individual_df,sample_info = sample_info,
     anno_table = Gen3_ann[grep(Gen3_ann$Cluster,pattern = Aggregate),]
   }
 
-  rownames(anno_table) == anno_table$Module
   rownames(anno_table) = anno_table$Module_func
-
-
   df_plot = df_plot[rownames(anno_table),]
-
 
   plate_color = as.character(anno_table$Module_color)
   names(plate_color)=anno_table$Function
