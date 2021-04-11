@@ -9,7 +9,7 @@ vignette: >
 ---
 
 ```{r, echo = FALSE}
-require(knitr)
+library(knitr)
 opts_chunk$set(
     error = FALSE,
     tidy  = FALSE,
@@ -132,7 +132,8 @@ Individual_df = Individualcomparison(data_matrix,
                                      FC = 1.5,
                                      DIFF = 10,
                                      Group_column = "Group_test",
-                                     Ref_group = "Control")
+                                     Ref_group = "Control",
+                                     SummarizedExperiment = TRUE)
 ```
 
 ## Individual fingerprint visualization 

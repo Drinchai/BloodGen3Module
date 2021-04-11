@@ -10,7 +10,8 @@ Individualcomparison(
   FC = NULL,
   DIFF = NULL,
   Group_column = NULL,
-  Ref_group = NULL
+  Ref_group = NULL,
+  SummarizedExperiment = TRUE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ Individualcomparison(
 \item{Group_column}{Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis}
 
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
+
+\item{SummarizedExperiment}{Output data as the SummarizedExperiment class when SummarizedExperiment = TRUE}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response at individual level and SummarizedExperiment object

@@ -13,6 +13,7 @@
 #' @param DIFF          Numeric value specifying the difference cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
 #' @param Group_column  Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis
 #' @param Ref_group 		Character vector specifying value within the group column that will be used as Reference group
+#' @param SummarizedExperiment Output data as the SummarizedExperiment class when SummarizedExperiment = TRUE
 #' @return              A matrix of the percentahe of module response at individual level and SummarizedExperiment object
 #' @examples
 #'## data could be downloaded from ExperimentHub("GSE13015")
@@ -35,7 +36,8 @@ Individualcomparison <- function(data.matrix,
                                  FC = NULL,
                                  DIFF = NULL,
                                  Group_column = NULL,
-                                 Ref_group = NULL){
+                                 Ref_group = NULL,
+                                 SummarizedExperiment = TRUE){
   ### Prepare expression matrix with module list
   df1=Module_listGen3                       # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
@@ -146,5 +148,12 @@ Individualcomparison <- function(data.matrix,
 
   Individual_res <- SummarizedExperiment(assays=SimpleList(Percent=as.matrix(Individual_df)),
                                          colData=colData)
+
+  if (SummarizedExperiment == "TRUE") {
+    Individual_df = Individual_res
+  }
+  else {
+    Individual_df = Individual_df
+  }
 
 }
