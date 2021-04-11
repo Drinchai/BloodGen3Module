@@ -37,6 +37,7 @@ Individualcomparison <- function(data.matrix,
                                  Group_column = NULL,
                                  Ref_group = NULL){
 
+  globalVariables(c("Module_listGen3", " DataFrame", "SimpleList"))
   ### Prepare expression matrix with module list
   df1=Module_listGen3                       # This is module list annotation table
   df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)

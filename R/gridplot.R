@@ -31,6 +31,7 @@ gridplot = function(Group_df,
                     Ref_group = NULL,
                     filename= NULL){
 
+  globalVariables(c("Gen3_ann", " Aggregate", " Sub_aggregate", "color", "%Response"))
   ## prepared cluster position
   Group_plot = Group_df
   Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=FALSE]
