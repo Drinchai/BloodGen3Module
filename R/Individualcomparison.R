@@ -7,6 +7,9 @@
 #' - The names of the columns for the conditions used in the analysis must be specified
 #' - The default cutoff is set at FC =1.5 and DIFF =10
 #' @import              ExperimentHub SummarizedExperiment testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
+#' @importFrom          SummarizedExperiment rowRanges
+#' @importFrom          SummarizedExperiment start
+#' @importFrom          SummarizedExperiment end
 #' @param data.matrix   Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
 #' @param sample_info   A dataframe with sample annotation.
 #' @param FC            Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group

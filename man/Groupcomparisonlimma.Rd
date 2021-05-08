@@ -32,6 +32,8 @@ Groupcomparisonlimma(
 \item{Test_group}{Character vector specifying value within the group column that will be used as Test group}
 
 \item{Ref_group}{Character vector specifying value within the group column that will be used as Reference group}
+
+\item{SummarizedExperiment}{Output data as the SummarizedExperiment class when SummarizedExperiment = TRUE}
 }
 \value{
 \preformatted{         A matrix of the percentahe of module response in each group comparison

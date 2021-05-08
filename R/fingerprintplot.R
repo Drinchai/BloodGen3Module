@@ -2,18 +2,18 @@
 #' The fingerprintplot function will generate fingerprint heatmap plots as a pdf file. The file will be saved in the working directory specified for the analysis.
 #' The default cut off for visualization is set at 15%, it can be changed to any value between 0-100%.
 #' @import methods grid graphics stats grDevices testthat circlize grid ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param Individual_df  Dataframe with output generated after running the 'Individualcomparison' function
-#' @param sample_info	   A dataframe with sample annotation.
-#' @param cutoff 			   Numeric value specifying the percentage cut off used for fingerprint visualization ( 0 to 100).
-#' @param rowSplit		   Logical operator (TRUE/FALSE) to indicate if rows of the heatmaps should be split by each aggregate
-#' @param Ref_group      Characters name of reference group or samples that considered as control
-#' @param Group_column   Name of the columns for the groups used for the analysis
+#' @param Individual_df Dataframe with output generated after running the 'Individualcomparison' function
+#' @param sample_info A dataframe with sample annotation.
+#' @param cutoff Numeric value specifying the percentage cut off used for fingerprint visualization ( 0 to 100).
+#' @param rowSplit Logical operator (TRUE/FALSE) to indicate if rows of the heatmaps should be split by each aggregate
+#' @param Ref_group Characters name of reference group or samples that considered as control
+#' @param Group_column Name of the columns for the groups used for the analysis
 #' @param show_ref_group Character vector specifying value within the group column that will be used as Reference group
-#' @param Aggregate      Character vector specifying name of specific module aggregates	for heatmap fingerprint plot
-#' @param filename       Character vector with a name for saving file
-#' @param height         Sets the height of the graphics region in inches. The default values are 28
-#' @param width	         Sets the width of the graphics region in inches. The default values are 17
-#' @return               A heatmap of % of module response in each single sample
+#' @param Aggregate Character vector specifying name of specific module aggregates	for heatmap fingerprint plot
+#' @param filename Character vector with a name for saving file
+#' @param height Sets the height of the graphics region in inches. The default values are 28
+#' @param width Sets the width of the graphics region in inches. The default values are 17
+#' @return A heatmap of % of module response in each single sample
 #' @examples
 #'## data could be downloaded from ExperimentHub("GSE13015")
 #'library(ExperimentHub)

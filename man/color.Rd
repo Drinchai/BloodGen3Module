@@ -11,6 +11,6 @@ A vector of 1134 character
 color
 }
 \description{
-Character vector of color for fingerprint plot
+Character vector of color for fingerprint grid plot
 }
 \keyword{datasets}

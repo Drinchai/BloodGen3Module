@@ -32,6 +32,8 @@ Groupcomparison(
 \item{Test_group}{Character vector specifying values within the group column (Group_column) that will be used as Test group (samples considered as cases or “intervention” group).}
 
 \item{Ref_group}{Character vector specifying value within the group column (Group_column) that will be used as Reference group}
+
+\item{SummarizedExperiment}{Output data as the SummarizedExperiment class when SummarizedExperiment = TRUE}
 }
 \value{
 \preformatted{            A matrix of the percentahe of module response in each group comparison

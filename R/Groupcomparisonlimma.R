@@ -14,6 +14,7 @@
 #' @param Group_column  Character vector identical to the column name from sample_info dataframe that specifies group annotation used for the analysis
 #' @param Test_group 		Character vector specifying value within the group column that will be used as Test group
 #' @param Ref_group 		Character vector specifying value within the group column that will be used as Reference group
+#' @param SummarizedExperiment Output data as the SummarizedExperiment class when SummarizedExperiment = TRUE
 #' @return              A matrix of the percentahe of module response in each group comparison
 #' @examples
 #'## data could be downloaded from ExperimentHub("GSE13015")

@@ -3,14 +3,19 @@
 \docType{data}
 \name{Module_listGen3}
 \alias{Module_listGen3}
-\title{Module list member}
+\title{Module identifer and list membership in each module}
 \format{
-A data.frame with 14168 rows by 5 variables:\code{Module}, \code{Gene symbol}, \code{Module_gene},\code{Functiom},\code{position}
+A data.frame with 14168 rows by 5 variables:
+\code{Module: Module identifier},
+\code{Gene symbol: gene membership},
+\code{Module_gene: gene specific module membership},
+\code{Function: Functional annotation},
+\code{position: position on fingerprint grid plot}
 }
 \usage{
 Module_listGen3
 }
 \description{
-A dataframe contain member of 3rd generantion of blood module repertoire construction
+A dataframe contain gene member of 3rd generantion of blood module repertoire construction
 }
 \keyword{datasets}

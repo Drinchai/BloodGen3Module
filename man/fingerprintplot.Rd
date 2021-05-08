@@ -44,8 +44,7 @@ fingerprintplot(
 \item{width}{Sets the width of the graphics region in inches. The default values are 17}
 }
 \value{
-\preformatted{          A heatmap of \% of module response in each single sample
-}
+A heatmap of \% of module response in each single sample
 }
 \description{
 Individual fingerprint visualization

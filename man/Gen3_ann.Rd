@@ -5,12 +5,17 @@
 \alias{Gen3_ann}
 \title{Functional annotation for visulization}
 \format{
-A data.frame with 5 variables:\code{Modules}, \code{Function},\code{Position},\code{Module_color}, \code{Cluster}
+A data.frame with 5 variables:
+\code{Modules: Module identifier},
+\code{Function: Functional annotation},
+\code{Position: position on fingerprint grid plot},
+\code{Module_color: specific color of each module for visulization},
+\code{Cluster: Module cluster membership}
 }
 \usage{
 Gen3_ann
 }
 \description{
-Functional annotation for visulization
+A dataframe contain module identifer, functional annotation and color in each specific module
 }
 \keyword{datasets}
