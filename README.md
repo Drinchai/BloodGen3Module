@@ -20,6 +20,11 @@ It is recommended to use the ```install_github``` function from the ```devtools`
 install.packages("devtools")
 devtools::install_github("Drinchai/BloodGen3Module")
 
+#Installation from Bioconductor:
+if (!requireNamespace("BiocManager", quietly=TRUE))
+install.packages("BiocManager")
+BiocManager::install("BloodGen3Module")
+
 ```
 
 ## Usage
