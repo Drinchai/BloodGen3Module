@@ -1,14 +1,14 @@
 #' Functional annotation for visulization
 #'
 #'
-#' @format A data.frame with 6 variables:\code{Modules}, \code{Aggregate}, \code{subaggregate},\code{Function},\code{Position},\code{Module_color}
+#' @format A data.frame with 5 variables:\code{Modules}, \code{Function},\code{Position},\code{Module_color}, \code{Cluster}
 "Gen3_ann"
 
 #' Module list member
 #'
 #' A dataframe contain member of 3rd generantion of blood module repertoire construction
 #'
-#' @format A data.frame with 14168 rows by 8 variables:\code{Module}, \code{Gene symbol}, \code{Probe ID}, \code{Module_gene},\code{Functiom},\code{Cluster},\code{Cluster_location},\code{position}
+#' @format A data.frame with 14168 rows by 5 variables:\code{Module}, \code{Gene symbol}, \code{Module_gene},\code{Functiom},\code{position}
 "Module_listGen3"
 
 #' Color for fingerprint visulization

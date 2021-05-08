@@ -34,15 +34,14 @@
 #'                width = 10)
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
-fingerprintplot = function(Individual_df, sample_info = sample_info,
+fingerprintplot = function(Individual_df, sample_info = NULL,
                            cutoff = NULL, rowSplit= TRUE, Ref_group=NULL,
                            show_ref_group = FALSE, Group_column= NULL,
                            Aggregate = NULL, filename = NULL,
                            height = NULL, width = NULL){
   #Load module annotation
-  Sum.mod.sin = Individual_df
+  Sum.mod.sin = assay(Individual_df)
   Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
-
   rownames(Sum.mod.sin) = paste(Gen3_ann$Module, Gen3_ann$Function, sep = ".")
 
   #modules with function deffined
@@ -68,6 +67,14 @@ fingerprintplot = function(Individual_df, sample_info = sample_info,
   }
 
   df_plot[abs(df_plot) < cutoff] = 0
+
+  #Sample information
+  if (is.null(sample_info)) {
+    sample_info = data.frame(colData(Individual_df))
+  }
+  else {
+    sample_info = sample_info
+  }
 
   ###remove control sample from plot
   if (show_ref_group == FALSE) {

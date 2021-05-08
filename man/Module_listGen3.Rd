@@ -5,7 +5,7 @@
 \alias{Module_listGen3}
 \title{Module list member}
 \format{
-A data.frame with 14168 rows by 8 variables:\code{Module}, \code{Gene symbol}, \code{Probe ID}, \code{Module_gene},\code{Functiom},\code{Cluster},\code{Cluster_location},\code{position}
+A data.frame with 14168 rows by 5 variables:\code{Module}, \code{Gene symbol}, \code{Module_gene},\code{Functiom},\code{position}
 }
 \usage{
 Module_listGen3

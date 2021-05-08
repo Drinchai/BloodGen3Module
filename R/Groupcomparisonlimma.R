@@ -38,7 +38,8 @@ Groupcomparisonlimma <- function(data.matrix,
                             FDR = TRUE,
                             Group_column = NULL,
                             Test_group = "Test_group",
-                            Ref_group = "Control"){
+                            Ref_group = "Control",
+                            SummarizedExperiment = TRUE){
   ### Prepare expression matrix with module list
   df1=Module_listGen3                   # This is module list annotation table
   df2=data.frame(data.matrix)                  # expression data (from your own datasets or from step 1)
@@ -48,8 +49,8 @@ Groupcomparisonlimma <- function(data.matrix,
   df.mod = merge(df1,df2,by="Gene",all=FALSE)   # match df1 and df2 by Gene symbol
 
   rownames(df.mod) = df.mod$Module_gene
-  dat.mod.func.Gen3 = df.mod[,c(1:8)]
-  dat.mod.Gen3 = df.mod[,-c(1:8)]
+  dat.mod.func.Gen3 = df.mod[,c(1:5)]
+  dat.mod.Gen3 = df.mod[,-c(1:5)]
 
   #prepare data for analysis
   ###########
@@ -161,4 +162,12 @@ Groupcomparisonlimma <- function(data.matrix,
   rownames(pect_df) <-rownames(pect_df.cal)
   pect_df <- pect_df[,-ncol(pect_df),drop=FALSE]
   Group_df = pect_df
+  Group_res <- SummarizedExperiment(assays=SimpleList(Percent=as.matrix(Group_df)))
+
+  if (SummarizedExperiment == "TRUE") {
+    Group_df = Group_res
+  }
+  else {
+    Group_df = Group_df
+  }
 }

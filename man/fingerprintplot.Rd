@@ -8,7 +8,7 @@ The default cut off for visualization is set at 15\%, it can be changed to any v
 \usage{
 fingerprintplot(
   Individual_df,
-  sample_info = sample_info,
+  sample_info = NULL,
   cutoff = NULL,
   rowSplit = TRUE,
   Ref_group = NULL,

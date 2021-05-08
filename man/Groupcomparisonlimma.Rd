@@ -12,7 +12,8 @@ Groupcomparisonlimma(
   FDR = TRUE,
   Group_column = NULL,
   Test_group = "Test_group",
-  Ref_group = "Control"
+  Ref_group = "Control",
+  SummarizedExperiment = TRUE
 )
 }
 \arguments{

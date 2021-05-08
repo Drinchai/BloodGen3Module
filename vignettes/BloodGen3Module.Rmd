@@ -34,9 +34,14 @@ The steps involved in module repertoire analysis and visualization include:
 ***
 It is recommended to use the install_github function from the devtools package in order to install the R package.
 
-```{r Package installation, echo= TRUE}
-#install.packages("devtools")
-#devtools::install_github("Drinchai/BloodGen3Module")
+```{r Package installation, echo= TRUE, eval=FALSE}
+#Installation from Github:
+devtools::install_github("Drinchai/BloodGen3Module")
+
+#Installation from Bioconductor:
+if (!requireNamespace("BiocManager", quietly=TRUE))
+install.packages("BiocManager")
+BiocManager::install("BloodGen3Module")
 
 ```
 
@@ -86,7 +91,8 @@ Group_df <- Groupcomparison(data_matrix,
                             FDR = TRUE,
                             Group_column = "Group_test",
                             Test_group = "Sepsis",
-                            Ref_group = "Control")
+                            Ref_group = "Control",
+                            SummarizedExperiment = TRUE)
 ```
 
 ## Using limma statistical analysis
@@ -98,7 +104,8 @@ Group_limma <- Groupcomparisonlimma(data_matrix,
                                     FDR = TRUE,
                                     Group_column = "Group_test",
                                     Test_group = "Sepsis",
-                                    Ref_group = "Control")
+                                    Ref_group = "Control",
+                                    SummarizedExperiment = TRUE)
 ```
 
 
@@ -143,8 +150,8 @@ The default cut off for visualization is set at 15%, it can changed to any value
 
 ```{r fingerprint visualization, warning=FALSE}
 
-fingerprintplot(Individual_df= assay(Individual_df),
-                sample_info = data.frame(colData(Individual_df)),
+fingerprintplot(Individual_df,
+                sample_info = NULL,
                 cutoff = 15,
                 rowSplit= TRUE ,
                 Group_column= "Group_test",

@@ -31,7 +31,7 @@ gridplot = function(Group_df,
                     Ref_group = NULL,
                     filename= NULL){
   ## prepared cluster position
-  Group_plot = Group_df
+  Group_plot = assay(Group_df)
   Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=FALSE]
   rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
   rownames(Group_plot) <- Gen3_ann$position

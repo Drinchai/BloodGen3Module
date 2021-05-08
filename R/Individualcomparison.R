@@ -47,8 +47,8 @@ Individualcomparison <- function(data.matrix,
   df.mod = merge(df1,df2,by="Gene",all=FALSE)   # match df1 and df2 by Gene symbol
 
   rownames(df.mod) = df.mod$Module_gene
-  dat.mod.func.Gen3 = df.mod[,c(1:8)]
-  dat.mod.Gen3 = df.mod[,-c(1:8)]
+  dat.mod.func.Gen3 = df.mod[,c(1:5)]
+  dat.mod.Gen3 = df.mod[,-c(1:5)]
 
   ############################
   #prepare data for analysis
