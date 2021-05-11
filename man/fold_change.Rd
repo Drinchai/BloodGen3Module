@@ -13,7 +13,8 @@ fold_change(
 )
 }
 \arguments{
-\item{df_raw}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
+\item{df_raw}{Matrix of normalized expression data (not Log2 transformed).
+Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
 
 \item{sample_info}{A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names}
 

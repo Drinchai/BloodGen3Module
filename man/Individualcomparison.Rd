@@ -15,7 +15,8 @@ Individualcomparison(
 )
 }
 \arguments{
-\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols}
+\item{data.matrix}{Matrix of normalized expression data (not Log2 transformed).Row names are required to be valid Gene Symbols. Columns names are sample IDs
+or data.matrix can also be given a summarizedexperiment object and assigned data.matrix and sample_info accordingly from the object.}
 
 \item{sample_info}{A dataframe with sample annotation.}
 

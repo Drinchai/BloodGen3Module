@@ -6,8 +6,10 @@
 #' - The sample annotation file must be loaded using a specific name = "sample_info".
 #' - The names of the columns for the conditions used in the analysis must be specified.
 #' @import                 ExperimentHub testthat ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param data.matrix      Matrix of normalized expression data (not Log2 transformed).Genes should be in rows and Sample ID in columns. Row names are required to be valid Gene Symbols
-#' @param sample_info      A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching Sample ID of data.matrix) and 2) a column specifying group names
+#' @param data.matrix      Matrix of normalized expression data (not Log2 transformed).Row names are required to be valid Gene Symbols. Columns names are sample IDs
+#' or data.matrix can also be given a summarizedexperiment object and assigned data.matrix and sample_info accordingly from the object.
+#' @param sample_info      A dataframe with sample annotation. Sample_info dataframe requires two columns: 1) a column specifying Sample ID (exactly matching the Sample ID of data.matrix)
+#' and 2) a column specifying group names
 #' @param FC               Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
 #' @param pval             Numeric value specifying p-value cut off or False discovery rate	when FDR = TRUE
 #' @param FDR              Logical operator to specify whether False discovery rate cut off (using BH-method) should be used

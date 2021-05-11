@@ -6,7 +6,8 @@
 #' - The sample annotation file must be loaded using a specific name = "sample_info".
 #' - The names of the columns for the conditions used in the analysis must be specified.
 #' @import              ExperimentHub ComplexHeatmap ggplot2 matrixStats gtools reshape2 preprocessCore randomcoloR V8 limma
-#' @param data.matrix   Matrix of normalized expression data (not Log2 transformed). Genes should be in rows and Sample ID in columns.Row names are required to be valid Gene Symbols
+#' @param data.matrix      Matrix of normalized expression data (not Log2 transformed).Row names are required to be valid Gene Symbols. Columns names are sample IDs
+#' or data.matrix can also be given a summarizedexperiment object and assigned data.matrix and sample_info accordingly from the object.
 #' @param sample_info   A dataframe with sample annotation.
 #' @param FC            Numeric value specifying the foldchange cut off that will be applied to define increase or decrease of a given transcript compared to the reference group
 #' @param pval          Numeric value specifying p-value cut off or False discovery rate when FDR = TRUE
