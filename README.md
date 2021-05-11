@@ -154,7 +154,7 @@ The default cut off for visualization is set at 15%, it can changed to any value
 ```{r fingerprint visualization, warning=FALSE}
 
 fingerprintplot(Individual_df,
-                sample_info = sample_ann,
+                sample_info = NULL,
                 cutoff = 15,
                 rowSplit= TRUE ,
                 Group_column= "Group_test",
