@@ -6,7 +6,7 @@
 \usage{
 Groupcomparisonlimma(
   data.matrix,
-  sample_info = sample_info,
+  sample_info = NULL,
   FC = NULL,
   pval = NULL,
   FDR = TRUE,
@@ -54,9 +54,7 @@ library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
-data_matrix = assay(GSE13015)
-sample_ann = data.frame(colData(GSE13015))
-Group_limma <- Groupcomparisonlimma(data_matrix, sample_info = sample_ann,
+Group_limma <- Groupcomparisonlimma(GSE13015, sample_info = NULL,
 FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test",
 Test_group = "Sepsis", Ref_group = "Control")
 }

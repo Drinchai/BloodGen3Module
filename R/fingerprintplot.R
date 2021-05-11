@@ -21,13 +21,10 @@
 #'dat = ExperimentHub()
 #'res = query(dat , "GSE13015")
 #'GSE13015 = res[["EH5429"]]
-#'data_matrix = assay(GSE13015)
-#'sample_ann = data.frame(colData(GSE13015))
-#'Individual_df = Individualcomparison(data_matrix, sample_info = sample_ann,
+#'Individual_df = Individualcomparison(GSE13015, sample_info = NULL,
 #'                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
 #'                                     Ref_group = "Control")
-#'fingerprintplot(Individual_df= assay(Individual_df),
-#'                sample_info = data.frame(colData(Individual_df)),
+#'fingerprintplot(Individual_df, sample_info = NULL,
 #'                cutoff = 15, rowSplit = TRUE, Ref_group = "Control",
 #'                show_ref_group = FALSE, Group_column = "Group_test",
 #'                Aggregate = c("A28"), filename = tempfile(), height = 5,
@@ -39,8 +36,12 @@ fingerprintplot = function(Individual_df, sample_info = NULL,
                            show_ref_group = FALSE, Group_column= NULL,
                            Aggregate = NULL, filename = NULL,
                            height = NULL, width = NULL){
-  #Load module annotation
-  Sum.mod.sin = assay(Individual_df)
+
+  if(is(Individual_df, "SummarizedExperiment")){
+    Sum.mod.sin = assay(Individual_df)
+  }else{
+    Sum.mod.sin = Individual_df
+  }
   Sum.mod.sin = Sum.mod.sin[rownames(Gen3_ann),]
   rownames(Sum.mod.sin) = paste(Gen3_ann$Module, Gen3_ann$Function, sep = ".")
 

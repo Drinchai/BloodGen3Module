@@ -6,7 +6,7 @@
 \usage{
 Individualcomparison(
   data.matrix,
-  sample_info = sample_info,
+  sample_info = NULL,
   FC = NULL,
   DIFF = NULL,
   Group_column = NULL,
@@ -51,9 +51,7 @@ library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
-data_matrix = assay(GSE13015)
-sample_ann = data.frame(colData(GSE13015))
-Individual_df = Individualcomparison(data_matrix, sample_info = sample_ann,
+Individual_df = Individualcomparison(GSE13015, sample_info = NULL,
                                     FC = 1.5, DIFF = 10, Group_column = "Group_test",
                                     Ref_group = "Control")
 }

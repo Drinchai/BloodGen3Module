@@ -23,15 +23,13 @@
 #'dat = ExperimentHub()
 #'res = query(dat , "GSE13015")
 #'GSE13015 = res[["EH5429"]]
-#'data_matrix = assay(GSE13015)
-#'sample_ann = data.frame(colData(GSE13015))
-#'Group_df = Groupcomparison(data_matrix, sample_info = sample_ann,
+#'Group_df = Groupcomparison(GSE13015, sample_info = NULL,
 #'                           FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Sepsis",
 #'                           Group_column = "Group_test", Ref_group = "Control")
 #' @author Darawan Rinchai <drinchai@gmail.com>
 #' @export
 Groupcomparison <- function(data.matrix,
-                            sample_info = sample_info,
+                            sample_info = NULL,
                             FC = NULL,
                             pval = NULL ,
                             FDR = TRUE,
@@ -39,9 +37,24 @@ Groupcomparison <- function(data.matrix,
                             Test_group = "Test_group",
                             Ref_group = "Control",
                             SummarizedExperiment = TRUE){
+
+  if(is(data.matrix, "SummarizedExperiment")){
+    data_matrix = assay(data.matrix)
+  }else{
+    data_matrix = data.matrix
+  }
+
+  #Sample information
+  if (is.null(sample_info)) {
+    sample_info = data.frame(colData(data.matrix))
+  }
+  else {
+    sample_info = sample_info
+  }
+
   ### Prepare expression matrix with module list
   df1=Module_listGen3                       # This is module list annotation table
-  df2=data.frame(data.matrix)               # expression data (from your own datasets or from step 1)
+  df2=data.frame(data_matrix)               # expression data (from your own datasets or from step 1)
   df2$Gene = rownames(df2)
 
   #Annotate gene module to expression matrix

@@ -13,7 +13,7 @@ The steps involved in module repertoire analysis and visualization include:
 ## Installation
 It is recommended to use the ```install_github``` function from the ```devtools``` package in order to install the R package.
 
-```{r Package installation}
+```{r Package installation, eval=FALSE}
 
 #Installation from Github
 
@@ -70,8 +70,6 @@ library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
-data_matrix = assay(GSE13015)
-sample_ann = data.frame(colData(GSE13015))
 
 ```
 
@@ -84,8 +82,8 @@ The **Groupcomparison** function will perform group comparison analyses. The res
 
 Using t-test
 ```{r group comparison analysis,warning=FALSE}
-Group_df <- Groupcomparison(data_matrix,
-                            sample_info = sample_ann,
+Group_df <- Groupcomparison(GSE13015,
+                            sample_info = NULL,
                             FC = 1.5,
                             pval = 0.1 ,
                             FDR = TRUE,
@@ -96,8 +94,8 @@ Group_df <- Groupcomparison(data_matrix,
 Using "limma"
 
 ```{r group comparison analysis using "limma",warning=FALSE}
-Group_limma <- Groupcomparisonlimma(data_matrix,
-                                    sample_info = sample_ann,
+Group_limma <- Groupcomparisonlimma(GSE13015,
+                                    sample_info = NULL,
                                     FC = 1.5,
                                     pval = 0.1 ,
                                     FDR = TRUE,
@@ -139,8 +137,8 @@ The **Individualcomparison** function will perform an individual sample comparis
 
 ```{r individual single sample analysis, warning=FALSE}
 
-Individual_df = Individualcomparison(data_matrix,
-                                     sample_info = sample_ann,
+Individual_df = Individualcomparison(GSE13015,
+                                     sample_info = NULL,
                                      FC = 1.5,
                                      DIFF = 10,
                                      Group_column = "Group_test",

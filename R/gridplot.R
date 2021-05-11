@@ -15,9 +15,7 @@
 #'dat = ExperimentHub()
 #'res = query(dat , "GSE13015")
 #'GSE13015 = res[["EH5429"]]
-#'data_matrix = assay(GSE13015)
-#'sample_ann = data.frame(colData(GSE13015))
-#'Group_df = Groupcomparison(data_matrix, sample_info = sample_ann,
+#'Group_df = Groupcomparison(GSE13015, sample_info = NULL,
 #'                           FC = 0, pval = 0.1, FDR = TRUE, Test_group = "Sepsis",
 #'                           Group_column = "Group_test", Ref_group = "Control")
 #'gridplot(Group_df, cutoff = 15,
@@ -30,8 +28,15 @@ gridplot = function(Group_df,
                     cutoff = NULL,
                     Ref_group = NULL,
                     filename= NULL){
+
+
+  if(is(Group_df, "SummarizedExperiment")){
+    Group_plot = assay(Group_df)
+  }else{
+    Group_plot = Group_plot
+  }
+
   ## prepared cluster position
-  Group_plot = assay(Group_df)
   Group_plot <-Group_plot[rownames(Gen3_ann),1,drop=FALSE]
   rownames(Group_plot)==rownames(Gen3_ann)                         # check if rownames is the same
   rownames(Group_plot) <- Gen3_ann$position

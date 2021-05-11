@@ -67,9 +67,6 @@ library(SummarizedExperiment)
 dat = ExperimentHub()
 res = query(dat , "GSE13015")
 GSE13015 = res[["EH5429"]]
-data_matrix = assay(GSE13015)
-sample_ann = data.frame(colData(GSE13015))
-head(sample_ann)
 
 ```
 
@@ -84,8 +81,8 @@ The **Groupcomparison** function will perform group comparison analyses. The res
 
 ## Using t-test statistical analysis
 ```{r group comparison analysis using t-test statistical analysis, warning=FALSE, echo= TRUE}
-Group_df <- Groupcomparison(data_matrix,
-                            sample_info = sample_ann,
+Group_df <- Groupcomparison(GSE13015,
+                            sample_info = NULL,
                             FC = 1.5,
                             pval = 0.1 ,
                             FDR = TRUE,
@@ -97,8 +94,8 @@ Group_df <- Groupcomparison(data_matrix,
 
 ## Using limma statistical analysis
 ```{r group comparison analysis using limma statistical analysis,warning=FALSE}
-Group_limma <- Groupcomparisonlimma(data_matrix,
-                                    sample_info = sample_ann,
+Group_limma <- Groupcomparisonlimma(GSE13015,
+                                    sample_info = NULL,
                                     FC = 1.5,
                                     pval = 0.1 ,
                                     FDR = TRUE,
@@ -134,8 +131,8 @@ The **Individualcomparison** function will perform an individual sample comparis
 •	The default cut off is set at fold change (FC) =1.5 and absolute difference (DIFF) =10.
 
 ```{r individual single sample analysis, warning=FALSE, echo= TRUE}
-Individual_df = Individualcomparison(data_matrix,
-                                     sample_info = sample_ann,
+Individual_df = Individualcomparison(GSE13015,
+                                     sample_info = NULL,
                                      FC = 1.5,
                                      DIFF = 10,
                                      Group_column = "Group_test",
