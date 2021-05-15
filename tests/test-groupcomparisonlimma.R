@@ -1,5 +1,6 @@
 library("limma")
 library("testthat")
+library("BloodGen3Module")
 load("./R/sysdata.rda")
 Groupcomparisonlimma <- function(data.matrix,
                                  sample_info = NULL,
