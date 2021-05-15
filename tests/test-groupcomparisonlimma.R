@@ -1,6 +1,6 @@
-library("BloodGen3Module")
 library("limma")
 library("testthat")
+load("./R/sysdata.rda")
 Groupcomparisonlimma <- function(data.matrix,
                                  sample_info = NULL,
                                  FC = NULL,
@@ -157,20 +157,29 @@ Groupcomparisonlimma <- function(data.matrix,
 }
 
 
+library(ExperimentHub)
+library(SummarizedExperiment)
+dat = ExperimentHub()
+res = query(dat , "GSE13015")
+GSE13015 = res[["EH5429"]]
+
 test_that("test Groupcomparisonlimma", {
-
-  library(ExperimentHub)
-  library(SummarizedExperiment)
-  dat = ExperimentHub()
-  res = query(dat , "GSE13015")
-  GSE13015 = res[["EH5429"]]
-
-  a  = Groupcomparisonlimma(GSE13015, sample_info = NULL,
-                            FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test",
-                            Test_group = "Sepsis", Ref_group = "Control")
-  b  = Groupcomparisonlimma(GSE13015, sample_info = NULL,
-                            FC = 1.5, pval = 0.1, FDR = TRUE, Group_column = "Group_test",
-                            Test_group = "Sepsis", Ref_group = "Control")
+  a  = Group_limma <- Groupcomparisonlimma(GSE13015,
+                                           sample_info = NULL,
+                                           FC = 1.5,
+                                           pval = 0.1 ,
+                                           FDR = TRUE,
+                                           Group_column = "Group_test",
+                                           Test_group = "Test",
+                                           Ref_group = "Control")
+  b  = Group_limma <- Groupcomparisonlimma(GSE13015,
+                                           sample_info = NULL,
+                                           FC = 1.5,
+                                           pval = 0.1 ,
+                                           FDR = TRUE,
+                                           Group_column = "Group_test",
+                                           Test_group = "Test",
+                                           Ref_group = "Control")
 
   expect_that(a, equals(b))
 })
