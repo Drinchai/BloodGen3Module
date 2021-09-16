@@ -57,7 +57,7 @@ fingerprintplot = function(Individual_df, sample_info = NULL,
   ####################################################################################
   ####### DOT Heatmap by complexHeatmap ####
 
-  df_plot = Sum.mod.sin.comp.withF
+  df_plot = Sum.mod.sin
 
   ########## An example of DISPLAY DATA > 15 %
   if (is.null(cutoff)) {
